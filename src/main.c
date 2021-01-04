@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/04 12:26:39 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/04 12:31:39 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	parse_args(t_cub3d *c3d, int ac, char **av)
 	else if (ac == 2)
 	{
 		//need a true strcmp here
-		if (ft_strncmp(av[1], "--save", ft_strlen(av[1])) != 0)
+		if (ft_strcmp(av[1], "--save") != 0)
 			ft_snprintf(c3d->err, ERR_LEN, "Unknown arg: \"%s\"", av[1]);
 		else
 			c3d->meta |= META_SAVE;
