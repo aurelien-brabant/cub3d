@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/04 00:32:21 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/04 12:26:39 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 	t_cub3d	c3d;
 
 	c3d.state = ST_NONE;
-	while (!c3d.err[0] && c3d.state != ST_STOPPED)
+	while (c3d.state != ST_STOPPED)
 	{
 		if (c3d.state == ST_PARSING_ARGS)
 			parse_args(&c3d, ac - 1, av + 1);
@@ -58,6 +58,8 @@ int	main(int ac, char **av)
 			break ;
 		else
 			cub3d_init(&c3d);
+		if (c3d.err[0] != '\0')
+			break ;
 	}
 	cub3d_destroy(&c3d);
 }
