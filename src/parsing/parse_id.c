@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:38:08 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/05 16:39:58 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/06 00:28:18 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	process_token(t_cub3d *c3d, char *tok)
 	{
 		if (ft_strcmp(tok, key[i]) == 0)
 		{
+			if (i == P_ID_RES)
+				parse_res(c3d);
 			if (i >= P_ID_NO && i <= P_ID_S)
 				parse_tex(c3d, i, key[i]);
 			return ;
