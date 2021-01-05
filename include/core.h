@@ -42,8 +42,8 @@ typedef struct s_res
 
 typedef struct s_dat
 {
-	char 			*tex[P_ID_S];
-	unsigned char	*col[P_ID_TOTAL - P_ID_F];	
+	char 			*tex[P_ID_S - P_ID_RES];
+	uint16_t		col[P_ID_TOTAL - P_ID_F];	
 	t_res			res;
 }				t_dat;
 

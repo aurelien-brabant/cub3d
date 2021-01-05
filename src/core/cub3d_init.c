@@ -6,9 +6,11 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:16:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/05 12:40:38 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/05 16:13:44 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <limits.h>
 
 #include "parsing.h"
 #include "libft/string.h"
@@ -23,5 +25,7 @@ void	cub3d_init(t_cub3d *c3d)
 	if (!ft_dvec_make(&c3d->gc, GARBAGE_COLLECTOR_INIT_COUNT))
 		ft_snprintf(c3d->err, ERR_LEN, 
 			"Could not initialize the garbage collector properly.");
+	c3d->dat.col[P_ID_F - P_ID_F] = UCHAR_MAX + 1;
+	c3d->dat.col[P_ID_C - P_ID_F] = UCHAR_MAX + 1;
 	cub3d_shift_state(c3d, NULL);
 }

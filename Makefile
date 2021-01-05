@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/01/05 15:09:36 by abrabant         ###   ########.fr        #
+#    Updated: 2021/01/05 16:30:10 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC_VPATH		= $(SRC_DIR) $(SRC_DIR)/core $(SRC_DIR)/parsing:	\
 
 CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c
 
-PARSING			= parse_id.c parse_tex.c
+PARSING			= parse_id.c parse_tex.c check_parse_id.c
 
 MISC			= gc.c
 
