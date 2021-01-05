@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/04 12:31:39 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/05 13:04:14 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 #include <sys/errno.h>
 
-#include "core.h"
+#include "parsing.h"
 
 #include "libft/dvector.h"
 #include "libft/io.h"
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 		if (c3d.state == ST_PARSING_ARGS)
 			parse_args(&c3d, ac - 1, av + 1);
 		else if (c3d.state == ST_PARSING_ID)
-			break ;
+			parse_id(&c3d);
 		else
 			cub3d_init(&c3d);
 		if (c3d.err[0] != '\0')

@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/01/03 23:48:25 by abrabant         ###   ########.fr        #
+#    Updated: 2021/01/05 15:09:36 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,16 @@ LIBFT_LINK		= -lft
 # ---------------[=    SOURCE CODE FILES      =]--------------- #
 
 SRC_DIR			= ./src
-SRC_VPATH		= $(SRC_DIR) $(SRC_DIR)/core
+SRC_VPATH		= $(SRC_DIR) $(SRC_DIR)/core $(SRC_DIR)/parsing:	\
+				  $(SRC_DIR)/misc
 
 CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c
 
-SRCS		 	= main.c $(CORE)
+PARSING			= parse_id.c parse_tex.c
+
+MISC			= gc.c
+
+SRCS		 	= main.c $(CORE) $(PARSING) $(MISC)
 
 # ---------------[=     SOURCES - GENERAL     =]--------------- #
 
