@@ -1,0 +1,15 @@
+# Textures
+
+NO	asset/tex/brick.xpm
+SO	asset/tex/grass.xpm
+EA  asset/tex/metal.xpm
+WE  asset/tex/stone.xpm
+S	asset/tex/stone.xpm
+
+R	1920  1080
+
+C	b255,   255,  255
+
+EA  asset/tex/metal.xpm
+
+F	0, 0, 0

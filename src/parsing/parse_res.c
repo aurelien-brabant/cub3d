@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 00:17:41 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/06 00:42:42 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/06 12:30:26 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,7 @@
 #include "libft/io.h"
 
 #include "core.h"
-
-static bool	is_valid_nb(char *tok)
-{
-	while (*tok)
-		if (!ft_isdigit(*tok++))
-			return (false);
-	return (true);
-}
+#include "misc.h"
 
 void	parse_res(t_cub3d *c3d)
 {
@@ -35,7 +28,7 @@ void	parse_res(t_cub3d *c3d)
 	if (!nb_str[0] || !nb_str[1])
 		ft_snprintf(c3d->err, ERR_LEN, "R: expects two tokens, found %d.",
 			(nb_str[0] != NULL) + (nb_str[1] != NULL));
-	else if (!is_valid_nb(nb_str[0]) || !is_valid_nb(nb_str[1]))
+	else if (!is_parsable_nb(nb_str[0]) || !is_parsable_nb(nb_str[1]))
 		ft_snprintf(c3d->err, ERR_LEN, 
 			"R: at least one of the token is not a valid number.", nb_str[0]);
 	else

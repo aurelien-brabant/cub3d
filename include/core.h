@@ -8,12 +8,12 @@
 typedef enum e_state
 {
 	ST_NONE = 0,
-	ST_STOPPED,
 	ST_INITIALIZING,
 	ST_PARSING_ARGS,
 	ST_PARSING_ID,
 	ST_PARSING_MAP,
 	ST_RUNNING,
+	ST_STOPPED,
 }	t_state;
 
 typedef enum e_metaflag
@@ -43,7 +43,7 @@ typedef struct s_res
 typedef struct s_dat
 {
 	char 			*tex[P_ID_S - P_ID_RES];
-	uint16_t		col[P_ID_TOTAL - P_ID_F];	
+	int				col[2];	
 	t_res			res;
 }				t_dat;
 

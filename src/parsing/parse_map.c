@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   misc.h                                             :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/06 13:38:54 by abrabant         ###   ########.fr       */
+/*   Created: 2021/01/06 15:45:51 by abrabant          #+#    #+#             */
+/*   Updated: 2021/01/06 16:17:39 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MISC_H
-# define MISC_H
-# include "libft/dvector.h"
+#include "core.h"
 
-/*
-** gc.c 
-*/
+#include "libft/io.h"
 
-void	*gc_put(t_dvec *gc, void *el);
-
-/*
-** parsing_utils.c
-*/
-
-bool	is_parsable_nb(char *nb_str);
-
-/*
-* color.c
-*/
-
-int	make_rgb(int red, int green, int blue);
-
-#endif
+void	parse_map(t_cub3d *c3d)
+{
+	ft_snprintf(c3d->err, ERR_LEN, "Map parsing is not implemented yet.");
+}

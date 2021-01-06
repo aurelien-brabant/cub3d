@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/04 00:25:52 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/06 15:44:37 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "core.h"
-
 #include "libft/io.h"
 #include "libft/dvector.h"
+
+#include "core.h"
 
 /*
 ** A simple wrapper around the standard free function, to use it
