@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/06 15:44:37 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/12 16:54:34 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static const char	*get_state_info(unsigned char state)
 		return ("The error occured during the parsing of identifiers");
 	if (state == ST_PARSING_MAP)
 		return ("The error occured during the parsing of the map");
-	if (state == ST_RUNNING)
-		return ("The error occured while running the program");
 	return ("Unexpected error. That's not normal.");
 }
 
@@ -93,7 +91,9 @@ void	cub3d_destroy(t_cub3d *c3d)
 {
 	if (c3d->gc.val)
 		ft_dvec_destroy(&c3d->gc, &wrap_free);
-	if (c3d->state != ST_STOPPED)
+	if (c3d->dat.map.val)
+		ft_dvec_destroy(&c3d->dat.map, NULL);
+	if (c3d->state != ST_STOPPING)
 	{
 		print_error(c3d->state, c3d->err);
 		if (c3d->state > ST_PARSING_ARGS)
