@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/01/12 22:06:45 by abrabant         ###   ########.fr        #
+#    Updated: 2021/01/13 02:03:21 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ OBJS			= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 all: $(TARGET)
 
+test:
+	(cd test && ./test.sh)
+
 clean:
 	$(RM) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE) $(OBJS) $(OBJ_DIR)
 	make clean -C $(MLX_PATH)
@@ -71,7 +74,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re test
 
 # Build rules
 
