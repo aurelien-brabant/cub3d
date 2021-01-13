@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/12 15:43:41 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/12 21:53:02 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	check_opt(void *cla, char **allowed_opt, uint8_t *opt)
 			*opt |= (1 << i);
 		++i;
 	}
-	ft_printf("%hhd\n", *opt);
 }
 
 static void	parse_cla(t_cub3d *c3d, int ac, char **av)

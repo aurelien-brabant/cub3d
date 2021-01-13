@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/01/12 16:40:35 by abrabant         ###   ########.fr        #
+#    Updated: 2021/01/12 22:06:45 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c
 PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 				parse_col.c parse_map.c check_parse_map.c
 
-MISC			= gc.c parsing_utils.c color.c
+MISC			= gc.c parsing_utils.c color.c map.c
 
 SRCS		 	= main.c $(CORE) $(PARSING) $(MISC)
 

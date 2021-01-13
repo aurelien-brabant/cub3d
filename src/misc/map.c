@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   misc.h                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/12 22:06:27 by abrabant         ###   ########.fr       */
+/*   Created: 2021/01/12 21:54:49 by abrabant          #+#    #+#             */
+/*   Updated: 2021/01/12 22:11:19 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MISC_H
-# define MISC_H
-# include "libft/dvector.h"
+#include "core.h"
+
+#include "libft/dvector.h"
 
 /*
-** gc.c 
+** This is basically a shortcut to write less code
+** to access the map's content.
+** If parametrized macros were allowed by the norm,
+** it would be better to use them tho.
 */
 
-void	*gc_put(t_dvec *gc, void *el);
-
-/*
-** parsing_utils.c
-*/
-
-bool	is_parsable_nb(char *nb_str);
-
-/*
-** color.c
-*/
-
-int	make_rgb(int red, int green, int blue);
-
-/*
-** map.c
-*/
-
-uint8_t	getmapc(t_dvec *map, size_t x, size_t y);
-
-#endif
+uint8_t	getmapc(t_dvec *map, size_t x, size_t y)
+{
+	return (((uint8_t *)ft_dvec_get(map, y))[x]);
+}
