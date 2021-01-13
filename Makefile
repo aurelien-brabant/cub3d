@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/01/13 02:03:21 by abrabant         ###   ########.fr        #
+#    Updated: 2021/01/13 14:36:10 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ OBJS			= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 all: $(TARGET)
 
 test:
-	(cd test && ./test.sh)
+	./test.sh
 
 clean:
 	$(RM) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE) $(OBJS) $(OBJ_DIR)

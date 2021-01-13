@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 13:49:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/05 17:09:21 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/13 21:13:25 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	verify_path(char *path, char *err)
 
 	fd = -1;
 	if (!ft_strhssfx(path, ".xpm"))
-		ft_snprintf(err, ERR_LEN, 
+		ft_snprintf(err, ERR_LEN,
 			"\"%s\": a texture file must have a .xpm extension.", path);
 	else
 	{

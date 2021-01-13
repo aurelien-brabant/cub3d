@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/12 16:54:34 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/13 21:08:08 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "libft/dvector.h"
 
 #include "core.h"
+#include "msg.h"
 
 /*
 ** A simple wrapper around the standard free function, to use it
@@ -45,14 +46,14 @@ static void	wrap_free(void **el)
 static const char	*get_state_info(unsigned char state)
 {
 	if (state == ST_INITIALIZING)
-		return ("The error occured during initialization");
+		return (MSG_INIT_CTXT);
 	if (state == ST_PARSING_ARGS)
-		return ("The error occured while parsing the command line args");
+		return (MSG_P_ARG_CTXT);
 	if (state == ST_PARSING_ID)
-		return ("The error occured during the parsing of identifiers");
+		return (MSG_P_ID_CTXT);
 	if (state == ST_PARSING_MAP)
-		return ("The error occured during the parsing of the map");
-	return ("Unexpected error. That's not normal.");
+		return (MSG_P_MAP_CTXT);
+	return (MSG_UNKNOWN_CTXT);
 }
 
 void	clear_gnl(int fd)
@@ -65,28 +66,6 @@ void	clear_gnl(int fd)
 	free(line);
 }
 
-/*
-** Print the error on stderr, if any.
-**
-** @param	state	=> the state
-**
-*/
-
-static void	print_error(unsigned char state, char *err)
-{
-	const char	*state_info;
-
-	state_info = get_state_info(state);
-	if (err[0])
-		ft_dprintf(STDERR_FILENO, "\033[0;31mError\n\033[0m%s:\n%s\n",
-			state_info, err);
-	else
-		ft_dprintf(STDERR_FILENO, "\033[0;31mError\n\033[0m%s:\n%s\n",
-			state_info, 
-			"Unexpected error - program exited sooner than expected.");
-
-}
-
 void	cub3d_destroy(t_cub3d *c3d)
 {
 	if (c3d->gc.val)
@@ -95,7 +74,8 @@ void	cub3d_destroy(t_cub3d *c3d)
 		ft_dvec_destroy(&c3d->dat.map, NULL);
 	if (c3d->state != ST_STOPPING)
 	{
-		print_error(c3d->state, c3d->err);
+		ft_dprintf(STDERR_FILENO, MSG_ERR_FMT,
+			get_state_info(c3d->state), c3d->err);
 		if (c3d->state > ST_PARSING_ARGS)
 			clear_gnl(c3d->dotcub_fd);
 		if (c3d->dotcub_fd != -1)

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:38:08 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/06 14:40:41 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/13 21:12:45 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "libft/io.h"
 
 #include "parsing.h"
-
 #include "misc.h"
+#include "msg.h"
 
 static void	process_token(t_cub3d *c3d, char *tok)
 {
-	static char	*key[] = { "R", "NO", "EA", "SO", "WE", "S", "F", "C", NULL };
+	static char	*key[] = {"R", "NO", "EA", "SO", "WE", "S", "F", "C", NULL};
 	size_t		i;
 
 	i = 0;
@@ -37,7 +37,7 @@ static void	process_token(t_cub3d *c3d, char *tok)
 		}
 		++i;
 	}
-	ft_snprintf(c3d->err, ERR_LEN, "Token \"%s\" could not be parsed.", tok);
+	ft_snprintf(c3d->err, ERR_LEN, MSG_ID_NOT_PARSED, tok);
 }
 
 void	parse_id(t_cub3d *c3d)
@@ -49,14 +49,13 @@ void	parse_id(t_cub3d *c3d)
 	ret = ft_gnl(c3d->dotcub_fd, &ln);
 	ln = gc_put(&c3d->gc, ft_strtrim(gc_put(&c3d->gc, ln), " \t"));
 	if (ret <= 0)
-		ft_snprintf(c3d->err, ERR_LEN, 
-			"EOF reached prematurely. Missing identifiers.");
-	if (ln[0] == '\0' || ln[0] == '#')
+		ft_snprintf(c3d->err, ERR_LEN, MSG_ID_EOF);
+	if (ln[0] == '\0')
 		return ;
 	tok = ft_strtok(ln, " \t");
 	if (!tok)
-		ft_snprintf(c3d->err, ERR_LEN, "No suitable token found (NULL token)");
+		ft_snprintf(c3d->err, ERR_LEN, MSG_NO_TOKEN);
 	if (c3d->err[0] == '\0')
-		process_token(c3d, tok);	
+		process_token(c3d, tok);
 	cub3d_shift_state(c3d, &check_parse_id);
 }

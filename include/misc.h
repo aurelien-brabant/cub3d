@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/12 22:06:27 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/01/13 21:07:30 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	is_parsable_nb(char *nb_str);
 ** color.c
 */
 
-int	make_rgb(int red, int green, int blue);
+int		make_rgb(int red, int green, int blue);
 
 /*
 ** map.c

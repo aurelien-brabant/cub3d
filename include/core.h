@@ -38,16 +38,25 @@ typedef enum e_parsing_id
 
 typedef struct s_res
 {
-	int	h;
-	int	w;
+	long long	h;
+	long long	w;
 }	t_res;
+
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	rot_angle;
+}	t_player;
 
 typedef struct s_dat
 {
-	char 			*tex[P_ID_S - P_ID_RES];
-	int				col[2];	
+	char			*tex[P_ID_S - P_ID_RES];
+	int				col[2];
 	t_res			res;
 	t_dvec			map;
+	t_player		player;
+	void			*mlx_ptr;
 }				t_dat;
 
 typedef struct s_cub3d
