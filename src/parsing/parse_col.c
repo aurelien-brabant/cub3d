@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:53:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 12:01:53 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 18:45:06 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "libft/string.h"
 #include "libft/io.h"
 #include "libft/strconv.h"
-
 
 static bool	conv_strs(char **col_str, int *col, char *key, char *err)
 {

@@ -3,3 +3,4 @@ libft
 cub3D
 .obj
 test/
+.cache
