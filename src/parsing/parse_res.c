@@ -6,18 +6,18 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 00:17:41 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/13 21:13:15 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 12:00:45 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cub3d_types.h"
+#include "cub3d_misc.h"
+#include "cub3d_msg.h"
 
 #include "libft/ctype.h"
 #include "libft/strconv.h"
 #include "libft/string.h"
 #include "libft/io.h"
-
-#include "core.h"
-#include "misc.h"
-#include "msg.h"
 
 static bool	convert_nbrs(char **nb_str, long long *nb, char *err)
 {
@@ -59,8 +59,8 @@ void	parse_res(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, MSG_BAD_ARG_NB, "R", 2, i);
 	else if (convert_nbrs(nb_str, nb, c3d->err))
 	{
-		c3d->dat.res.w = nb[0];
-		c3d->dat.res.h = nb[1];
+		c3d->mapdat.win_width = nb[0];
+		c3d->mapdat.win_height = nb[1];
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/13 21:08:08 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 17:44:23 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "cub3d_core.h"
+#include "cub3d_types.h"
+#include "cub3d_msg.h"
+
 #include "libft/io.h"
-#include "libft/dvector.h"
-
-#include "core.h"
-#include "msg.h"
-
-/*
-** A simple wrapper around the standard free function, to use it
-** with my vector implementation.
-**
-** @param	the address of a pointer to an element, element which is to
-** be freed.
-*/
-
-static void	wrap_free(void **el)
-{
-	free(*el);
-	*el = NULL;
-}
-
-/*
-** Get more information about where the error occured. 
-**
-** @param	state	=> the state
-**
-** @return an immutable string describing at which step the error occured.
-*/
-
-static const char	*get_state_info(unsigned char state)
-{
-	if (state == ST_INITIALIZING)
-		return (MSG_INIT_CTXT);
-	if (state == ST_PARSING_ARGS)
-		return (MSG_P_ARG_CTXT);
-	if (state == ST_PARSING_ID)
-		return (MSG_P_ID_CTXT);
-	if (state == ST_PARSING_MAP)
-		return (MSG_P_MAP_CTXT);
-	return (MSG_UNKNOWN_CTXT);
-}
+#include "libft/vector.h"
 
 void	clear_gnl(int fd)
 {
@@ -68,19 +34,17 @@ void	clear_gnl(int fd)
 
 void	cub3d_destroy(t_cub3d *c3d)
 {
-	if (c3d->gc.val)
-		ft_dvec_destroy(&c3d->gc, &wrap_free);
-	if (c3d->dat.map.val)
-		ft_dvec_destroy(&c3d->dat.map, NULL);
-	if (c3d->state != ST_STOPPING)
-	{
-		ft_dprintf(STDERR_FILENO, MSG_ERR_FMT,
-			get_state_info(c3d->state), c3d->err);
-		if (c3d->state > ST_PARSING_ARGS)
-			clear_gnl(c3d->dotcub_fd);
-		if (c3d->dotcub_fd != -1)
-			close(c3d->dotcub_fd);
-		exit(1);
-	}
+	if (c3d->gbc != NULL)
+		ft_vec_destroy(c3d->gbc, &free);
+	if (c3d->mapdat.map != NULL)
+		ft_vec_destroy(c3d->mapdat.map, NULL);
+	if (c3d->err[0] != '\0')
+		ft_dprintf(STDERR_FILENO,
+		"\033[1;36m%s\t\t\033[0m[\033[0;31mKO\033[0m]\033[0m\n%s\n",
+			cub3d_state_to_str(c3d->state), c3d->err);
+	if (c3d->state > ST_PARSING_ARGS)
+		clear_gnl(c3d->fildes);
+	if (c3d->fildes != -1)
+		close(c3d->fildes);
 	exit(0);
 }

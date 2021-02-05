@@ -6,14 +6,14 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:37:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/05 13:06:43 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 12:41:14 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/dvector.h"
+#include "libft/vector.h"
 
-void	*gc_put(t_dvec *gc, void *el)
+void	*gc_put(t_vector *gc, void *el)
 {
-	ft_dvec_add(gc, el);
+	ft_vec_add(gc, el);
 	return (el);
 }

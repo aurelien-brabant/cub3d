@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 13:49:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/13 21:13:25 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 11:52:04 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 #include <fcntl.h>
 #include <sys/errno.h>
 
+#include "cub3d_core.h"
+
 #include "libft/string.h"
 #include "libft/io.h"
-
-#include "core.h"
-#include "misc.h"
 
 static bool	verify_path(char *path, char *err)
 {
@@ -43,7 +42,7 @@ void	parse_tex(t_cub3d *c3d, t_parsing_id id, char *key)
 	char	*tok;
 	char	*next_tok;
 
-	if (c3d->dat.tex[id - 1] != NULL)
+	if (c3d->mapdat.textures[id - 1] != NULL)
 	{
 		ft_snprintf(c3d->err, ERR_LEN, "\"%s\" already defined.", key);
 		return ;
@@ -57,5 +56,5 @@ void	parse_tex(t_cub3d *c3d, t_parsing_id id, char *key)
 			"%s: Found unexpected token: \"%s\"", key, next_tok);
 	if (c3d->err[0] != '\0' || !verify_path(tok, c3d->err))
 		return ;
-	c3d->dat.tex[id - 1] = tok;
+	c3d->mapdat.textures[id - 1] = tok;
 }

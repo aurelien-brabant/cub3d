@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/13 21:13:44 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 18:14:26 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 #include <sys/errno.h>
 #include <stdlib.h>
 
-#include "parsing.h"
+#include "cub3d_core.h"
+#include "cub3d_parsing.h"
+#include "cub3d_msg.h"
 
-#include "libft/dvector.h"
+#include "cub3d_types.h"
 #include "libft/io.h"
 #include "libft/string.h"
 #include "libft/cla.h"
@@ -44,7 +46,7 @@ static void	check_opt(void *cla, char **allowed_opt, uint8_t *opt)
 	size_t	i;
 
 	i = 0;
-	while (i < OPT_TOTAL)
+	while (i < OPT_TOTAL - 1)
 	{
 		if (ft_cla_bool_var(cla, NULL, allowed_opt[i], false))
 			*opt |= (1 << i);
@@ -54,7 +56,7 @@ static void	check_opt(void *cla, char **allowed_opt, uint8_t *opt)
 
 static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 {
-	static char		*allowed_opt[] = {"save", "parseOnly", NULL};
+	static char		*allowed_opt[] = {"save", "parse-only", NULL};
 	t_cla_config	conf;
 	void			*cla;
 	char			err[10000];
@@ -68,30 +70,43 @@ static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 		ft_snprintf(c3d->err, ERR_LEN, "%s\nUsage: %s", err, PROG_USAGE);
 	else
 	{
-		check_dotcub_filepath(cla, &c3d->dotcub_fd, c3d->err);
+		check_dotcub_filepath(cla, &c3d->fildes, c3d->err);
 		check_opt(cla, allowed_opt, &c3d->opt);
 	}
 	free(cla);
 	cub3d_shift_state(c3d, NULL);
 }
 
+int	loop_check(t_cub3d *c3d)
+{
+	if (c3d->err[0] != '\0')
+		return (0);
+	if (c3d->opt & OPT_PARSE_ONLY && c3d->state == ST_INGAME)
+		return (0);
+	if (c3d->state == ST_STOPPING)
+		return (0);
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	t_cub3d	c3d;
 
-	c3d.state = ST_NONE;
-	while (c3d.state != ST_STOPPING)
+	c3d.state = ST_INITIALIZING;
+	c3d.err[0] = '\0';
+	c3d.opt = 0;
+	while (loop_check(&c3d))
 	{
-		if (c3d.state == ST_PARSING_ARGS)
+		if (c3d.state == ST_INITIALIZING)
+			cub3d_init(&c3d);
+		else if (c3d.state == ST_PARSING_ARGS)
 			parse_cla(&c3d, ac, av);
 		else if (c3d.state == ST_PARSING_ID)
 			parse_id(&c3d);
 		else if (c3d.state == ST_PARSING_MAP)
 			parse_map(&c3d);
 		else
-			cub3d_init(&c3d);
-		if (c3d.err[0] != '\0')
-			break ;
+			ft_snprintf(c3d.err, ERR_LEN, "Loop exited sooner than expected.");
 	}
 	cub3d_destroy(&c3d);
 }

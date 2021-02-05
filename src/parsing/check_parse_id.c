@@ -6,15 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 16:14:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/06 15:33:14 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 11:53:35 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 
-#include "libft/types.h"
-
-#include "core.h"
+#include "cub3d_types.h"
 
 /*
 ** Make sure that all the identifiers have been parsed.
@@ -23,17 +21,17 @@
 ** @PARAM	c3d	=> all the cub3d essential data.
 */
 
-bool	check_parse_id(t_cub3d *c3d)
+int	check_parse_id(t_cub3d *c3d)
 {
 	unsigned char	i;
 
 	i = 0;
 	while (i < P_ID_S)
-		if (!c3d->dat.tex[i++])
-			return (false);
+		if (!c3d->mapdat.textures[i++])
+			return (0);
 	i = 0;
 	while (i <= P_ID_C - P_ID_F)
-		if (c3d->dat.col[i++] < 0)
-			return (false);
-	return (c3d->dat.res.w > 0 && c3d->dat.res.h > 0);
+		if (c3d->mapdat.col[i++] < 0)
+			return (0);
+	return (c3d->mapdat.win_width > 0 && c3d->mapdat.win_height > 0);
 }

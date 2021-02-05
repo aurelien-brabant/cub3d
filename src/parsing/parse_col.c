@@ -6,19 +6,20 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:53:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/13 21:12:22 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 12:01:53 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
+#include "cub3d_types.h"
+#include "cub3d_misc.h"
+#include "cub3d_msg.h"
+
 #include "libft/string.h"
 #include "libft/io.h"
 #include "libft/strconv.h"
 
-#include "core.h"
-#include "misc.h"
-#include "msg.h"
 
 static bool	conv_strs(char **col_str, int *col, char *key, char *err)
 {
@@ -68,5 +69,5 @@ void	parse_col(t_cub3d *c3d, t_parsing_id id, char *key)
 	if (i > 3)
 		ft_snprintf(c3d->err, ERR_LEN, MSG_BAD_ARG_NB, key, 3, i + 1);
 	else if (conv_strs(col_str, col, key, c3d->err))
-		c3d->dat.col[id - P_ID_F] = make_rgb(col[0], col[1], col[2]);
+		c3d->mapdat.col[id - P_ID_F] = make_rgb(col[0], col[1], col[2]);
 }

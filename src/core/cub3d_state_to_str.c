@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   cub3d_state_to_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 12:47:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/12 16:37:18 by abrabant         ###   ########.fr       */
+/*   Created: 2021/02/05 14:13:49 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/05 14:19:21 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
-# include "core.h"
+#include "cub3d_types.h"
 
-void	parse_id(t_cub3d *c3d);
-void	parse_tex(t_cub3d *c3d, t_parsing_id id, char *key);
-void	parse_res(t_cub3d *c3d);
-void	parse_col(t_cub3d *c3d, int id, char *key);
-void	parse_map(t_cub3d *c3d);
-bool	check_parse_id(t_cub3d *c3d);
-bool	check_parse_map(t_cub3d *c3d);
+const char	*cub3d_state_to_str(t_state state)
+{
+	static const char	*strs[] = {
+		"ST_NONE",
+		"ST_INITIALIZING",
+		"ST_PARSING_ARGS",
+		"ST_PARSING_ID",
+		"ST_PARSING_MAP",
+		"ST_INGAME",
+		"ST_STOPPING",
+	};
 
-#endif
+	return (strs[state]);
+}

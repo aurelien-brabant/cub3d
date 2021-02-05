@@ -1,9 +1,7 @@
-#ifndef MSG_H
-# define MSG_H
+#ifndef CUB3D_MSG_H
+#define CUB3D_MSG_H
 
-/*
-** All the hardcoded program messages
-*/
+# define PROG_USAGE "Usage: ./cub3D <map.cub> [--parseOnly]"
 
 /*
 ** parsing errors
@@ -21,21 +19,5 @@
 # define MSG_RES_EQ_ZERO "R: width or height must be > 0, but found zero"
 # define MSG_EMPTY_LINE_MAP "Found an empty line in the map definition"
 # define MSG_GNL_ERROR "Unexpected error: ft_gnl returned -1"
-
-/*
-** error context
-*/
-
-# define MSG_INIT_CTXT "The error occured during initialization"
-# define MSG_P_ARG_CTXT "The error occured while parsing the command line args"
-# define MSG_P_ID_CTXT "The error occured during the parsing of identifiers"
-# define MSG_P_MAP_CTXT "The error occured during the parsing of the map"
-# define MSG_UNKNOWN_CTXT "Error context could not be determined"
-
-/*
-** error  display
-*/
-
-# define MSG_ERR_FMT "\033[1;31mError\033[0;31m\n%s:\n%s\n\033[0m"
 
 #endif

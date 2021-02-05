@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 12:12:45 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/06 12:31:47 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 11:56:53 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@
 ** going to be trimmed.
 */
 
-bool	is_parsable_nb(char *nb_str)
+int	is_parsable_nb(char *nb_str)
 {
 	const char	*trimmed;
 	size_t		i;
 	bool		ret;
 
 	i = 0;
-	ret = true;
+	ret = 1;
 	trimmed = ft_strtrim(nb_str, " ");
 	while (trimmed[i])
 	{
 		if (!ft_isdigit(trimmed[i++]))
 		{
-			ret = false;
+			ret = 0;
 			break ;
 		}
 	}

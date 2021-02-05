@@ -6,33 +6,34 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:16:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/01/13 21:08:26 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/05 12:46:20 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 
-#include "parsing.h"
+#include "cub3d_core.h"
+
 #include "libft/string.h"
 #include "libft/io.h"
-#include "libft/dvector.h"
+#include "libft/vector.h"
 
 void	cub3d_init(t_cub3d *c3d)
 {
 	ft_memset(c3d, 0, sizeof(*c3d));
 	c3d->state = ST_INITIALIZING;
-	c3d->dotcub_fd = -1;
-	ft_dvec_make(&c3d->gc, GARBAGE_COLLECTOR_INIT_COUNT);
-	if (c3d->gc.val == NULL)
+	c3d->fildes = -1;
+	c3d->gbc = ft_vec_new(20, 0);
+	if (c3d->gbc == NULL)
 		ft_snprintf(c3d->err, ERR_LEN,
 			"Could not initialize the garbage collector properly.");
-	ft_dvec_make(&c3d->dat.map, MAP_INIT_COUNT);
-	if (c3d->dat.map.val == NULL)
+	c3d->mapdat.map = ft_vec_new(20, 0);
+	if (c3d->mapdat.map == NULL)
 		ft_snprintf(c3d->err, ERR_LEN,
 			"Could not initialize the map vector properly.");
-	c3d->dat.col[P_ID_F - P_ID_F] = -1;
-	c3d->dat.col[P_ID_C - P_ID_F] = -1;
-	c3d->dat.player.x = -1.0;
-	c3d->dat.player.y = -1.0;
+	c3d->mapdat.col[P_ID_F - P_ID_F] = -1;
+	c3d->mapdat.col[P_ID_C - P_ID_F] = -1;
+	c3d->gamedat.player.x = -1;
+	c3d->gamedat.player.y = -1;
 	cub3d_shift_state(c3d, NULL);
 }
