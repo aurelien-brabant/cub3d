@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 18:14:26 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/11 02:54:25 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include "cub3d_core.h"
 #include "cub3d_parsing.h"
 #include "cub3d_msg.h"
+#include "cub3d_gfx.h"
 
-#include "cub3d_types.h"
 #include "libft/io.h"
 #include "libft/string.h"
 #include "libft/cla.h"
@@ -105,6 +105,8 @@ int	main(int ac, char **av)
 			parse_id(&c3d);
 		else if (c3d.state == ST_PARSING_MAP)
 			parse_map(&c3d);
+		else if (c3d.state == ST_INGAME)
+			init_gfx(&c3d);
 		else
 			ft_snprintf(c3d.err, ERR_LEN, "Loop exited sooner than expected.");
 	}

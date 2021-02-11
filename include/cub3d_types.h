@@ -61,6 +61,22 @@ typedef struct s_game_data
 	t_player	player;
 }	t_game_data;
 
+typedef struct s_img
+{
+	int 	bpp;
+	int 	endian;
+	int		line_len;
+	char	*addr;
+	void	*mlx_img;
+}	t_img;
+
+typedef struct s_graphics
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	dpimg[2];
+}	t_graphics;
+
 typedef struct s_cub3d
 {
 	t_state		state;
@@ -69,6 +85,7 @@ typedef struct s_cub3d
 	int			fildes;
 	t_map_data	mapdat;
 	t_game_data	gamedat;
+	t_graphics	gfx;
 	t_vector	gbc;
 }	t_cub3d;
 
