@@ -6,18 +6,20 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/11 15:53:31 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 00:02:42 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
+#include <math.h>
 
+#include <stdio.h>
+
+#include "config.h"
 #include "mlx.h"
 #include "libft/io.h"
 #include "cub3d_gfx.h"
 #include "cub3d_core.h"
-
-#include <stdio.h>
 
 static void	normalize_res(void *mlx_ptr, long long *width, long long *height)
 {
@@ -48,6 +50,17 @@ static int	init_dpimg(t_graphics *gfx, long long width, long long height)
 	return (1);
 }
 
+/*
+** Transform the map coordinates to those of the window.
+** Position the player in the middle of its spawnpoint.
+*/
+
+static void	normalize_player_coords(t_player *player)
+{
+	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
+	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
+}
+
 int	init_gfx(t_cub3d *c3d)
 {
 	c3d->gfx.mlx_ptr = mlx_init();
@@ -56,8 +69,9 @@ int	init_gfx(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, "Failed to initialize minilibx.");
 		return (0);
 	}
-	normalize_res(c3d->gfx.mlx_ptr, &c3d->mapdat.win_width, 
+	normalize_res(c3d->gfx.mlx_ptr, &c3d->mapdat.win_width,
 			&c3d->mapdat.win_height);
+	normalize_player_coords(&c3d->gamedat.player);
 	c3d->gfx.win_ptr = mlx_new_window(c3d->gfx.mlx_ptr, c3d->mapdat.win_width,
 			c3d->mapdat.win_height, "cub3D");
 	if (c3d->gfx.win_ptr == NULL)
@@ -71,6 +85,7 @@ int	init_gfx(t_cub3d *c3d)
 		return (0);
 	}
 	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
+	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
 	mlx_loop_hook(c3d->gfx.mlx_ptr, &render, c3d);
 	mlx_loop(c3d->gfx.mlx_ptr);
 	cub3d_shift_state(c3d, NULL);

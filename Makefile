@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/11 20:42:55 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/11 23:21:27 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ MISC			= gc.c parsing_utils.c color.c map.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render.c img_pix_put.c draw_rect.c render_minimap.c		\
+				render_player.c handle_mouse.c
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 
@@ -77,6 +78,12 @@ fclean: clean
 	$(RM) $(MLX_ARCHIVE)
 
 re: fclean all
+
+reload:
+	$(RM) $(TARGET)
+	$(RM) $(OBJS) $(OBJ_DIR)
+	make all
+	
 
 .PHONY: all clean fclean re test
 
