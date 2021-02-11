@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 12:00:00 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/11 16:11:37 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	is_parsable_nb(char *nb_str);
 
 int	make_rgb(int red, int green, int blue);
 
-uint8_t	map(t_vector *map, size_t x, size_t y);
+unsigned char mapc(t_vector *map, size_t x, size_t y);
+
 
 #endif

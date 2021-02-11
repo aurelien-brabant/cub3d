@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/11 03:26:21 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:53:31 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "libft/io.h"
 #include "cub3d_gfx.h"
 #include "cub3d_core.h"
+
+#include <stdio.h>
 
 static void	normalize_res(void *mlx_ptr, long long *width, long long *height)
 {
@@ -33,12 +35,16 @@ static int	init_dpimg(t_graphics *gfx, long long width, long long height)
 {
 	gfx->dpimg[0].mlx_img = mlx_new_image(gfx->mlx_ptr, width, height);
 	gfx->dpimg[1].mlx_img = mlx_new_image(gfx->mlx_ptr, width, height);
+	gfx->dpimg[0].width = width;
+	gfx->dpimg[1].width = width;
+	gfx->dpimg[0].height = height;
+	gfx->dpimg[1].height = height;
 	if (gfx->dpimg[0].mlx_img == NULL || gfx->dpimg[1].mlx_img == NULL)
 		return (0);
 	gfx->dpimg[0].addr = mlx_get_data_addr(gfx->dpimg[0].mlx_img, 
 			&gfx->dpimg[0].bpp, &gfx->dpimg[0].line_len, &gfx->dpimg[0].endian);
-	gfx->dpimg[0].addr = mlx_get_data_addr(gfx->dpimg[0].mlx_img, 
-			&gfx->dpimg[0].bpp, &gfx->dpimg[0].line_len, &gfx->dpimg[0].endian);
+	gfx->dpimg[1].addr = mlx_get_data_addr(gfx->dpimg[1].mlx_img, 
+			&gfx->dpimg[1].bpp, &gfx->dpimg[1].line_len, &gfx->dpimg[1].endian);
 	return (1);
 }
 

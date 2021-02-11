@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/11 03:19:14 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/11 16:09:53 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 TARGET			= cub3D
 CC				= clang
 CFLAGS			= -Wall -Wextra -Werror -Wpedantic
-INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Iinclude
+INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Iinclude -I.
 LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
 RM				= rm -rf
 
@@ -46,7 +46,7 @@ PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 MISC			= gc.c parsing_utils.c color.c map.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
-				render.c
+				render.c img_pix_put.c draw_rect.c render_minimap.c		\
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 

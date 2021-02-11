@@ -68,6 +68,8 @@ typedef struct s_img
 	int		line_len;
 	char	*addr;
 	void	*mlx_img;
+	int		height;
+	int		width;
 }	t_img;
 
 typedef struct s_graphics
@@ -88,5 +90,25 @@ typedef struct s_cub3d
 	t_graphics	gfx;
 	t_vector	gbc;
 }	t_cub3d;
+
+/* GRAPHICS */
+
+typedef struct	s_rect
+{
+	int x;
+	int y;
+	int width;
+	int height;
+	int border_size;
+	int border_color;
+}				t_rect;
+
+typedef struct	s_line
+{
+	int x1;
+	int y1;
+	int x2;
+	int y2;
+}				t_line;
 
 #endif
