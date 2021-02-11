@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/11 16:09:53 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/11 20:42:55 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ re: fclean all
 # Build rules
 
 $(TARGET): $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(OBJ_DIR) $(OBJS) 
-	$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -o $(TARGET) 
+	$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET) 
 
 # Make libft archive
 $(LIBFT_ARCHIVE):

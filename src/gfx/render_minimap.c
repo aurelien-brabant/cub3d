@@ -6,10 +6,12 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:05:26 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/11 16:56:06 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/11 21:00:03 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+#include <stdio.h>
 #include "config.h"
 #include "cub3d_gfx.h"
 
@@ -26,10 +28,10 @@ static t_rect	get_rect(size_t x, size_t y)
 {
 	t_rect	rect;
 
-	rect.x = x * TILE_SIZE * MINIMAP_FACTOR;
-	rect.y = y * TILE_SIZE * MINIMAP_FACTOR;
-	rect.width = TILE_SIZE * MINIMAP_FACTOR;
-	rect.height = TILE_SIZE * MINIMAP_FACTOR;
+	rect.x = x * round(TILE_SIZE * MINIMAP_FACTOR);
+	rect.y = y * round(TILE_SIZE * MINIMAP_FACTOR);
+	rect.width = round(TILE_SIZE * MINIMAP_FACTOR);
+	rect.height = round(TILE_SIZE * MINIMAP_FACTOR);
 	rect.border_size = 1;
 	rect.border_color = 0x0;
 	return (rect);
