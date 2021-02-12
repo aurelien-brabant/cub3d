@@ -2,6 +2,7 @@
 # define CUB3D_TYPES_H
 # include <stdint.h>
 # include <stdbool.h>
+# include <stddef.h>
 # include "libft/vector.h"
 # define ERR_LEN 1000
 
@@ -76,11 +77,21 @@ typedef struct s_img
 	int		width;
 }	t_img;
 
+typedef struct	s_ray
+{
+	double	angle;
+	int		facingUp;
+	int		facingRight;
+	int 	hitVert;
+}	t_ray;
+
 typedef struct s_graphics
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	dpimg[2];
+	t_ray	*rays;
+	size_t	num_rays;
 }	t_graphics;
 
 typedef struct s_cub3d

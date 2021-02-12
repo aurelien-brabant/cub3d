@@ -3,6 +3,6 @@
 
 # define FOV_ANGLE 60
 # define TILE_SIZE 64
-# define MINIMAP_FACTOR 0.6
+# define MINIMAP_FACTOR 1
 
 #endif

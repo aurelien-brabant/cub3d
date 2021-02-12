@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_player.c                                    :+:      :+:    :+:   */
+/*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 21:12:36 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 18:32:16 by abrabant         ###   ########.fr       */
+/*   Created: 2021/02/12 20:36:44 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/12 20:43:39 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-
-#include "config.h"
 #include "cub3d_gfx.h"
 
-void	render_player(t_img *img, t_player *player)
+void	render_rays(t_player *player, t_graphics *gfx)
 {
-	int x;
-	int y;
+	size_t	rayId;
+	t_ray	*ray;
 
-	x = floor(player->x * MINIMAP_FACTOR);
-	y = floor(player->y * MINIMAP_FACTOR);
-	draw_circle(img, x, y, MINIMAP_FACTOR * 10);
-	draw_line(img, (t_line){x, y, x + cos(player->rot_angle) * 30, y + sin(player->rot_angle) * 30}, 0xFF);
+	rayId = 0;
+	while (rayId < gfx->num_rays)
+	{
+		ray = &gfx->rays[rayId];
+		draw_line(&gfx->dpimg[1], (t_line){player->x, player->y, player->x + cos(ray->angle) * 30, player->y + sin(ray->angle) * 30}, 0xFF0000);
+		++rayId;
+	}
 }

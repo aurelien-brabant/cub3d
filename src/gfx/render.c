@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:16:47 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 03:16:33 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 21:13:04 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	render(t_cub3d *c3d)
 	update(c3d);
 	render_minimap(c3d->mapdat.map, draw_img);
 	render_player(draw_img, &c3d->gamedat.player);
+	render_rays(&c3d->gamedat.player, &c3d->gfx);
 	ft_memcpy(c3d->gfx.dpimg[0].addr, c3d->gfx.dpimg[1].addr,
 			c3d->mapdat.win_height * c3d->gfx.dpimg[1].line_len);
 	mlx_put_image_to_window(c3d->gfx.mlx_ptr, c3d->gfx.win_ptr,

@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/12 15:24:30 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/12 20:45:18 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ MISC			= gc.c parsing_utils.c color.c map.c
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render.c img_pix_put.c draw_rect.c render_minimap.c		\
 				render_player.c handle_mouse.c draw_line.c update.c		\
-				handle_keyrelease.c
+				handle_keyrelease.c draw_circle.c raycast.c				\
+				render_rays.c
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 
@@ -79,6 +80,10 @@ fclean: clean
 	$(RM) $(MLX_ARCHIVE)
 
 re: fclean all
+
+editconfig:
+	$(EDITOR) config.h
+	make reconfig
 
 reconfig:
 	$(RM) $(TARGET)

@@ -98,10 +98,11 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 */
 
 void	draw_rect(t_img *img, t_rect rect, int color);
-
-
 void	draw_line(t_img *img, t_line line, int color);
+void	draw_circle(t_img *img, int x, int y, int radius);
 
+void	cast_rays(t_vector map, t_graphics *gfx, t_player *player);
+void	render_rays(t_player *player, t_graphics *gfx);
 
 void	update(t_cub3d *c3d);
 

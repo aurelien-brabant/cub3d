@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_player.c                                    :+:      :+:    :+:   */
+/*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 21:12:36 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 18:32:16 by abrabant         ###   ########.fr       */
+/*   Created: 2021/02/12 17:21:01 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/12 17:44:11 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-#include "config.h"
 #include "cub3d_gfx.h"
 
-void	render_player(t_img *img, t_player *player)
+void	draw_circle(t_img *img, int x, int y, int radius)
 {
-	int x;
-	int y;
+	double	angle;
 
-	x = floor(player->x * MINIMAP_FACTOR);
-	y = floor(player->y * MINIMAP_FACTOR);
-	draw_circle(img, x, y, MINIMAP_FACTOR * 10);
-	draw_line(img, (t_line){x, y, x + cos(player->rot_angle) * 30, y + sin(player->rot_angle) * 30}, 0xFF);
+	angle = 0 * (M_PI / 180);
+	while (angle <= M_PI * 2)
+	{
+		draw_line(img, (t_line){x, y, x + cos(angle) * radius, y + sin(angle) * radius}, 0xFF00);
+		angle += 1 * (M_PI / 180);
+	}
 }

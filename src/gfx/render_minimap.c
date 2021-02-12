@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:05:26 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/11 21:00:03 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 16:49:29 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	get_color(const unsigned char c)
 {
 	if (c == '1')
 		return (0xFF0000);
+	if (c == ' ')
+		return (0x0);
 	return (0xFFFFFF);
 }
 

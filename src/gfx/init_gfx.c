@@ -6,18 +6,21 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 03:24:47 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 19:57:57 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
 #include <math.h>
 
-#include <stdio.h>
+#include "mlx.h"
 
 #include "config.h"
-#include "mlx.h"
+
+#include "libft/core.h"
 #include "libft/io.h"
+
+#include "cub3d_misc.h"
 #include "cub3d_gfx.h"
 #include "cub3d_core.h"
 
@@ -55,40 +58,53 @@ static int	init_dpimg(t_graphics *gfx, long long width, long long height)
 ** Position the player in the middle of its spawnpoint.
 */
 
-static void	normalize_player_coords(t_player *player)
+static void	init_player(t_vector map, t_player *player)
 {
-	player->rot_angle = 0 * (M_PI / 180);  
+	unsigned char	spawn_char;
+	
 	player->turn_dir = 0;
 	player->turn_spd = 5 * (M_PI / 180);
 	player->move_speed = 5;
 	player->move_dir = 0;
 	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
+	spawn_char = map_getchar(map, player->x, player->y);
+	if (spawn_char == 'E')
+		player->rot_angle = 0 * (M_PI / 180);
+	if (spawn_char == 'W')
+		player->rot_angle = 180 * (M_PI / 180);
+	if (spawn_char == 'N')
+		player->rot_angle = 270 * (M_PI / 180);
+	if (spawn_char == 'S')
+		player->rot_angle = 90 * (M_PI / 180);
+}
+
+static void	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
+{
+	gfx->num_rays = mapdat->win_width;
+	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
+	if (gfx->rays == NULL)
+		ft_snprintf(err, ERR_LEN, "Failed to initialize rays.");
 }
 
 int	init_gfx(t_cub3d *c3d)
 {
 	c3d->gfx.mlx_ptr = mlx_init();
 	if (c3d->gfx.mlx_ptr == NULL)
-	{
 		ft_snprintf(c3d->err, ERR_LEN, "Failed to initialize minilibx.");
+	if (c3d->err[0] != '\0')
 		return (0);
-	}
 	normalize_res(c3d->gfx.mlx_ptr, &c3d->mapdat.win_width,
 			&c3d->mapdat.win_height);
-	normalize_player_coords(&c3d->gamedat.player);
+	init_player(c3d->mapdat.map, &c3d->gamedat.player);
+	init_raycasting(&c3d->gfx, &c3d->mapdat, c3d->err);
 	c3d->gfx.win_ptr = mlx_new_window(c3d->gfx.mlx_ptr, c3d->mapdat.win_width,
 			c3d->mapdat.win_height, "cub3D");
-	if (c3d->gfx.win_ptr == NULL)
-	{
-		ft_snprintf(c3d->err, ERR_LEN, "Failed to create game window.");
+	if (c3d->gfx.win_ptr == NULL || !init_dpimg(&c3d->gfx,
+				c3d->mapdat.win_width, c3d->mapdat.win_height))
+		ft_snprintf(c3d->err, ERR_LEN, "Gfx init failed.");
+	if (c3d->err[0] != '\0')
 		return (0);
-	}
-	if (!init_dpimg(&c3d->gfx, c3d->mapdat.win_width, c3d->mapdat.win_height))
-	{
-		ft_snprintf(c3d->err, ERR_LEN, "Failed to initialize display images.");
-		return (0);
-	}
 	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
 	mlx_hook(c3d->gfx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, c3d);
 	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
