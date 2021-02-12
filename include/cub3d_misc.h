@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/11 16:11:37 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 13:58:50 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 # include <stddef.h>
 # include "libft/vector.h"
 
-int	is_parsable_nb(char *nb_str);
+int				is_parsable_nb(char *nb_str);
 
-int	make_rgb(int red, int green, int blue);
+int				make_rgb(int red, int green, int blue);
 
-unsigned char mapc(t_vector *map, size_t x, size_t y);
+unsigned char	map_getchar(t_vector map, double x, double y);
 
 
 #endif

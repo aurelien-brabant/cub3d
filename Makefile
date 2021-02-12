@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/12 02:56:20 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/12 15:24:30 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ fclean: clean
 
 re: fclean all
 
-reload:
+reconfig:
 	$(RM) $(TARGET)
 	$(RM) $(OBJS) $(OBJ_DIR)
 	make all
