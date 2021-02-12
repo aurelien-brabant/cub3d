@@ -45,6 +45,10 @@ typedef struct s_player
 	double	x;
 	double	y;
 	double	rot_angle;
+	int		turn_dir; /* 1 for right, -1 for left */
+	int		move_dir;
+	int		move_speed;
+	double	turn_spd;
 }	t_player;
 
 typedef struct s_map_data

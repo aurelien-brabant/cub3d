@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/11 23:21:27 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/12 02:56:20 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ MISC			= gc.c parsing_utils.c color.c map.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render.c img_pix_put.c draw_rect.c render_minimap.c		\
-				render_player.c handle_mouse.c
+				render_player.c handle_mouse.c draw_line.c update.c		\
+				handle_keyrelease.c
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 

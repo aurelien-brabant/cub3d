@@ -57,6 +57,7 @@ void	render_minimap(t_vector map, t_img *img);
 void	render_player(t_img *img, t_player *player);
 
 int		handle_keypress(int keysym, t_cub3d *c3d);
+int		handle_keyrelease(int keysym, t_cub3d *c3d);
 
 int		handle_mouse(int button, int x, int y, t_cub3d *c3d);
 
@@ -97,5 +98,12 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 */
 
 void	draw_rect(t_img *img, t_rect rect, int color);
+
+
+void	draw_line(t_img *img, t_line line, int color);
+
+
+void	update(t_cub3d *c3d);
+
 
 #endif

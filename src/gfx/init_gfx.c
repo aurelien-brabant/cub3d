@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 00:02:42 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 03:24:47 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ static int	init_dpimg(t_graphics *gfx, long long width, long long height)
 
 static void	normalize_player_coords(t_player *player)
 {
+	player->rot_angle = 0 * (M_PI / 180);  
+	player->turn_dir = 0;
+	player->turn_spd = 5 * (M_PI / 180);
+	player->move_speed = 5;
+	player->move_dir = 0;
 	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
 }
@@ -85,6 +90,7 @@ int	init_gfx(t_cub3d *c3d)
 		return (0);
 	}
 	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
+	mlx_hook(c3d->gfx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, c3d);
 	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
 	mlx_loop_hook(c3d->gfx.mlx_ptr, &render, c3d);
 	mlx_loop(c3d->gfx.mlx_ptr);
