@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/12 20:45:18 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/13 02:39:00 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 TARGET			= cub3D
 CC				= clang
-CFLAGS			= -Wall -Wextra -Werror -Wpedantic
+CFLAGS			= -Wall -Wextra -Wpedantic
 INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Iinclude -I.
 LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
 RM				= rm -rf
@@ -43,13 +43,13 @@ CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 				parse_col.c parse_map.c check_parse_map.c
 
-MISC			= gc.c parsing_utils.c color.c map.c
+MISC			= gc.c parsing_utils.c color.c map.c degrad.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render.c img_pix_put.c draw_rect.c render_minimap.c		\
 				render_player.c handle_mouse.c draw_line.c update.c		\
 				handle_keyrelease.c draw_circle.c raycast.c				\
-				render_rays.c
+				render_rays.c raycast_horizontal.c raycast_vertical.c
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 

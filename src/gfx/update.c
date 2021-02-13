@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 21:13:37 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/13 02:15:44 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ static void	update_player(t_vector *map, t_player *player)
 void	update(t_cub3d *c3d)
 {
 	update_player(c3d->mapdat.map, &c3d->gamedat.player);
-	cast_rays(c3d->mapdat.map, &c3d->gfx, &c3d->gamedat.player);
+	cast_rays(&c3d->gfx, &c3d->gamedat.player, &c3d->mapdat);
 }

@@ -101,8 +101,11 @@ void	draw_rect(t_img *img, t_rect rect, int color);
 void	draw_line(t_img *img, t_line line, int color);
 void	draw_circle(t_img *img, int x, int y, int radius);
 
-void	cast_rays(t_vector map, t_graphics *gfx, t_player *player);
+void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat);
 void	render_rays(t_player *player, t_graphics *gfx);
+
+double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
+double	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
 
 void	update(t_cub3d *c3d);
 

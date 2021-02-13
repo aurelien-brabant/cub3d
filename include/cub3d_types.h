@@ -80,9 +80,11 @@ typedef struct s_img
 typedef struct	s_ray
 {
 	double	angle;
-	int		facingUp;
-	int		facingRight;
-	int 	hitVert;
+	int		facing_down;
+	int		facing_left;
+	int 	hit_vert;
+	double	horz_wall_hit[2];
+	double	vert_wall_hit[2];
 }	t_ray;
 
 typedef struct s_graphics

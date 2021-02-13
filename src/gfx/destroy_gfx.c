@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 03:02:57 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 03:06:46 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/13 00:10:52 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	destroy_gfx(t_graphics *gfx)
 		mlx_destroy_window(gfx->mlx_ptr, gfx->win_ptr);
 	if (gfx->mlx_ptr != NULL)
 		mlx_destroy_display(gfx->mlx_ptr);
+	free(gfx->rays);
 	free(gfx->mlx_ptr);
 }

@@ -6,19 +6,21 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 19:57:57 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/12 23:31:18 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
 #include <math.h>
 
+#include "cub3d_types.h"
 #include "mlx.h"
 
 #include "config.h"
 
 #include "libft/core.h"
 #include "libft/io.h"
+#include "libft/string.h"
 
 #include "cub3d_misc.h"
 #include "cub3d_gfx.h"
