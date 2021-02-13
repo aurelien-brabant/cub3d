@@ -107,7 +107,10 @@ void	render_rays(t_player *player, t_graphics *gfx);
 double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
 double	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
 
+double	get_points_dist(double x1, double y1, double x2, double y2);
+
 void	update(t_cub3d *c3d);
 
+void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player);
 
 #endif

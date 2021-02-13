@@ -85,6 +85,8 @@ typedef struct	s_ray
 	int 	hit_vert;
 	double	horz_wall_hit[2];
 	double	vert_wall_hit[2];
+	double	wall_hit[2];
+	double	wall_dist;
 }	t_ray;
 
 typedef struct s_graphics
