@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 17:35:00 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 02:58:12 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 		ray->wall_dist = horz_dist; 
 	}
 	else
-		printf("WTF ?\n");
+		printf("/!\\ Not interception found\n");
 }
 
 void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
@@ -69,7 +69,6 @@ void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
 	rayStep = deg2rad(FOV_ANGLE) / gfx->num_rays;
 	rayAngle = player->rot_angle - (deg2rad(FOV_ANGLE) / 2);
 	while (rayId < gfx->num_rays)
-	//while (rayId < 1)
 	{
 		ft_memset(&gfx->rays[rayId], 0, sizeof (t_ray));
 		gfx->rays[rayId].angle = rayAngle;

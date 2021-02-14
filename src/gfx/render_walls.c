@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 18:54:09 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 02:22:54 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player)
 		if (y < 0)
 			y = 0;
 		draw_rect(&gfx->dpimg[1], (t_rect){
-			rayId, y,
-			1, wall_height, 0, 0 }, 
+			rayId * RAY_THICKNESS, y,
+			RAY_THICKNESS, wall_height, 0, 0 }, 
 			ray->hit_vert ? 0xFFFFFF : 0xEEEEEE);
 		++rayId;
 	}

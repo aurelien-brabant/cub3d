@@ -5,6 +5,8 @@
 # include <stddef.h>
 # include "libft/vector.h"
 # define ERR_LEN 1000
+# define TILE_SIZE 50
+# define MINIMAP_FACTOR 0.2
 
 typedef enum e_state
 {

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 14:15:31 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 02:16:19 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,18 @@ static void	init_player(t_vector map, t_player *player)
 	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
 	spawn_char = map_getchar(map, player->x, player->y);
 	if (spawn_char == 'E')
-		player->rot_angle = 0 * (M_PI / 180);
+		player->rot_angle = deg2rad(0);
 	if (spawn_char == 'W')
-		player->rot_angle = 180 * (M_PI / 180);
+		player->rot_angle = deg2rad(180);
 	if (spawn_char == 'N')
-		player->rot_angle = 270 * (M_PI / 180);
+		player->rot_angle = deg2rad(270);
 	if (spawn_char == 'S')
-		player->rot_angle = 90 * (M_PI / 180);
+		player->rot_angle = deg2rad(90);
 }
 
 static void	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 {
-	gfx->num_rays = mapdat->win_width;
+	gfx->num_rays = mapdat->win_width / RAY_THICKNESS;
 	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
 	if (gfx->rays == NULL)
 		ft_snprintf(err, ERR_LEN, "Failed to initialize rays.");

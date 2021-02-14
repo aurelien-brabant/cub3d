@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 01:52:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 16:33:55 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 03:10:06 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
 	get_data(ray, player, step, intercept);
 	next[0] = intercept[0];
 	next[1] = intercept[1];
-	while (next[0] >= 0 && next[0] < mapdat->win_width && next[1] >= 0 && next[1] < mapdat->win_height)
+	while (next[0] >= 0 && next[1] >= 0)
 	{
 		if (map_has_wall_at(mapdat->map, next[0], next[1] - !ray->facing_down))
 		{
