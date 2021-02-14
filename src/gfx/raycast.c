@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 17:08:38 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 21:00:31 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 		ray->wall_hit[1] = ray->vert_wall_hit[1];
 		ray->hit_vert = 1;
 		ray->wall_dist = vert_dist;
+		//printf("distance (vert): %f\n", vert_dist);
 	}
-	else if (ray->horz_wall_hit[0] != -1)
+	else if (ray->horz_wall_hit[0] != -1 && vert_dist > horz_dist)
 	{
 		ray->wall_hit[0] = ray->horz_wall_hit[0];
 		ray->wall_hit[1] = ray->horz_wall_hit[1];
@@ -57,6 +58,9 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 	}
 	else
 		printf("/!\\ Not interception found\n");
+	//printf("distance (horz): %f\n", horz_dist);
+	//printf("distance (vert): %f\n", vert_dist);
+	//printf("Wall hit: (%f; %f)\n", ray->wall_hit[0], ray->wall_hit[1]);
 }
 
 void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)

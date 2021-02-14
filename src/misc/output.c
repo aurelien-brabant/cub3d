@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_misc.h                                       :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 18:55:15 by abrabant         ###   ########.fr       */
+/*   Created: 2021/02/14 18:44:54 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/14 18:54:57 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_MISC_H
-# define CUB3D_MISC_H
-# include <stddef.h>
-# include "libft/vector.h"
+#include <unistd.h>
 
-int				is_parsable_nb(char *nb_str);
+#include "libft/io.h"
 
-int				make_rgb(int red, int green, int blue);
+void	c3d_warn(const char *msg)
+{
+	ft_dprintf(STDERR_FILENO, "(\033[0;37mWARNING\033[0m) %s\n", msg);
+}
 
-unsigned char	map_getchar(t_vector map, double x, double y);
-int				map_has_wall_at(t_vector map, double x, double y);
-
-
-void	c3d_warn(const char *msg);
-void	c3d_info(const char *msg);
-
-#endif
+void	c3d_info(const char *msg)
+{
+	ft_dprintf(STDERR_FILENO, "(\033[0;33mINFO\033[0m) %s\n", msg);
+}	

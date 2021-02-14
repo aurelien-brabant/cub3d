@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/13 17:18:01 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/14 18:55:57 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 				parse_col.c parse_map.c check_parse_map.c
 
-MISC			= gc.c parsing_utils.c color.c map.c degrad.c
+MISC			= gc.c parsing_utils.c color.c map.c degrad.c			\
+				  output.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render.c img_pix_put.c draw_rect.c render_minimap.c		\

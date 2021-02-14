@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 17:07:51 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 20:27:26 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	init_gfx(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, "Gfx init failed.");
 	if (c3d->err[0] != '\0')
 		return (0);
+	draw_rect(&c3d->gfx.dpimg[1], (t_rect){0, 0, c3d->mapdat.win_width, c3d->mapdat.win_height, 0, 0}, 0xFF);
 	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
 	mlx_hook(c3d->gfx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, c3d);
 	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
