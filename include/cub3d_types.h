@@ -97,7 +97,8 @@ typedef struct s_graphics
 	void	*win_ptr;
 	t_img	dpimg[2];
 	t_ray	*rays;
-	size_t	num_rays;
+	int		num_rays;
+	uint8_t	fov;
 }	t_graphics;
 
 typedef struct s_cub3d

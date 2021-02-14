@@ -1,116 +1,112 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_gfx.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/14 16:46:09 by abrabant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*
+** All the stuff needed for graphics
+*/
+
 #ifndef CUB3D_GFX_H
 # define CUB3D_GFX_H
 # include "cub3d_types.h"
 
-/*
-** Initialize the graphics using the minilibx API
-**
-** @param c3d:
-** A pointer to the cub3d object. Contains all the program's data.
-**
-** @return:
-** 1 if initiliazation went well, 0 if an error occured. The value
-** of c3d->err is set to describe the error.
-*/
-
 int		init_gfx(t_cub3d *c3d);
-
-/*
-** Destroy the graphics initialized by the minilibx. 
-**
-** @param gfx:
-** A pointer to the t_graphics object. Holds all the variables
-** needed to make the graphics work.
-*/
-
 void	destroy_gfx(t_graphics *gfx);
 
 /*
-** Rendering function called at each loop frame, used 
-** to render the elements on the window.
-**
-** @param c3d:
-** A pointer to the cub3d object. Contains all the program's data.
-**
-** @return:
-** Required to comply to the minilibx API, but it is not used.
-*/
-
-int		render(t_cub3d *c3d);
-
-/*
-** Handle the keypress X event through the minilibx API.
-**
-** @param keysym:
-** The key symbol correspond to the key which has been pressed
-** (complete list available in X11/keysym.h)
-**
-** @param c3d:
-** A pointer to the cub3d object. Contains all the program's data.
-**
-** @return:
-** Required to comply to the minilibx API, but it is not used.
-*/
-
-void	render_minimap(t_vector map, t_img *img);
-
-void	render_player(t_img *img, t_player *player);
-
-int		handle_keypress(int keysym, t_cub3d *c3d);
-int		handle_keyrelease(int keysym, t_cub3d *c3d);
-
-int		handle_mouse(int button, int x, int y, t_cub3d *c3d);
-
-/*
-** Put a pixel directly on an image object. 
-**
-** @param img:
-** A pointer to an t_img object, corresponding to the image
-** the pixel needs to be put on.
-**
-** @param x:
-** Position of the pixel on the x axis.
-**
-** @param y:
-** Position of the pixel on the y axis.
-**
-** @param color:
-** A true color compliant value which indicates
-** the pixel's color.
+*******************************************************************************
+** DRAWING FUNCTIONS                                                         **
+*******************************************************************************
 */
 
 void	img_pix_put(t_img *img, int x, int y, int color);
-
-/*
-** Draw a rectangle of pixels on the given image.
-**
-** @param img:
-** A pointer to an t_img object, corresponding to the image
-** the pixel needs to be put on.
-**
-** @param rect:
-** A t_rect object that specifies the coordinates of the top left corner of
-** the rectangle (x, y) as well as its width and height.
-**
-** @param color;
-** A true color compliant value which indicates
-** the pixel's color.
-*/
-
 void	draw_rect(t_img *img, t_rect rect, int color);
 void	draw_line(t_img *img, t_line line, int color);
 void	draw_circle(t_img *img, int x, int y, int radius);
 
-void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat);
+/*
+*******************************************************************************
+** RENDER FUNCTIONS                                                          **
+*******************************************************************************
+*/
+
+/* Update player location, cast the rays before rendering */
+void	update(t_cub3d *c3d);
+
+/* The general render function, handles update and render */
+int		render(t_cub3d *c3d);
+
+/* Render the rays on the MINIMAP, as lines */
 void	render_rays(t_player *player, t_graphics *gfx);
 
+/* Render the minimap as a grid */
+void	render_minimap(t_vector map, t_img *img);
+
+/* Render the player on the minimap, as a circle */
+void	render_player(t_img *img, t_player *player);
+
+/* Render the "3D" projection of the walls */
+void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player);
+
+/*
+*******************************************************************************
+** RAYCASTING FUNCTIONS                                                      **
+*******************************************************************************
+*/
+
+void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat);
+
+/*
+** Find the ray's horizontal intersection with a wall, and return the distance
+** between it and the player
+*/
+
 double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
+
+/*
+** Find the ray's vertical intersection with a wall, and return the distance
+** between it and the player
+*/
+
 double	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
+
+
+/*
+*******************************************************************************
+** EVENT HANDLING FUNCTIONS                                                  **
+*******************************************************************************
+*/
+
+int		handle_keypress(int keysym, t_cub3d *c3d);
+int		handle_keyrelease(int keysym, t_cub3d *c3d);
+int		handle_mouse(int button, int x, int y, t_cub3d *c3d);
+
+/*
+*******************************************************************************
+** GFX UTIL FUNCTIONS                                                        **
+*******************************************************************************
+*/
+
+/*
+** A simple pythagores theorem application to get the distance between
+** two points.
+*/
 
 double	get_points_dist(double x1, double y1, double x2, double y2);
 
-void	update(t_cub3d *c3d);
+/*
+** Degrees to radians conversion and vice-versa
+*/
 
-void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player);
+double	deg2rad(double deg);
+double	rad2deg(double rad);
 
 #endif

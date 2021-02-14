@@ -23,6 +23,6 @@
 ** be more pixelized too.
 */
 
-# define RAY_THICKNESS 5
+# define RAY_THICKNESS 1
 
 #endif

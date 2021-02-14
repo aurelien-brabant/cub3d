@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/11 02:54:25 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 16:48:23 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 #include <sys/errno.h>
 #include <stdlib.h>
 
+#include "libft/io.h"
+#include "libft/string.h"
+#include "libft/cla.h"
+
 #include "cub3d_core.h"
 #include "cub3d_parsing.h"
 #include "cub3d_msg.h"
 #include "cub3d_gfx.h"
-
-#include "libft/io.h"
-#include "libft/string.h"
-#include "libft/cla.h"
+#include "cub3d_types.h"
 
 static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err)
 {
@@ -59,7 +60,7 @@ static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 	static char		*allowed_opt[] = {"save", "parse-only", NULL};
 	t_cla_config	conf;
 	void			*cla;
-	char			err[10000];
+	char			err[ERR_LEN];
 
 	cla = ft_cla_init(ac, av);
 	conf = ft_cla_get_config();

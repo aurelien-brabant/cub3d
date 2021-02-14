@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 02:16:19 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 17:07:51 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ static void	init_player(t_vector map, t_player *player)
 static void	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 {
 	gfx->num_rays = mapdat->win_width / RAY_THICKNESS;
+	gfx->fov = deg2rad(FOV_ANGLE);
 	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
 	if (gfx->rays == NULL)
 		ft_snprintf(err, ERR_LEN, "Failed to initialize rays.");

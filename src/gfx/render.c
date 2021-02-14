@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:16:47 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 18:48:30 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 17:11:08 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static	void clear_img(t_img *img, t_map_data *mapdat)
 {
-	draw_rect(img, (t_rect){0, 0, mapdat->win_width, mapdat->win_height, 0, 0}, 0xFF);
+	ft_memset(img->addr, 0x0, img->line_len * mapdat->win_height);
 }
 
 int	render(t_cub3d *c3d)
