@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 20:27:26 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 23:50:28 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 {
 	gfx->num_rays = mapdat->win_width / RAY_THICKNESS;
 	gfx->fov = deg2rad(FOV_ANGLE);
+	gfx->dist_proj_plane = (mapdat->win_width / 2.0) / tan(gfx->fov / 2);
 	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
 	if (gfx->rays == NULL)
 		ft_snprintf(err, ERR_LEN, "Failed to initialize rays.");

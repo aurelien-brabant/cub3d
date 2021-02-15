@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 21:39:15 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 01:24:05 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,52 @@
 #include "config.h"
 #include "cub3d_types.h"
 
+static void	project_wall(t_graphics *gfx, t_ray *ray, int ray_id, int *colors)
+{
+	t_img	*drawing_img;
+	int		wall_height;
+	int		wall_top_px;
+
+	drawing_img = &gfx->dpimg[1];
+	wall_height = (TILE_SIZE / ray->wall_dist) * gfx->dist_proj_plane;
+	wall_top_px = (drawing_img->height / 2.0) - (wall_height / 2.0);
+	if (wall_top_px < 0)
+		wall_top_px = 0;
+	draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS, 0,
+			RAY_THICKNESS, wall_top_px, 0, 0 }, colors[1]);
+	draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS, wall_top_px,
+			RAY_THICKNESS, wall_height, 0, 0 }, !ray->hit_vert ? 0xFFFFFF : 0xEEEEEE);
+	draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS,
+			wall_top_px + wall_height, RAY_THICKNESS, drawing_img->height,
+			0, 0 }, colors[0]);
+}
+
+/*
+void	tell_orientation(t_ray *ray)
+{
+	if (ray->facing_left && ray->hit_vert)
+		puts("West\n");
+	if (!ray->facing_left && ray->hit_vert)
+		puts("East");
+	if (ray->facing_down && !ray->hit_vert)
+		puts("South\n");
+	if (!ray->facing_down && !ray->hit_vert)
+		puts("North\n");
+}
+*/
+
 void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player)
 {
-	int		rayId;
 	t_ray	*ray;
-	int		wall_height;
-	double	ray_distance;
-	double	dist_proj_plane;
-	int	y;
+	int		ray_id;
 
-	rayId = 0;
-	while (rayId < gfx->num_rays)
+	ray_id = 0;
+	//while (ray_id < gfx->num_rays)
+	while (ray_id < 1)
 	{
-		ray = &gfx->rays[rayId];
-		ray_distance = ray->wall_dist * cos(ray->angle - player->rot_angle);
-		dist_proj_plane = (mapdat->win_width / 2.0) / tan(gfx->fov / 2.0);
-		if (ray_distance == 0)
-			wall_height = mapdat->win_height;
-		else
-			wall_height = (TILE_SIZE / ray_distance) * dist_proj_plane;
-		y = ((double)mapdat->win_height / 2) - ((double)wall_height / 2.0);
-		printf("%d\n", y);
-		if (y < 0)
-		{
-			y = 0;
-			//printf("Negative\n");
-		}
-		printf("%f\n", y);
-		draw_rect(&gfx->dpimg[1], (t_rect){
-			rayId * RAY_THICKNESS, y,
-			RAY_THICKNESS, wall_height, 0, 0 }, 
-			ray->hit_vert ? 0xFFFFFF : 0xEEEEEE);
-		++rayId;
+		ray = &gfx->rays[ray_id];
+		ray->wall_dist = ray->wall_dist * cos(ray->angle - player->rot_angle);
+		project_wall(gfx, ray, ray_id, mapdat->col);
+		++ray_id;
 	}
 }

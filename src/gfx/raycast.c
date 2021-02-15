@@ -6,19 +6,17 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 21:00:31 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 01:13:59 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdio.h>
 
-#include "cub3d_misc.h"
-
-#include "config.h"
 #include "cub3d_gfx.h"
-
+#include "cub3d_misc.h"
 #include "cub3d_types.h"
+#include "config.h"
+
 #include "libft/string.h"
 
 static double	normalize_angle(double angle)
@@ -29,6 +27,14 @@ static double	normalize_angle(double angle)
 		angle = M_PI * 2 - fmod(-angle, M_PI * 2);
 	return (angle);
 }
+
+static void	get_ray_orientation(t_ray *ray)
+{
+}
+
+/*
+** cast an individual ray
+*/
 
 static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 {
@@ -42,25 +48,22 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 		ray->facing_down = 1;
 	horz_dist = get_horz_distance(ray, player, mapdat);
 	vert_dist = get_vert_distance(ray, player, mapdat);
-	if (ray->vert_wall_hit[0] != -1 && horz_dist > vert_dist)
+	if (ray->vert_wall_hit[0] != -1 && horz_dist >= vert_dist)
 	{
 		ray->wall_hit[0] = ray->vert_wall_hit[0];
 		ray->wall_hit[1] = ray->vert_wall_hit[1];
 		ray->hit_vert = 1;
-		ray->wall_dist = vert_dist;
-		//printf("distance (vert): %f\n", vert_dist);
+		ray->wall_dist = vert_dist + (vert_dist == 0);
 	}
 	else if (ray->horz_wall_hit[0] != -1 && vert_dist > horz_dist)
 	{
 		ray->wall_hit[0] = ray->horz_wall_hit[0];
 		ray->wall_hit[1] = ray->horz_wall_hit[1];
-		ray->wall_dist = horz_dist; 
+		ray->wall_dist = horz_dist + (horz_dist == 0); 
 	}
 	else
-		printf("/!\\ Not interception found\n");
-	//printf("distance (horz): %f\n", horz_dist);
-	//printf("distance (vert): %f\n", vert_dist);
-	//printf("Wall hit: (%f; %f)\n", ray->wall_hit[0], ray->wall_hit[1]);
+		c3d_warn("No intersection found. This is a BUG!");
+	get_ray_orientation(ray);
 }
 
 void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
@@ -70,9 +73,10 @@ void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
 	double	rayAngle;
 	
 	rayId = 0;
-	rayStep = deg2rad(FOV_ANGLE) / gfx->num_rays;
-	rayAngle = player->rot_angle - (deg2rad(FOV_ANGLE) / 2);
-	while (rayId < gfx->num_rays)
+	rayStep = gfx->fov / gfx->num_rays;
+	rayAngle = player->rot_angle - (gfx->fov / 2);
+	//while (rayId < gfx->num_rays)
+	while (rayId < 1)
 	{
 		ft_memset(&gfx->rays[rayId], 0, sizeof (t_ray));
 		gfx->rays[rayId].angle = rayAngle;

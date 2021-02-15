@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:25:31 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 03:10:32 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/14 23:32:34 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 #include "cub3d_gfx.h"
 
 /*
-** This function only exists to make this code norm compliant
+** This function only exists to make this code norm compliant.
+** Find the xintercept, yintercept, xstep and ystep.
 */
 
 static void	get_data(t_ray *ray, t_player *player, double *step, double *intercept)
