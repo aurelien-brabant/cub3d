@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 01:24:05 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 02:38:58 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static void	project_wall(t_graphics *gfx, t_ray *ray, int ray_id, int *colors)
 		wall_top_px = 0;
 	draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS, 0,
 			RAY_THICKNESS, wall_top_px, 0, 0 }, colors[1]);
-	draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS, wall_top_px,
+	/*draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS, wall_top_px,
 			RAY_THICKNESS, wall_height, 0, 0 }, !ray->hit_vert ? 0xFFFFFF : 0xEEEEEE);
+	*/
 	draw_rect(&gfx->dpimg[1], (t_rect){ray_id * RAY_THICKNESS,
 			wall_top_px + wall_height, RAY_THICKNESS, drawing_img->height,
 			0, 0 }, colors[0]);
@@ -57,8 +58,7 @@ void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player)
 	int		ray_id;
 
 	ray_id = 0;
-	//while (ray_id < gfx->num_rays)
-	while (ray_id < 1)
+	while (ray_id < gfx->num_rays)
 	{
 		ray = &gfx->rays[ray_id];
 		ray->wall_dist = ray->wall_dist * cos(ray->angle - player->rot_angle);

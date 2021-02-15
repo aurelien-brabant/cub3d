@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 23:50:28 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 03:22:03 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,6 @@ static void	normalize_res(void *mlx_ptr, long long *width, long long *height)
 		*height = dpy_height;
 }
 
-static int	init_dpimg(t_graphics *gfx, long long width, long long height)
-{
-	gfx->dpimg[0].mlx_img = mlx_new_image(gfx->mlx_ptr, width, height);
-	gfx->dpimg[1].mlx_img = mlx_new_image(gfx->mlx_ptr, width, height);
-	gfx->dpimg[0].width = width;
-	gfx->dpimg[1].width = width;
-	gfx->dpimg[0].height = height;
-	gfx->dpimg[1].height = height;
-	if (gfx->dpimg[0].mlx_img == NULL || gfx->dpimg[1].mlx_img == NULL)
-		return (0);
-	gfx->dpimg[0].addr = mlx_get_data_addr(gfx->dpimg[0].mlx_img, 
-			&gfx->dpimg[0].bpp, &gfx->dpimg[0].line_len, &gfx->dpimg[0].endian);
-	gfx->dpimg[1].addr = mlx_get_data_addr(gfx->dpimg[1].mlx_img, 
-			&gfx->dpimg[1].bpp, &gfx->dpimg[1].line_len, &gfx->dpimg[1].endian);
-	return (1);
-}
 
 /*
 ** Transform the map coordinates to those of the window.
@@ -104,8 +88,7 @@ int	init_gfx(t_cub3d *c3d)
 	init_raycasting(&c3d->gfx, &c3d->mapdat, c3d->err);
 	c3d->gfx.win_ptr = mlx_new_window(c3d->gfx.mlx_ptr, c3d->mapdat.win_width,
 			c3d->mapdat.win_height, "cub3D");
-	if (c3d->gfx.win_ptr == NULL || !init_dpimg(&c3d->gfx,
-				c3d->mapdat.win_width, c3d->mapdat.win_height))
+	if (c3d->gfx.win_ptr == NULL || !init_img(&c3d->gfx, &c3d->mapdat))
 		ft_snprintf(c3d->err, ERR_LEN, "Gfx init failed.");
 	if (c3d->err[0] != '\0')
 		return (0);

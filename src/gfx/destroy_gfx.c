@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 03:02:57 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 00:10:52 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 03:39:35 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 
 void	destroy_gfx(t_graphics *gfx)
 {
-	if (gfx->dpimg[0].mlx_img != NULL)
-		mlx_destroy_image(gfx->mlx_ptr, gfx->dpimg[0].mlx_img);
-	if (gfx->dpimg[1].mlx_img != NULL)
-		mlx_destroy_image(gfx->mlx_ptr, gfx->dpimg[1].mlx_img);
 	if (gfx->win_ptr != NULL)
 		mlx_destroy_window(gfx->mlx_ptr, gfx->win_ptr);
 	if (gfx->mlx_ptr != NULL)

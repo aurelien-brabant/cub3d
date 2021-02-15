@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 03:14:09 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 03:22:36 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void	cub3d_destroy(t_cub3d *c3d)
 	if (c3d->state >= ST_PARSING_ID)
 		clear_gnl(c3d->fildes);
 	if (c3d->state >= ST_INGAME)
+	{
+		destroy_img(&c3d->gfx);
 		destroy_gfx(&c3d->gfx);
+	}
 	if (c3d->fildes != -1)
 		close(c3d->fildes);
 	exit(0);

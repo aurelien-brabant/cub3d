@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 01:13:59 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 01:27:39 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
 	rayId = 0;
 	rayStep = gfx->fov / gfx->num_rays;
 	rayAngle = player->rot_angle - (gfx->fov / 2);
-	//while (rayId < gfx->num_rays)
-	while (rayId < 1)
+	while (rayId < gfx->num_rays)
 	{
 		ft_memset(&gfx->rays[rayId], 0, sizeof (t_ray));
 		gfx->rays[rayId].angle = rayAngle;

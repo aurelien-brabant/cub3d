@@ -96,6 +96,7 @@ typedef struct s_graphics
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	dpimg[2];
+	t_img	teximg[4];
 	t_ray	*rays;
 	int		num_rays;
 	double	fov;
