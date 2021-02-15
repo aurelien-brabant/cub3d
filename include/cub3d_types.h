@@ -5,8 +5,8 @@
 # include <stddef.h>
 # include "libft/vector.h"
 # define ERR_LEN 1000
-# define TILE_SIZE 50
-# define MINIMAP_FACTOR 0.5
+# define TILE_SIZE 64
+# define MINIMAP_FACTOR 0.2
 
 typedef enum e_state
 {
@@ -81,6 +81,7 @@ typedef struct s_img
 
 typedef struct	s_ray
 {
+	int		id;
 	double	angle;
 	int		facing_down;
 	int		facing_left;
@@ -89,6 +90,7 @@ typedef struct	s_ray
 	double	vert_wall_hit[2];
 	double	wall_hit[2];
 	double	wall_dist;
+	t_img	*tex_img;
 }	t_ray;
 
 typedef struct s_graphics

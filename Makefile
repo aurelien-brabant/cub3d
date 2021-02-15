@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/15 03:22:56 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/15 15:27:51 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render_player.c handle_mouse.c draw_line.c update.c		\
 				handle_keyrelease.c draw_circle.c raycast.c				\
 				render_rays.c raycast_horizontal.c raycast_vertical.c	\
-				get_points_dist.c render_walls.c init_img.c
+				get_points_dist.c render_walls.c init_img.c				\
+				img_pix_get.c
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 

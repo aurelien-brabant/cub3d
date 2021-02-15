@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 03:22:03 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:51:11 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	init_player(t_vector map, t_player *player)
 	unsigned char	spawn_char;
 	
 	player->turn_dir = 0;
-	player->turn_spd = 3 * (M_PI / 180);
-	player->move_speed = 3;
+	player->turn_spd = deg2rad(6);
+	player->move_speed = 8;
 	player->move_dir = 0;
 	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
@@ -67,12 +67,20 @@ static void	init_player(t_vector map, t_player *player)
 
 static void	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 {
+	int	ray_id;
+
 	gfx->num_rays = mapdat->win_width / RAY_THICKNESS;
 	gfx->fov = deg2rad(FOV_ANGLE);
 	gfx->dist_proj_plane = (mapdat->win_width / 2.0) / tan(gfx->fov / 2);
 	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
 	if (gfx->rays == NULL)
 		ft_snprintf(err, ERR_LEN, "Failed to initialize rays.");
+	ray_id = 0;
+	while (ray_id < gfx->num_rays) 
+	{
+		gfx->rays[ray_id].id = ray_id;
+		++ray_id;
+	}
 }
 
 int	init_gfx(t_cub3d *c3d)

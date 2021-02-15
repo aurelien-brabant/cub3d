@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 03:21:43 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 15:25:58 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	destroy_gfx(t_graphics *gfx);
 */
 
 void	img_pix_put(t_img *img, int x, int y, int color);
+int		img_pix_get(t_img *img, int x, int y);
 void	draw_rect(t_img *img, t_rect rect, int color);
 void	draw_line(t_img *img, t_line line, int color);
 void	draw_circle(t_img *img, int x, int y, int radius);

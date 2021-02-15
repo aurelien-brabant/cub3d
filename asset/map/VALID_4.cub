@@ -1,10 +1,10 @@
             R         1080       640
 
-    NO	asset/tex/grass.xpm           
-   SO	asset/tex/grass.xpm           
-  EA	  asset/tex/grass.xpm   
-     WE	            asset/tex/grass.xpm 
-   S          asset/tex/grass.xpm
+    NO	asset/tex/brick.xpm         
+   SO	asset/tex/brick.xpm         
+  EA	  asset/tex/brick.xpm
+     WE	            asset/tex/brick.xpm
+   S          asset/tex/brick.xpm
 
 C   255         ,     255         ,               255              
 F   0, 0        ,            0  
