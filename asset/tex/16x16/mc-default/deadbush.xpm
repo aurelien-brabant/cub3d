@@ -1,0 +1,25 @@
+/* XPM */
+static char *deadbush[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 3 1 ",
+"  c None",
+". c #5B3406",
+"X c #946428",
+/* pixels */
+"        X       ",
+"        X       ",
+"       X.   X   ",
+"       X.   X.  ",
+"   XX  XX..XX   ",
+"    .X  XXX..X  ",
+"     .X.X.. .   ",
+"      .X..      ",
+"     XXX.  .    ",
+" XXXXX.XX.XXXX  ",
+"   ... XX.. ..X ",
+"    X   X..   X ",
+"    X  .X.      ",
+"       XX.      ",
+"       XX.      ",
+"       .X.      "
+};

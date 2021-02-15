@@ -1,0 +1,26 @@
+/* XPM */
+static char *redstone_dust_dot[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 4 1 ",
+"  c None",
+". c gray85",
+"X c gray92",
+"o c #FEFEFE",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"      o o.      ",
+"     .o.Xoo     ",
+"      XX XXo    ",
+"     o.XoXo     ",
+"     o.o .o     ",
+"       .o o     ",
+"         o      ",
+"                ",
+"                ",
+"                ",
+"                "
+};

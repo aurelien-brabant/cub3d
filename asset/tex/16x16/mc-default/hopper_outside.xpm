@@ -1,0 +1,32 @@
+/* XPM */
+static char *hopper_outside[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 10 1 ",
+"  c gray18",
+". c gray19",
+"X c #373737",
+"o c #393939",
+"O c #3C3C3C",
+"+ c #414141",
+"@ c #464646",
+"# c #484848",
+"$ c gray30",
+"% c #515151",
+/* pixels */
+"+@#@+$@+%@#@#@$o",
+".+@#O%@O$$$@#@$o",
+".+##@$%O@$O$@@$X",
+".X+$+#$O+@O+++O.",
+"OO+@+@@O@+O@O@OX",
+"XO+$O@@$+@O@+@oX",
+".OOo+@oO#@O+@+oX",
+".o+oO$oO+@O+@oX ",
+"..Oo@@o@+@++O+o.",
+" XOOO+o+++@$O+X ",
+" OXo$+O$+XX#O$. ",
+" O$o$oOOoXO$O$X ",
+" .$oO@$O.+Oo+$X ",
+" .$o#@$Oo$XOO$+.",
+" .Xo#OOOo#Xoo#+.",
+" XXOooO+X$Xoo+X."
+};

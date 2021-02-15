@@ -1,0 +1,27 @@
+/* XPM */
+static char *waterlily[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c None",
+". c #565656",
+"X c #686868",
+"o c gray50",
+"O c gray59",
+/* pixels */
+"                ",
+"    ..     ..   ",
+"   .OO.   .OO.  ",
+"   .ooo. .OoO.  ",
+"  .OooO. .oooo. ",
+"  .OXXoO.oXooo. ",
+"  .OoooOXooXoO. ",
+"  .OoooOXOoooO. ",
+"  .OXooooOoooO. ",
+"  .OooooXOoooO. ",
+"  .OoooOXOoXoO. ",
+"   .oXoOoOooO.  ",
+"   .OOoOXOXoO.  ",
+"    ..OOXXo..   ",
+"      .....     ",
+"                "
+};

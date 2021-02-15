@@ -1,0 +1,28 @@
+/* XPM */
+static char *double_plant_sunflower_back[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c #3B6327",
+"X c #3F6729",
+"o c #416B2B",
+"O c #436E2C",
+"+ c #497630",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"      +.+.      ",
+"     .o.X.O     ",
+"    +OX.XX..    ",
+"    +..X.X.+    ",
+"    +O..X.o+    ",
+"    .o.XX.O.    ",
+"     .+oo+.     ",
+"      .+.O      ",
+"                ",
+"                ",
+"                ",
+"                "
+};

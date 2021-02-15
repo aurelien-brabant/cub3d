@@ -1,0 +1,28 @@
+/* XPM */
+static char *cake_top[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c #EA1D1D",
+"X c #E83535",
+"o c #D5D5D5",
+"O c #DFDFDF",
+"+ c #EAE9EB",
+/* pixels */
+"                ",
+" oOOOOOOOOOOOOo ",
+" O++++++++++.+O ",
+" O+OOoOOOO+OO+O ",
+" O+X.++++.o+++O ",
+" O+..+++o++O++O ",
+" O+++o++++.+O+O ",
+" O.++O+X.oO+++O ",
+" O+O+O+..OOX.+O ",
+" O+O.++++O+..+O ",
+" O+O++oO++++O+O ",
+" O+OO+++X.O+O+O ",
+" O++++++..OOO+O ",
+" O+.++++++++++O ",
+" oOOOOOOOOOOOOo ",
+"                "
+};

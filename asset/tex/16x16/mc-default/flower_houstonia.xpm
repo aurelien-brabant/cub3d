@@ -1,0 +1,29 @@
+/* XPM */
+static char *flower_houstonia[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 7 1 ",
+"  c None",
+". c #3F771F",
+"X c #498428",
+"o c #559332",
+"O c #F2F29C",
+"+ c #D8DEE6",
+"@ c #E4EAF2",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"       +        ",
+"     O@O+       ",
+"     +oX @O     ",
+"   O@ +@@o+     ",
+"   @o .+OX      ",
+"    .oX o @O    ",
+"     @OXo o+    ",
+"     @+ooo      ",
+"       oX       ",
+"       o        "
+};

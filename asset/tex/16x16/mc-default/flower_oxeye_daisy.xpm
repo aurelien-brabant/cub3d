@@ -1,0 +1,33 @@
+/* XPM */
+static char *flower_oxeye_daisy[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 11 1 ",
+"  c None",
+". c #357614",
+"X c #397E16",
+"o c #498B28",
+"O c #519131",
+"+ c #57A432",
+"@ c #D2C71E",
+"# c #EAE6AD",
+"$ c #DDDDDD",
+"% c gray92",
+"& c gray97",
+/* pixels */
+"                ",
+"                ",
+"       &        ",
+"     &$&$&      ",
+"     %#@#$      ",
+"    &&@@@&&     ",
+"     $#@#%      ",
+"     &$&$&      ",
+"       &O       ",
+"       +.       ",
+"       O        ",
+"     .Oo        ",
+"      .o .      ",
+"       +.       ",
+"       O.       ",
+"       X        "
+};

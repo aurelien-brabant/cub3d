@@ -1,0 +1,29 @@
+/* XPM */
+static char *farmland_dry[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 7 1 ",
+"  c #452915",
+". c #633F24",
+"X c #5E422E",
+"o c #7F5533",
+"O c #555555",
+"+ c #6F6F6F",
+"@ c #9F6B42",
+/* pixels */
+"@.@@..@@. @.o@.@",
+". ooo. @. o... @",
+"@ @@o. oo @....o",
+"o.@Oo..@o oo.. @",
+"o.oo..@oo @Oo. @",
+"..@... @..@ o.@@",
+"@o@o.  o. @oo.@o",
+"@ oo.  @. oo..@o",
+"o oo.. @. @.. o.",
+"o @..o.@o.@.. @o",
+"o.@@o. oo. @.@+.",
+"o..@o..oOo @.@. ",
+". .@o. @...o.@@@",
+".o.oX..@@. o. oo",
+"o. @@. .@. o. @o",
+"oo @oo.@o..@o.@ "
+};

@@ -1,0 +1,36 @@
+/* XPM */
+static char *wool_colored_black[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 14 1 ",
+"  c #0F0B0B",
+". c #110D0D",
+"X c #131111",
+"o c #151111",
+"O c #171313",
+"+ c #181616",
+"@ c #1A1616",
+"# c #1B1717",
+"$ c #1C1818",
+"% c #1D1B1B",
+"& c #1F1B1B",
+"* c #211D1D",
+"= c #222020",
+"- c #242020",
+/* pixels */
+"oooo#&XO##XX##XX",
+"@$=-&#+OoXOO XOO",
+"*$o@*&#O#&##&=##",
+"$@$*OO#*o#&*##=&",
+"@@X#&&. O#OX&%X ",
+"X O&X oOX OO OOO",
+"==&&@#O#&=#O==##",
+"OO==##&&XO**$#&&",
+"##XO&#oOoOO.#OXX",
+"O#O& XO#o#-=##==",
+"&&##=&##*&O##@X#",
+"XO##OO&#ooO# XO#",
+"OO X&=X #&##==$.",
+"##==&##O #$&#O*=",
+"**@O&##&=&OO#$Oo",
+"Xo&#OO&=OO$&oo&&"
+};

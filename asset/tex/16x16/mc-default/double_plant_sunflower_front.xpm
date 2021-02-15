@@ -1,0 +1,35 @@
+/* XPM */
+static char *double_plant_sunflower_front[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 13 1 ",
+"  c None",
+". c #D67E19",
+"X c #DC831E",
+"o c #E1991F",
+"O c #E2A41F",
+"+ c #E08721",
+"@ c #E8BE20",
+"# c #EBCD21",
+"$ c #EDD023",
+"% c #EDD622",
+"& c #EED922",
+"* c #EEDB22",
+"= c #F1E424",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"      =@=@      ",
+"     =@=@#=     ",
+"    @=%oo&@=    ",
+"    =@o+.o==    ",
+"    @=oX+O=@    ",
+"    =$%oo&@=    ",
+"     =@==$=     ",
+"      =@=@      ",
+"                ",
+"                ",
+"                ",
+"                "
+};

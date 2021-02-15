@@ -1,0 +1,27 @@
+/* XPM */
+static char *glass_pane_top_gray[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c None",
+". c gray28",
+"X c #494949",
+"o c gray29",
+"O c #4C4C4C",
+/* pixels */
+"       OX       ",
+"       O.       ",
+"       OX       ",
+"       XX       ",
+"       XO       ",
+"       O.       ",
+"       X.       ",
+"       X.       ",
+"       O.       ",
+"       X.       ",
+"       OX       ",
+"       O.       ",
+"       OX       ",
+"       OX       ",
+"       O.       ",
+"       OX       "
+};

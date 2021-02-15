@@ -1,0 +1,33 @@
+/* XPM */
+static char *enchanting_table_top[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 11 1 ",
+"  c #581716",
+". c #6B0000",
+"X c #7F0709",
+"o c #741E1D",
+"O c #1B7B6B",
+"+ c #A22B29",
+"@ c #209581",
+"# c #2CCDB1",
+"$ c #4AEDD1",
+"% c #A2F6E7",
+"& c white",
+/* pixels */
+"O@@#........#@@O",
+"@&%$X++++++X$%&@",
+"@%%$X+o  o+X$%%@",
+"#$$Xo      oX$$#",
+".XXo        oXX.",
+".++          ++.",
+".+o          o+.",
+".+            +.",
+".+            +.",
+".+o          o+.",
+".++          ++.",
+".XXo        oXX.",
+"#$$Xo      oX$$#",
+"@%%$X+o  o+X$%%@",
+"@&%$X++++++X$%&@",
+"O@@#........#@@O"
+};

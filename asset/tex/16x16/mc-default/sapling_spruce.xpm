@@ -1,0 +1,29 @@
+/* XPM */
+static char *sapling_spruce[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 7 1 ",
+"  c None",
+". c #130803",
+"X c #2E1D0A",
+"o c #223522",
+"O c #50361A",
+"+ c #2E492E",
+"@ c #395A39",
+/* pixels */
+"                ",
+"                ",
+"       o@       ",
+"      o+oo      ",
+"       O.       ",
+"   @+ @X. @+    ",
+"  @+@@+.X@+     ",
+" @oOO +XXo  @   ",
+"  @O@@oOO@oOO   ",
+"    OXOX@OX.@   ",
+"   @@OX@oXo     ",
+"     @O@XO@     ",
+"     o@XXoo@    ",
+"      oO.@      ",
+"      O.X+      ",
+"       ..       "
+};

@@ -1,0 +1,29 @@
+/* XPM */
+static char *carrots_stage_0[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 7 1 ",
+"  c None",
+". c #056B05",
+"X c #00AD17",
+"o c #00B817",
+"O c #00BC16",
+"+ c #00C617",
+"@ c #00E210",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"                ",
+"       o        ",
+"  @    X    +   ",
+"  O.  .@   +.   "
+};

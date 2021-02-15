@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 18:49:07 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/15 23:17:07 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ static void	project_textured_wall(t_ray *ray, t_img *draw_img, int wall_top_px, 
 	int	offset_x;
 	int offset_y;
 	int distance_top;
+	int px_per_tex_col;
 
+	px_per_tex_col = TILE_SIZE / ray->tex_img->width;
 	if (ray->hit_vert)
-		offset_x = (int)ray->wall_hit[1] % TILE_SIZE; 
+		offset_x = (int)ray->wall_hit[1] % TILE_SIZE / px_per_tex_col; 
 	else
-		offset_x = (int)ray->wall_hit[0] % TILE_SIZE; 
+		offset_x = ((int)ray->wall_hit[0] % TILE_SIZE) / px_per_tex_col; 
 	y = wall_top_px;
 	while (y < wall_bot_px)
 	{
 		distance_top = y + ((double)wall_height / 2) - ((double)draw_img->height / 2);
-		offset_y = distance_top * ((double)ray->tex_img->height / (wall_height));
+		offset_y = (double)distance_top * ((double)ray->tex_img->height / (wall_height));
 		img_pix_put(draw_img, ray->id, y, img_pix_get(ray->tex_img, offset_x, offset_y));
 		++y;
 	}

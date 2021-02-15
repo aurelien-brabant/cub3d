@@ -1,0 +1,38 @@
+/* XPM */
+static char *flower_allium[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 16 1 ",
+"  c None",
+". c #5EA73F",
+"X c #6BB03F",
+"o c #65AC44",
+"O c #6FB44D",
+"+ c #7FC059",
+"@ c #8AC862",
+"# c #B45BFB",
+"$ c #B865FB",
+"% c #BC6FFB",
+"& c #BF75FB",
+"* c #C685FB",
+"= c #CA8EFB",
+"- c #D6A9FB",
+"; c #DEBAFB",
+": c #E1C2FB",
+/* pixels */
+"                ",
+"                ",
+"      &$&       ",
+"     =$%;$      ",
+"    &;&;$#*     ",
+"    ##-;$*#     ",
+"     :&$;&      ",
+"      #o&;      ",
+"       @        ",
+"       O        ",
+"       o        ",
+"       O        ",
+"       +        ",
+"       @        ",
+"       X        ",
+"       .        "
+};

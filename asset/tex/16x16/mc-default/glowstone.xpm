@@ -1,0 +1,29 @@
+/* XPM */
+static char *glowstone[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 7 1 ",
+"  c #4F3810",
+". c #7A5B2C",
+"X c #726F49",
+"o c #C08F46",
+"O c #FFBC5E",
+"+ c #F9D49C",
+"@ c white",
+/* pixels */
+"O.    O.XXXOOo.X",
+".@o XOo@ XO.+@o ",
+".. X.X . XX oo X",
+"X XO..X XO.X  XX",
+" XOo++o Oo. XXOO",
+" ..+@@+.o@  XO@+",
+"X  o++O . XX.o+ ",
+"XXX .O X XO.X. X",
+"Oo.X . XXOo. XXO",
+"@++ X XO.o@o XXO",
+".. XXXXX .o. XX ",
+"  X. XOOX . X.XX",
+"XXOo X .@X XOo. ",
+"XO+@+ X o XOo@o ",
+"X.+@o. X  X.... ",
+"X oo.. XXXX    X"
+};

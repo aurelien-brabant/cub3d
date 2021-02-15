@@ -1,0 +1,27 @@
+/* XPM */
+static char *web[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1 ",
+"  c None",
+". c #CECECE",
+"X c #DDDDDD",
+"o c gray93",
+"O c white",
+/* pixels */
+".       X      .",
+" .    .XOX.   . ",
+"  XOX.  o  X X  ",
+"   .   o.   o   ",
+"   oX .o X X X  ",
+"  .  . .  X   . ",
+"  X . .X . X  X ",
+".Oo.oXooX   X  X",
+" X  X  OoX.XoXXO",
+"  .  o.o .  X  X",
+"  .  . .  X . . ",
+"   X . o .oX  X ",
+"   oX XX.   XX  ",
+"  .  .o   .XOX  ",
+" .    OX..    . ",
+".     .        ."
+};

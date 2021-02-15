@@ -1,0 +1,35 @@
+/* XPM */
+static char *flower_tulip_white[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 13 1 ",
+"  c None",
+". c #2E710C",
+"X c #327A0E",
+"o c #3D821B",
+"O c #438721",
+"+ c #4B8D2A",
+"@ c #4A9521",
+"# c #4F9C2A",
+"$ c #51A12B",
+"% c #D2D2D2",
+"& c gray86",
+"* c #E7E7E7",
+"= c #F3F3F3",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"      = =       ",
+"      *=*       ",
+"      &*&       ",
+"       %        ",
+"     O .   $    ",
+"    O$ +  #O    ",
+"    X$ X #oX    ",
+"    X+X+ @X     ",
+"    XO$OXoX     ",
+"     X+Oo+      ",
+"      X$o$      ",
+"      X+o       ",
+"       X        "
+};

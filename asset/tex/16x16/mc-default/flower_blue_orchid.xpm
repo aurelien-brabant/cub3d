@@ -1,0 +1,30 @@
+/* XPM */
+static char *flower_blue_orchid[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 8 1 ",
+"  c None",
+". c #1C760B",
+"X c #168700",
+"o c #3D8C0A",
+"O c #1C92D6",
+"+ c #29AEFB",
+"@ c #2ABFFD",
+"# c #2FCEFD",
+/* pixels */
+"                ",
+"                ",
+"            O   ",
+"           .#O  ",
+"  @+ +@   oO+   ",
+"  OO ++  o+     ",
+"   oo.  oO#+    ",
+" O+.  . X +     ",
+" @+    .@+      ",
+"       XOO      ",
+"       o        ",
+"       X.       ",
+"        X       ",
+"        o       ",
+"        X       ",
+"       ..       "
+};

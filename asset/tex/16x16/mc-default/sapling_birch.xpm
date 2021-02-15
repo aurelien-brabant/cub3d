@@ -1,0 +1,28 @@
+/* XPM */
+static char *sapling_birch[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c #38501F",
+"X c #51742D",
+"o c #648D38",
+"O c #A2C978",
+"+ c #CFE3BA",
+/* pixels */
+"                ",
+"     o          ",
+"    XXo    oo   ",
+"    +X Xoo Xo   ",
+"   X++OXX XX+o  ",
+"   +O..+X XXOX  ",
+"  Xo X+++.+O    ",
+"  XXo  oo+. Xo  ",
+"   X .XXX+.+ X  ",
+"  o++O.X++O+X   ",
+" XX Xo..Xo OXo  ",
+" X    O+XX XXXo ",
+"      oo+O X XX ",
+"      XO.+      ",
+"       O+.      ",
+"       O+O      "
+};

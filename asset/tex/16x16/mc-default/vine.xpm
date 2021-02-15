@@ -1,0 +1,28 @@
+/* XPM */
+static char *vine[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c gray33",
+"X c gray42",
+"o c #727272",
+"O c #838383",
+"+ c #AAAAAA",
+/* pixels */
+"  X.X.     .X.  ",
+"   +X..X   .O+  ",
+"   X+  oX  +X.  ",
+"+  .+   .XoXX.X+",
+"O   OX   O..+ .O",
+"..  X.  O+ .+ ..",
+"X X.X. X.X  O. .",
+"  .XX+O.   +X.  ",
+"   .+X.    XO   ",
+"  .X+X.   O.O   ",
+"  +XO  .  X O.  ",
+" .O.XX.   . X. X",
+"XO  X.+   ..X+X.",
+".   +.O.OX .+O. ",
+"   +O  O..O O.  ",
+"  ..X       OX. "
+};
