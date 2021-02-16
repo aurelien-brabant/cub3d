@@ -49,6 +49,7 @@ typedef struct s_player
 	double	y;
 	double	rot_angle;
 	int		turn_dir; /* 1 for right, -1 for left */
+	int		strafe_dir;
 	int		move_dir;
 	int		move_speed;
 	double	turn_spd;

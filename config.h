@@ -1,5 +1,6 @@
 #ifndef CONFIG_H
 # define CONFIG_H
+# include <X11/keysym.h>
 
 /*
 ** cub3D USER CONFIGURATION
@@ -24,5 +25,15 @@
 */
 
 # define RAY_THICKNESS 1
+
+/* KEY BINDINGS */
+
+# define KB_QUIT			XK_Escape
+# define KB_MOVE_FORWARD	XK_w
+# define KB_MOVE_BACKWARD	XK_s
+# define KB_MOVE_LEFT		XK_a
+# define KB_MOVE_RIGHT		XK_d
+# define KB_TURN_LEFT		XK_Left
+# define KB_TURN_RIGHT		XK_Right
 
 #endif
