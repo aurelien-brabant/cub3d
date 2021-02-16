@@ -94,16 +94,25 @@ typedef struct	s_ray
 	t_img	*tex_img;
 }	t_ray;
 
+typedef struct	s_sprite
+{
+	double	x;
+	double	y;
+	double	distance;
+	double	angle;
+}	t_sprite;
+
 typedef struct s_graphics
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	dpimg[2];
-	t_img	teximg[4];
-	t_ray	*rays;
-	int		num_rays;
-	double	fov;
-	double	dist_proj_plane;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		dpimg[2];
+	t_img		teximg[5];
+	t_vector	sprites;
+	t_ray		*rays;
+	int			num_rays;
+	double		fov;
+	double		dist_proj_plane;
 }	t_graphics;
 
 typedef struct s_cub3d
