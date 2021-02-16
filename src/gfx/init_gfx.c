@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 18:51:11 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/16 01:42:31 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	normalize_res(void *mlx_ptr, long long *width, long long *height)
 		*height = dpy_height;
 }
 
-
 /*
 ** Transform the map coordinates to those of the window.
 ** Position the player in the middle of its spawnpoint.
@@ -47,7 +46,7 @@ static void	normalize_res(void *mlx_ptr, long long *width, long long *height)
 static void	init_player(t_vector map, t_player *player)
 {
 	unsigned char	spawn_char;
-	
+
 	player->turn_dir = 0;
 	player->turn_spd = deg2rad(6);
 	player->move_speed = 8;
@@ -76,11 +75,21 @@ static void	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 	if (gfx->rays == NULL)
 		ft_snprintf(err, ERR_LEN, "Failed to initialize rays.");
 	ray_id = 0;
-	while (ray_id < gfx->num_rays) 
+	while (ray_id < gfx->num_rays)
 	{
 		gfx->rays[ray_id].id = ray_id;
 		++ray_id;
 	}
+}
+
+static void	hook_and_loop(t_cub3d *c3d)
+{
+	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
+	mlx_hook(c3d->gfx.win_ptr, KeyRelease, KeyReleaseMask,
+			&handle_keyrelease, c3d);
+	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
+	mlx_loop_hook(c3d->gfx.mlx_ptr, &render, c3d);
+	mlx_loop(c3d->gfx.mlx_ptr);
 }
 
 int	init_gfx(t_cub3d *c3d)
@@ -100,12 +109,9 @@ int	init_gfx(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, "Gfx init failed.");
 	if (c3d->err[0] != '\0')
 		return (0);
-	draw_rect(&c3d->gfx.dpimg[1], (t_rect){0, 0, c3d->mapdat.win_width, c3d->mapdat.win_height, 0, 0}, 0xFF);
-	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
-	mlx_hook(c3d->gfx.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, c3d);
-	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
-	mlx_loop_hook(c3d->gfx.mlx_ptr, &render, c3d);
-	mlx_loop(c3d->gfx.mlx_ptr);
+	draw_rect(&c3d->gfx.dpimg[1], (t_rect){0, 0,
+			c3d->mapdat.win_width, c3d->mapdat.win_height, 0, 0}, 0xFF);
+	hook_and_loop(c3d);
 	cub3d_shift_state(c3d, NULL);
 	return (1);
 }

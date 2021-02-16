@@ -1,10 +1,10 @@
 R   1080 640
 
-NO	asset/tex/16x16/mc-default/sandstone_smooth.xpm
-SO	asset/tex/16x16/mc-default/stonebrick.xpm
-EA	asset/tex/16x16/mc-default/gravel.xpm
-WE	asset/tex/16x16/mc-default/sea_lantern.xpm
-S   asset/tex/16x16/mc-default/sea_lantern.xpm
+NO	asset/tex/16x16/sandstone_smooth.xpm
+SO	asset/tex/16x16/stonebrick.xpm
+EA	asset/tex/16x16/gravel.xpm
+WE	asset/tex/16x16/sea_lantern.xpm
+S   asset/tex/16x16/sea_lantern.xpm
 
 C   0,181,226
 F   0, 154, 23

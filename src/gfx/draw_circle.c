@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:21:01 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 17:44:11 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/16 01:43:04 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	draw_circle(t_img *img, int x, int y, int radius)
 	angle = 0 * (M_PI / 180);
 	while (angle <= M_PI * 2)
 	{
-		draw_line(img, (t_line){x, y, x + cos(angle) * radius, y + sin(angle) * radius}, 0xFF00);
+		draw_line(img, (t_line){x, y, x + cos(angle) * radius,
+				y + sin(angle) * radius}, 0xFF00);
 		angle += 1 * (M_PI / 180);
 	}
 }
