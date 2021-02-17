@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 15:25:58 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/17 03:28:25 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 int		init_gfx(t_cub3d *c3d);
 int		init_img(t_graphics *gfx, t_map_data *mapdat);
+int		init_sprites(t_graphics *gfx, t_map_data *mapdat);
 void	destroy_img(t_graphics *gfx);
 void	destroy_gfx(t_graphics *gfx);
 
@@ -51,13 +52,18 @@ int		render(t_cub3d *c3d);
 void	render_rays(t_player *player, t_graphics *gfx);
 
 /* Render the minimap as a grid */
-void	render_minimap(t_vector map, t_img *img);
+void	render_minimap(t_cub3d *c3d, t_vector map, t_img *img);
 
 /* Render the player on the minimap, as a circle */
 void	render_player(t_img *img, t_player *player);
 
 /* Render the "3D" projection of the walls */
 void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player);
+
+/* Render the sprites on the screen */
+void	render_sprite_projection(t_cub3d *c3d);
+
+void	render_sprite_minimap(t_cub3d *c3d);
 
 /*
 *******************************************************************************
@@ -111,5 +117,6 @@ double	get_points_dist(double x1, double y1, double x2, double y2);
 
 double	deg2rad(double deg);
 double	rad2deg(double rad);
+double	normalize_angle(double angle);
 
 #endif

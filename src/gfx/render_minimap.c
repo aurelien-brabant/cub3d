@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:05:26 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/12 16:49:29 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/17 03:23:59 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ static t_rect	get_rect(size_t x, size_t y)
 {
 	t_rect	rect;
 
-	rect.x = x * round(TILE_SIZE * MINIMAP_FACTOR);
-	rect.y = y * round(TILE_SIZE * MINIMAP_FACTOR);
-	rect.width = round(TILE_SIZE * MINIMAP_FACTOR);
-	rect.height = round(TILE_SIZE * MINIMAP_FACTOR);
+	rect.x = x * (int)(TILE_SIZE * MINIMAP_FACTOR);
+	rect.y = y * (int)(TILE_SIZE * MINIMAP_FACTOR);
+	rect.width = (int)(TILE_SIZE * MINIMAP_FACTOR);
+	rect.height = (int)(TILE_SIZE * MINIMAP_FACTOR);
 	rect.border_size = 1;
 	rect.border_color = 0x0;
 	return (rect);
 }
 
-void	render_minimap(t_vector map, t_img *img)
+void	render_minimap(t_cub3d *c3d, t_vector map, t_img *img)
 {
 	const unsigned char	*row;
 	size_t				x;

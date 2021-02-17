@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:16:47 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/16 01:43:48 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/17 03:28:44 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	render(t_cub3d *c3d)
 	update(c3d);
 	draw_img = &c3d->gfx.dpimg[1];
 	render_walls(&c3d->gfx, &c3d->mapdat, &c3d->gamedat.player);
-	//render_minimap(c3d->mapdat.map, draw_img);
-	//render_player(draw_img, &c3d->gamedat.player);
-	//render_rays(&c3d->gamedat.player, &c3d->gfx);
+	render_minimap(c3d, c3d->mapdat.map, draw_img);
+	render_player(draw_img, &c3d->gamedat.player);
+	render_rays(&c3d->gamedat.player, &c3d->gfx);
+	render_sprite_projection(c3d);
+	render_sprite_minimap(c3d);
 	ft_memcpy(c3d->gfx.dpimg[0].addr, c3d->gfx.dpimg[1].addr,
 			c3d->mapdat.win_height * c3d->gfx.dpimg[1].line_len);
 	

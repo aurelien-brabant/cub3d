@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/16 17:06:08 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/17 03:15:48 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@
 
 #include "libft/string.h"
 
-/*
-** Ensure the angle is between 0 and 2 PI radians.
-*/
-
-static double	normalize_angle(double angle)
-{
-	if (angle > M_PI * 2)
-		angle = fmod(angle, M_PI * 2);
-	if (angle < 0)
-		angle = M_PI * 2 - fmod(-angle, M_PI * 2);
-	return (angle);
-}
 
 /*
 ** cast an individual ray

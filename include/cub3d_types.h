@@ -6,7 +6,7 @@
 # include "libft/vector.h"
 # define ERR_LEN 1000
 # define TILE_SIZE 64
-# define MINIMAP_FACTOR 0.2
+# define MINIMAP_FACTOR 0.5
 
 typedef enum e_state
 {
@@ -109,6 +109,7 @@ typedef struct s_graphics
 	t_img		dpimg[2];
 	t_img		teximg[5];
 	t_vector	sprites;
+	t_vector	**visible_sprites;
 	t_ray		*rays;
 	int			num_rays;
 	double		fov;
