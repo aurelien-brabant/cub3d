@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/17 03:28:25 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/18 01:22:18 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		img_pix_get(t_img *img, int x, int y);
 void	draw_rect(t_img *img, t_rect rect, int color);
 void	draw_line(t_img *img, t_line line, int color);
 void	draw_circle(t_img *img, int x, int y, int radius);
+int		draw_sprite(t_sprite *sprite, size_t i, t_cub3d *c3d);
 
 /*
 *******************************************************************************

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 01:52:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 23:32:05 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/18 02:06:28 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 ** Find the xintercept, yintercept, xstep and ystep.
 */
 
-static void	get_data(t_ray *ray, t_player *player, double *step, double *intercept)
+static void	get_data(t_ray *ray, t_player *player,
+		double *step, double *intercept)
 {
 	intercept[1] = floor((player->y / TILE_SIZE)) * TILE_SIZE;
 	if (ray->facing_down)

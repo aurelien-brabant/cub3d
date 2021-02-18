@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/17 03:15:48 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/18 02:06:15 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "config.h"
 
 #include "libft/string.h"
-
 
 /*
 ** cast an individual ray
@@ -45,7 +44,7 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 	{
 		ray->wall_hit[0] = ray->horz_wall_hit[0];
 		ray->wall_hit[1] = ray->horz_wall_hit[1];
-		ray->wall_dist = horz_dist + (horz_dist == 0); 
+		ray->wall_dist = horz_dist + (horz_dist == 0);
 	}
 	else
 		c3d_warn("No intersection found. This is a BUG!");

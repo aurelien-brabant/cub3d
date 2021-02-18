@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 03:02:11 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/17 01:42:22 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/18 02:05:09 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	init_dpimg(t_graphics *gfx, t_map_data *mapdat)
 	}
 	return (1);
 }
-
 
 static int	init_teximg(t_graphics *gfx, t_map_data *mapdat)
 {
@@ -86,18 +85,10 @@ void	destroy_img(t_graphics *gfx)
 		ft_vec_destroy(gfx->sprites, &free);
 }
 
-int	list_sprite(void *sprit)
-{
-	t_sprite	*sprite = sprit;
-	printf("SPRITE (%f; %f)\n", sprite->x, sprite->y);
-	return (0);
-}
-
 int	init_img(t_graphics *gfx, t_map_data *mapdat)
 {
 	if (!init_dpimg(gfx, mapdat) || !init_teximg(gfx, mapdat)
-			|| !init_sprites(gfx, mapdat))
+		|| !init_sprites(gfx, mapdat))
 		return (0);
-	ft_vec_foreach(gfx->sprites, &list_sprite, NULL);
 	return (1);
 }

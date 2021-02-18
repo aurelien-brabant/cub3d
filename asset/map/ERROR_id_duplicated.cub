@@ -1,12 +1,14 @@
 R   1920 1080
 
-NO	asset/tex/grass.xpm
-SO	asset/tex/grass.xpm
-EA	asset/tex/grass.xpm
-WE	asset/tex/grass.xpm
-S   asset/tex/grass.xpm
+NO	asset/tex/32x32/ice.xpm
+SO	asset/tex/32x32/bricks.xpm
+EA	asset/tex/16x16/grass_top.xpm
+WE	asset/tex/32x32/grass.xpm
 
-S   asset/tex/grass.xpm
+S   asset/tex/sprite/piglin.xpm
+
+
+S   asset/tex/64x64/grass.xpm
 
 C   255, 255, 255
 F   0, 0, 0

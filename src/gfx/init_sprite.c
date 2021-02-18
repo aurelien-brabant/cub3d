@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 01:05:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/17 03:38:35 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/18 02:06:01 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	process_map_row(char *row, size_t rowi, t_vector sprites)
 	coli = 0;
 	while (row[coli] != '\0')
 	{
-		if (row[coli] == '2' && 
-				ft_vec_add(sprites, sprite_new(coli, rowi)) == NULL)
+		if (row[coli] == '2' && ft_vec_add(sprites,
+				sprite_new(coli, rowi)) == NULL)
 			return (1);
 		++coli;
 	}
