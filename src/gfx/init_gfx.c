@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/16 01:42:31 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/18 03:44:12 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	init_player(t_vector map, t_player *player)
 	unsigned char	spawn_char;
 
 	player->turn_dir = 0;
-	player->turn_spd = deg2rad(6);
-	player->move_speed = 8;
+	player->turn_spd = deg2rad(3);
+	player->move_speed = 3;
 	player->move_dir = 0;
 	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);

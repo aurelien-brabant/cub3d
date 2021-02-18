@@ -1,10 +1,10 @@
 R   1080 640
 
-NO	asset/tex/32x32/stripped_spruce_log.xpm
-SO	asset/tex/32x32/spruce_log_top.xpm
-EA	asset/tex/32x32/snow.xpm
-WE	asset/tex/32x32/ice.xpm
-S   asset/tex/32x32/flower_pot.xpm
+NO	asset/tex/32x32/bricks.xpm
+SO	asset/tex/32x32/spruce_planks.xpm
+EA	asset/tex/32x32/birch_planks.xpm
+WE	asset/tex/32x32/oak_planks.xpm
+S   asset/tex/sprite/nether_sprouts.xpm
 
 C   0,181,226
 F   0, 154, 23

@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/18 01:25:33 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/18 03:45:00 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 TARGET			= cub3D
 CC				= clang
-CFLAGS			= -Wall -Wextra -Wpedantic
+CFLAGS			= -Wall -Wextra -Werror -Wpedantic -O3
 INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Iinclude -I.
 LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
 RM				= rm -rf
@@ -47,10 +47,10 @@ MISC			= gc.c parsing_utils.c color.c map.c degrad.c			\
 				  output.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
-				render.c img_pix_put.c draw_rect.c render_minimap.c		\
-				render_player.c handle_mouse.c draw_line.c update.c		\
-				handle_keyrelease.c draw_circle.c raycast.c				\
-				render_rays.c raycast_horizontal.c raycast_vertical.c	\
+				render.c img_pix_put.c draw_rect.c 						\
+				handle_mouse.c update.c									\
+				handle_keyrelease.c raycast.c							\
+				raycast_horizontal.c raycast_vertical.c					\
 				get_points_dist.c render_walls.c init_img.c				\
 				img_pix_get.c sprite.c init_sprite.c sprite_2.c
 
