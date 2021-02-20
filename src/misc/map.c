@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:54:49 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/13 14:14:01 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/20 23:48:00 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ int	map_has_wall_at(t_vector map, double x, double y)
 
 	c = map_getchar(map, x, y);
 	return (c == '1' || c == ' ');
+}
+
+int	map_is_legal(t_vector map, double x, double y)
+{
+	const unsigned char	*row;
+	size_t				index;
+
+	row = ft_vec_get(map, (size_t)floor(y / TILE_SIZE));
+	index = floor(x / TILE_SIZE);
+	if (row == NULL)
+		return (0);
+	if (index >= ft_strlen((char *)row))
+		return (0);
+	return (1);
 }
