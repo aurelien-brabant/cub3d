@@ -113,7 +113,7 @@ typedef struct s_graphics
 	t_img		dpimg[2];
 	t_img		teximg[5];
 	t_vector	sprites;
-	t_vector	**visible_sprites;
+	t_vector	visible_sprites;
 	t_ray		*rays;
 	int			num_rays;
 	double		fov;

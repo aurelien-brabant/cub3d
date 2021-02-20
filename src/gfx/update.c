@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/17 03:03:38 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/20 23:43:27 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,38 @@
 
 #include "config.h"
 
-#include "libft/vector.h"
-
 #include "cub3d_gfx.h"
 #include "cub3d_misc.h"
+
+#include "libft/vector.h"
 
 static void	update_player(t_vector *map, t_player *player)
 {
 	unsigned char	mapchar;
-	int				nextX;
-	int				nextY;
+	double			next_x;
+	double			next_y;
 
 	player->rot_angle += player->turn_spd * player->turn_dir;
 	player->rot_angle = normalize_angle(player->rot_angle);
-	nextX = player->x + cos(player->rot_angle + deg2rad(90) * player->strafe_dir)
-		* (player->move_dir * player->move_speed);
-	nextY = player->y + sin(player->rot_angle + deg2rad(90) * player->strafe_dir)
-		* (player->move_dir * player->move_speed);
-	mapchar = map_getchar(map, nextX, nextY);
+	if (player->move_dir != 0)
+	{
+		next_x = player->x + cos(player->rot_angle)
+			* (player->move_dir * player->move_speed);
+		next_y = player->y + sin(player->rot_angle)
+			* (player->move_dir * player->move_speed);
+	}
+	if (player->strafe_dir != 0)
+	{
+		next_x = player->x + cos(player->rot_angle + deg2rad(90) * player->strafe_dir)
+			* (player->move_speed);
+		next_y = player->y + sin(player->rot_angle + deg2rad(90) * player->strafe_dir)
+			* (player->move_speed);
+	}
+	mapchar = map_getchar(map, next_x, next_y);
 	if (mapchar != '1' && mapchar != ' ')
 	{
-		player->x = nextX;
-		player->y = nextY;
+		player->x = next_x;
+		player->y = next_y;
 	}
 }
 

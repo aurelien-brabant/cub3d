@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 03:15:20 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/16 02:15:47 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/20 23:27:31 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,9 @@ int	handle_keypress(int keysym, t_cub3d *c3d)
 	else if (keysym == KB_TURN_RIGHT)
 		c3d->gamedat.player.turn_dir = 1;
 	else if (keysym == KB_MOVE_LEFT)
-	{
 		c3d->gamedat.player.strafe_dir = -1;
-		c3d->gamedat.player.move_dir = 1;
-	}
 	else if (keysym == KB_MOVE_RIGHT)
-	{
 		c3d->gamedat.player.strafe_dir = 1;
-		c3d->gamedat.player.move_dir = 1;
-	}
 	else if (keysym == KB_MOVE_FORWARD)
 		c3d->gamedat.player.move_dir = 1;
 	else if (keysym == KB_MOVE_BACKWARD)
