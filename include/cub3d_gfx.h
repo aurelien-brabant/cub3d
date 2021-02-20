@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/18 01:22:18 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/20 23:05:16 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player);
 void	render_sprite_projection(t_cub3d *c3d);
 
 void	render_sprite_minimap(t_cub3d *c3d);
+
+void	render_aim(t_graphics *gfx);
 
 /*
 *******************************************************************************

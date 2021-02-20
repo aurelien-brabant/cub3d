@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/18 03:45:00 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/20 23:05:32 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				handle_keyrelease.c raycast.c							\
 				raycast_horizontal.c raycast_vertical.c					\
 				get_points_dist.c render_walls.c init_img.c				\
-				img_pix_get.c sprite.c init_sprite.c sprite_2.c
+				img_pix_get.c sprite.c init_sprite.c sprite_2.c			\
+				render_aim.c
 
 SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC)
 
