@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/16 01:36:47 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/21 22:18:18 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,19 @@ static void	project_textured_wall(t_ray *ray, t_img *draw_img,
 
 static void	project(t_graphics *gfx, t_ray *ray, int *colors)
 {
-	t_img	*drawing_img;
+	t_img	*img;
 	int		wall_height;
 	int		wall_top_px;
 
-	drawing_img = &gfx->dpimg[1];
+	img = &gfx->dpimg;
 	wall_height = (TILE_SIZE / ray->wall_dist) * gfx->dist_proj_plane;
-	wall_top_px = (drawing_img->height / 2.0) - (wall_height / 2.0);
+	wall_top_px = (img->height / 2.0) - (wall_height / 2.0);
 	if (wall_top_px < 0)
 		wall_top_px = 0;
-	draw_rect(&gfx->dpimg[1], (t_rect){ray->id * RAY_THICKNESS, 0,
-			RAY_THICKNESS, wall_top_px, 0, 0 }, colors[1]);
-	project_textured_wall(ray, drawing_img, wall_height, wall_top_px);
-	draw_rect(&gfx->dpimg[1], (t_rect){ray->id * RAY_THICKNESS,
-			wall_top_px + wall_height, RAY_THICKNESS, drawing_img->height,
-			0, 0 }, colors[0]);
+	draw_rect(img, (t_rect){ray->id, 0, 1, wall_top_px}, colors[1]);
+	project_textured_wall(ray, img, wall_height, wall_top_px);
+	draw_rect(img, (t_rect){ray->id, wall_top_px + wall_height,
+			1, img->height}, colors[0]);
 }
 
 void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player)

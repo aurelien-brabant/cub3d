@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/14 16:48:23 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/21 12:59:03 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	check_opt(void *cla, char **allowed_opt, uint8_t *opt)
 
 static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 {
-	static char		*allowed_opt[] = {"save", "parse-only", NULL};
+	static char		*allowed_opt[] = {"save", "save-name=", "parse-only", NULL};
 	t_cla_config	conf;
 	void			*cla;
 	char			err[ERR_LEN];
@@ -74,6 +74,7 @@ static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 		check_dotcub_filepath(cla, &c3d->fildes, c3d->err);
 		check_opt(cla, allowed_opt, &c3d->opt);
 	}
+	ft_cla_str_var(cla, &c3d->screenshot_name, "save-name", "screenshot.bmp");
 	free(cla);
 	cub3d_shift_state(c3d, NULL);
 }

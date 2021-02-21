@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/20 23:05:32 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/21 17:54:14 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@
 TARGET			= cub3D
 CC				= clang
 CFLAGS			= -Wall -Wextra -Werror -Wpedantic -O3
-INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Iinclude -I.
-LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
+INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -I$(LIBBMP_PATH) -Iinclude -I.
+LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH) -L$(LIBBMP_PATH)
 RM				= rm -rf
 
 # ---------------[=  DEPS                      =]--------------- #
@@ -30,6 +30,11 @@ MLX_LINK		= -lmlx -lX11 -lXext
 LIBFT_PATH		= libft
 LIBFT_ARCHIVE	= $(LIBFT_PATH)/libft.a
 LIBFT_LINK		= -lft
+
+# libbmp
+LIBBMP_PATH		= libbmp
+LIBBMP_ARCHIVE	= $(LIBBMP_PATH)/libbmp.a
+LIBBMP_LINK		= -lbmp
 
 # ---------------[=    SOURCE CODE FILES      =]--------------- #
 
@@ -76,7 +81,8 @@ test:
 clean:
 	$(RM) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE) $(OBJS) $(OBJ_DIR)
 	make clean -C $(MLX_PATH)
-	make clean -C $(LIBFT_PATH)
+	make fclean -C $(LIBFT_PATH)
+	make fclean -C $(LIBBMP_PATH)
 
 fclean: clean
 	$(RM) $(TARGET)
@@ -99,8 +105,8 @@ reconfig:
 
 # Build rules
 
-$(TARGET): $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(OBJ_DIR) $(OBJS) 
-	$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET) 
+$(TARGET): $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(LIBBMP_ARCHIVE) $(OBJ_DIR) $(OBJS) 
+	$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) $(LIBBMP_LINK) -lm -o $(TARGET) 
 
 # Make libft archive
 $(LIBFT_ARCHIVE):
@@ -109,6 +115,10 @@ $(LIBFT_ARCHIVE):
 # Make mlx archive
 $(MLX_ARCHIVE):
 	make -C $(MLX_PATH)
+
+# Make libbmp archive
+$(LIBBMP_ARCHIVE):
+	make -C $(LIBBMP_PATH)
 
 # Create OBJ_DIR if doesn't exist
 $(OBJ_DIR):

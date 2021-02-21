@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/20 23:49:38 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:51:05 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 static void	update_player(t_vector *map, t_player *player)
 {
-	double			next_x;
-	double			next_y;
+	double	next_x;
+	double	next_y;
 
 	player->rot_angle += player->turn_spd * player->turn_dir;
 	player->rot_angle = normalize_angle(player->rot_angle);
@@ -45,6 +45,6 @@ static void	update_player(t_vector *map, t_player *player)
 
 void	update(t_cub3d *c3d)
 {
-	update_player(c3d->mapdat.map, &c3d->gamedat.player);
-	cast_rays(&c3d->gfx, &c3d->gamedat.player, &c3d->mapdat);
+	update_player(c3d->mapdat.map, &c3d->gfx.player);
+	cast_rays(&c3d->gfx, &c3d->gfx.player, &c3d->mapdat);
 }

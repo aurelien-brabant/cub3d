@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:35:21 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 18:44:57 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:27:30 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ int	check_parse_map(t_cub3d *c3d)
 				&& !is_sp_near(row, i, j, c3d->mapdat.map))
 				ft_snprintf(c3d->err, ERR_LEN, MSG_NO_WALL, i + 1, j + 1);
 			if (ft_strchr("NESW", row[j]))
-				if (!check_spawn(&c3d->gamedat.player, i, j))
+				if (!check_spawn(&c3d->gfx.player, i, j))
 					ft_snprintf(c3d->err, ERR_LEN, MSG_SPAWN_REDEF);
 			++j;
 		}
 		++i;
 	}
-	if (c3d->err[0] == '\0' && (c3d->gamedat.player.x < 0
-			|| c3d->gamedat.player.y < 0))
+	if (c3d->err[0] == '\0' && (c3d->gfx.player.x < 0
+			|| c3d->gfx.player.y < 0))
 		ft_snprintf(c3d->err, ERR_LEN, MSG_SPAWN_MISSING);
 	return (c3d->err[0] == '\0');
 }

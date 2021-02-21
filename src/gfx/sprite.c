@@ -6,22 +6,24 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:26:01 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/18 02:08:49 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/21 21:59:21 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "cub3d_gfx.h"
+
 #include "libft/vector.h"
 #include "libft/core.h"
-
-#include "cub3d_gfx.h"
 
 /*
 ** Determines if a sprite is visible or not.
 ** If it is, add it to the visible_sprites vector and calculate its distance
 ** from the player as well as the angle formed between the player and the
 ** sprite.
+** The epsilon constant is used to ensure smooth appearance/disappearance
+** of the sprites when the player rotates.
 */
 
 static int	put_visible_sprite(t_sprite *sprite, size_t index, t_cub3d *c3d)
@@ -31,7 +33,7 @@ static int	put_visible_sprite(t_sprite *sprite, size_t index, t_cub3d *c3d)
 	double				angle_sprite_player;
 
 	(void)index;
-	player = &c3d->gamedat.player;
+	player = &c3d->gfx.player;
 	angle_sprite_player = player->rot_angle - atan2(sprite->y - player->y,
 			sprite->x - player->x);
 	if (angle_sprite_player > M_PI)
@@ -50,7 +52,7 @@ static int	put_visible_sprite(t_sprite *sprite, size_t index, t_cub3d *c3d)
 }
 
 /*
-** Compare sprites by distance
+** Compare sprites by distance. Used to compare two sprites using ft_vec_sort.
 */
 
 static int	comp_sprites(void *el1, void *el2)

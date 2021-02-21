@@ -6,7 +6,6 @@
 # include "libft/vector.h"
 # define ERR_LEN 1000
 # define TILE_SIZE 64
-# define MINIMAP_FACTOR 0.5
 
 typedef enum e_state
 {
@@ -20,7 +19,7 @@ typedef enum e_state
 }	t_state;
 
 /*
-** Option flags
+** Boolean option flags
 */
 
 typedef enum e_optflag
@@ -48,7 +47,7 @@ typedef struct s_player
 	double	x;
 	double	y;
 	double	rot_angle;
-	int		turn_dir; /* 1 for right, -1 for left */
+	int		turn_dir;
 	int		strafe_dir;
 	int		move_dir;
 	double	move_speed;
@@ -57,17 +56,13 @@ typedef struct s_player
 
 typedef struct s_map_data
 {
+	char		*map_name;
 	int			col[2];
 	char 		*textures[P_ID_S - P_ID_RES];
 	long long	win_width;
 	long long	win_height;
 	t_vector	map;
 }	t_map_data;
-
-typedef struct s_game_data
-{
-	t_player	player;
-}	t_game_data;
 
 typedef struct s_img
 {
@@ -108,31 +103,34 @@ typedef struct	s_sprite
 
 typedef struct s_graphics
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		dpimg[2];
-	t_img		teximg[5];
-	t_vector	sprites;
-	t_vector	visible_sprites;
-	t_ray		*rays;
-	int			num_rays;
-	double		fov;
-	double		dist_proj_plane;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			dpimg;
+	t_img			teximg[5];
+	t_vector		sprites;
+	t_vector		visible_sprites;
+	t_ray			*rays;
+	t_player		player;
+	int				num_rays;
+	double			fov;
+	double			dist_proj_plane;
+	unsigned int	win_height;
+	unsigned int	win_width;
 }	t_graphics;
 
 typedef struct s_cub3d
 {
 	t_state		state;
 	char		err[ERR_LEN];
+	char		*screenshot_name;
 	uint8_t		opt;
 	int			fildes;
 	t_map_data	mapdat;
-	t_game_data	gamedat;
 	t_graphics	gfx;
 	t_vector	gbc;
 }	t_cub3d;
 
-/* GRAPHICS */
+/* SHAPES */
 
 typedef struct	s_rect
 {
@@ -140,8 +138,6 @@ typedef struct	s_rect
 	int y;
 	int width;
 	int height;
-	int border_size;
-	int border_color;
 }				t_rect;
 
 typedef struct	s_line

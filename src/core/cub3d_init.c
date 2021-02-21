@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:16:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 12:46:20 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:25:57 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	cub3d_init(t_cub3d *c3d)
 			"Could not initialize the map vector properly.");
 	c3d->mapdat.col[P_ID_F - P_ID_F] = -1;
 	c3d->mapdat.col[P_ID_C - P_ID_F] = -1;
-	c3d->gamedat.player.x = -1;
-	c3d->gamedat.player.y = -1;
+	c3d->gfx.player.x = -1;
+	c3d->gfx.player.y = -1;
 	cub3d_shift_state(c3d, NULL);
 }
