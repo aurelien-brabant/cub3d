@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 12:59:03 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 18:33:26 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,17 @@
 #include "cub3d_gfx.h"
 #include "cub3d_types.h"
 
-static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err)
+static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err, char **filepath)
 {
-	char		*filepath;
-
-	ft_cla_pos_var(cla, &filepath, 0, NULL);
-	*c3d_fd = open(filepath, O_RDONLY);
+	ft_cla_pos_var(cla, filepath, 0, NULL);
+	*c3d_fd = open(*filepath, O_RDONLY);
 	if (*c3d_fd == -1 || read(*c3d_fd, NULL, 0) == -1)
 	{
 		if (*c3d_fd != -1)
 			close(*c3d_fd);
 		ft_snprintf(err, ERR_LEN, "%s:%s", filepath, strerror(errno));
 	}
-	else if (!ft_strhssfx(filepath, ".cub"))
+	else if (!ft_strhssfx(*filepath, ".cub"))
 		ft_snprintf(err, ERR_LEN, "Expected extension .cub.");
 }
 
@@ -57,7 +55,7 @@ static void	check_opt(void *cla, char **allowed_opt, uint8_t *opt)
 
 static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 {
-	static char		*allowed_opt[] = {"save", "save-name=", "parse-only", NULL};
+	static char		*allowed_opt[] = { "save", "parse-only", "save-name=", NULL};
 	t_cla_config	conf;
 	void			*cla;
 	char			err[ERR_LEN];
@@ -71,7 +69,8 @@ static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 		ft_snprintf(c3d->err, ERR_LEN, "%s\nUsage: %s", err, PROG_USAGE);
 	else
 	{
-		check_dotcub_filepath(cla, &c3d->fildes, c3d->err);
+		check_dotcub_filepath(cla, &c3d->fildes, c3d->err,
+				&c3d->mapdat.map_name);
 		check_opt(cla, allowed_opt, &c3d->opt);
 	}
 	ft_cla_str_var(cla, &c3d->screenshot_name, "save-name", "screenshot.bmp");

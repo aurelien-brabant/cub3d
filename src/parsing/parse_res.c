@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 00:17:41 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 12:00:45 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 02:20:54 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "libft/string.h"
 #include "libft/io.h"
 
-static bool	convert_nbrs(char **nb_str, long long *nb, char *err)
+static bool	convert_nbrs(char **nb_str, int *nb, char *err)
 {
 	size_t	i;
 
@@ -30,7 +30,7 @@ static bool	convert_nbrs(char **nb_str, long long *nb, char *err)
 			ft_snprintf(err, ERR_LEN, MSG_NAN, "R", nb_str[i]);
 		else
 		{
-			nb[i] = ft_btoll(nb_str[i], 10);
+			nb[i] = ft_atoi(nb_str[i]);
 			if (nb[i] == 0)
 				ft_snprintf(err, ERR_LEN, MSG_NAN);
 		}
@@ -42,8 +42,8 @@ static bool	convert_nbrs(char **nb_str, long long *nb, char *err)
 void	parse_res(t_cub3d *c3d)
 {
 	char		*nb_str[2];
-	long long	nb[2];
-	size_t		i;
+	int			nb[2];
+	uint8_t		i;
 	char		*tok;
 
 	i = 0;

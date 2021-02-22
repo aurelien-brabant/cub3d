@@ -47,9 +47,9 @@ typedef struct s_player
 	double	x;
 	double	y;
 	double	rot_angle;
-	int		turn_dir;
-	int		strafe_dir;
-	int		move_dir;
+	int8_t	turn_dir;
+	int8_t	strafe_dir;
+	int8_t	move_dir;
 	double	move_speed;
 	double	turn_spd;
 }	t_player;
@@ -59,8 +59,8 @@ typedef struct s_map_data
 	char		*map_name;
 	int			col[2];
 	char 		*textures[P_ID_S - P_ID_RES];
-	long long	win_width;
-	long long	win_height;
+	int			win_width;
+	int			win_height;
 	t_vector	map;
 }	t_map_data;
 
@@ -77,16 +77,16 @@ typedef struct s_img
 
 typedef struct	s_ray
 {
-	int		id;
-	double	angle;
-	int		facing_down;
-	int		facing_left;
-	int 	hit_vert;
-	double	horz_wall_hit[2];
-	double	vert_wall_hit[2];
-	double	wall_hit[2];
-	double	wall_dist;
-	t_img	*tex_img;
+	int				id;
+	double			angle;
+	uint8_t			facing_down;
+	uint8_t			facing_left;
+	uint8_t 		hit_vert;
+	double			horz_wall_hit[2];
+	double			vert_wall_hit[2];
+	double			wall_hit[2];
+	double			wall_dist;
+	t_img			*tex_img;
 }	t_ray;
 
 typedef struct	s_sprite
@@ -105,17 +105,17 @@ typedef struct s_graphics
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
+	double			fov;
+	double			dist_proj_plane;
+	int				num_rays;
+	int				win_height;
+	int				win_width;
 	t_img			dpimg;
 	t_img			teximg[5];
 	t_vector		sprites;
 	t_vector		visible_sprites;
 	t_ray			*rays;
 	t_player		player;
-	int				num_rays;
-	double			fov;
-	double			dist_proj_plane;
-	unsigned int	win_height;
-	unsigned int	win_width;
 }	t_graphics;
 
 typedef struct s_cub3d
@@ -123,8 +123,8 @@ typedef struct s_cub3d
 	t_state		state;
 	char		err[ERR_LEN];
 	char		*screenshot_name;
-	uint8_t		opt;
 	int			fildes;
+	uint8_t		opt;
 	t_map_data	mapdat;
 	t_graphics	gfx;
 	t_vector	gbc;
@@ -134,18 +134,10 @@ typedef struct s_cub3d
 
 typedef struct	s_rect
 {
-	int x;
-	int y;
-	int width;
-	int height;
+	int			x;
+	int			y;
+	int			width;
+	int			height;
 }				t_rect;
-
-typedef struct	s_line
-{
-	int x1;
-	int y1;
-	int x2;
-	int y2;
-}				t_line;
 
 #endif

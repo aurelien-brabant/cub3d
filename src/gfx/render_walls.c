@@ -6,16 +6,16 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 22:18:18 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 02:24:27 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdio.h>
 
 #include "cub3d_gfx.h"
 #include "cub3d_misc.h"
 #include "config.h"
-#include "cub3d_types.h"
 
 static void	project_textured_wall(t_ray *ray, t_img *draw_img,
 		int wall_height, int wall_top_px)
@@ -53,9 +53,9 @@ static void	project_textured_wall(t_ray *ray, t_img *draw_img,
 
 static void	project(t_graphics *gfx, t_ray *ray, int *colors)
 {
-	t_img	*img;
-	int		wall_height;
-	int		wall_top_px;
+	t_img		*img;
+	int			wall_height;
+	int			wall_top_px;
 
 	img = &gfx->dpimg;
 	wall_height = (TILE_SIZE / ray->wall_dist) * gfx->dist_proj_plane;
@@ -68,11 +68,13 @@ static void	project(t_graphics *gfx, t_ray *ray, int *colors)
 			1, img->height}, colors[0]);
 }
 
-void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player)
+void	render_walls(t_graphics *gfx, int *colors)
 {
-	t_ray	*ray;
-	int		ray_id;
+	t_ray			*ray;
+	t_player		*player;
+	int				ray_id;
 
+	player = &gfx->player;
 	ray_id = 0;
 	while (ray_id < gfx->num_rays)
 	{
@@ -86,7 +88,7 @@ void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player)
 			ray->tex_img = &gfx->teximg[P_ID_SO - 1];
 		else if (!ray->facing_down && !ray->hit_vert)
 			ray->tex_img = &gfx->teximg[P_ID_NO - 1];
-		project(gfx, ray, mapdat->col);
+		project(gfx, ray, colors);
 		++ray_id;
 	}
 }

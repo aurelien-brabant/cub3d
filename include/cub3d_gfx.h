@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 15:35:33 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:57:31 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "cub3d_types.h"
 
 int		init_gfx(t_cub3d *c3d);
-int		init_img(t_graphics *gfx, t_map_data *mapdat);
+int		init_img(t_cub3d *c3d, t_map_data *mapdat);
 int		init_sprites(t_graphics *gfx, t_map_data *mapdat);
 void	destroy_img(t_graphics *gfx);
 void	destroy_gfx(t_graphics *gfx);
@@ -33,8 +33,6 @@ void	destroy_gfx(t_graphics *gfx);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		img_pix_get(t_img *img, int x, int y);
 void	draw_rect(t_img *img, t_rect rect, int color);
-void	draw_line(t_img *img, t_line line, int color);
-void	draw_circle(t_img *img, int x, int y, int radius);
 int		draw_sprite(t_sprite *sprite, size_t i, t_cub3d *c3d);
 
 /*
@@ -49,6 +47,8 @@ void	update(t_cub3d *c3d);
 /* The general render function, handles update and render */
 int		render(t_cub3d *c3d);
 
+int		render_save_bmp(t_cub3d *c3d);
+
 /* Render the rays on the MINIMAP, as lines */
 void	render_rays(t_player *player, t_graphics *gfx);
 
@@ -59,7 +59,7 @@ void	render_minimap(t_cub3d *c3d, t_vector map, t_img *img);
 void	render_player(t_img *img, t_player *player);
 
 /* Render the "3D" projection of the walls */
-void	render_walls(t_graphics *gfx, t_map_data *mapdat, t_player *player);
+void	render_walls(t_graphics *gfx, int *colors);
 
 /* Render the sprites on the screen */
 void	render_sprite_projection(t_cub3d *c3d);
@@ -99,6 +99,7 @@ double	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
 
 int		handle_keypress(int keysym, t_cub3d *c3d);
 int		handle_keyrelease(int keysym, t_cub3d *c3d);
+int		handle_destroy(void *mlx_ptr);
 int		handle_mouse(int button, int x, int y, t_cub3d *c3d);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:27:03 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 21:56:00 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 02:29:00 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	draw_sprite_col(t_graphics *gfx, t_sprite *sprite,
 	static const int	transparent_color = 0xFF00FF;
 	int					distance_top;
 	int					offset_y;
-	int					color;
 	int					y;
+	int					color;
 
 	y = sprite->dy[0];
 	if (x < 0 || x >= gfx->dpimg.width)
@@ -57,9 +57,9 @@ static void	draw_sprite_col(t_graphics *gfx, t_sprite *sprite,
 
 static void	draw_sprite_row(t_graphics *gfx, t_sprite *sprite)
 {
-	double		x;
-	int			offset_x;
-	t_img		*tex;
+	double			x;
+	uint64_t		offset_x;
+	t_img			*tex;
 
 	tex = &gfx->teximg[4];
 	x = sprite->dx[0];
@@ -74,13 +74,6 @@ static void	draw_sprite_row(t_graphics *gfx, t_sprite *sprite)
 /*
 ** Do most of the required computations
 ** Used in a ft_vec_foreach context.
-**
-** NOTE:
-** sprite->dy is an array of two floating points numbers representing
-** the y coordinate of the pixel on which sprite it will start to be rendered,
-** and the y coordinate of the pixel on which the render will end
-** (in that order).
-** Same logic applies to sprite->dx, but this time for the x coordinates.
 */
 
 int	draw_sprite(t_sprite *sprite, size_t i, t_cub3d *c3d)

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/18 02:06:15 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 02:27:27 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 
 void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
 {
-	int		ray_id;
-	double	ray_angle;
+	int				ray_id;
+	double			ray_angle;
 
 	ray_id = 0;
 	ray_angle = player->rot_angle - (gfx->fov / 2);
