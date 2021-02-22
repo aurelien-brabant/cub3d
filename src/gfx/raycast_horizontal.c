@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 01:52:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 01:29:57 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 19:03:03 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ static void	get_data(t_ray *ray, t_player *player,
 		step[0] *= -1;
 }
 
+static double	register_hit_distance(t_ray *ray, t_player *player, double *next)
+{
+	ray->horz_wall_hit[0] = next[0];
+	ray->horz_wall_hit[1] = next[1];
+	return (get_points_dist(player->x, player->y, ray->horz_wall_hit[0],
+			ray->horz_wall_hit[1]));
+}
+
 double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
 {
 	double	step[2];
@@ -50,15 +58,12 @@ double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
 	get_data(ray, player, step, intercept);
 	next[0] = intercept[0];
 	next[1] = intercept[1];
+	if (map_has_wall_at(mapdat->map, player->x, player->y))
+		return (register_hit_distance(ray, player, next));
 	while (next[0] >= 0 && next[1] >= 0)
 	{
 		if (map_has_wall_at(mapdat->map, next[0], next[1] - !ray->facing_down))
-		{
-			ray->horz_wall_hit[0] = next[0];
-			ray->horz_wall_hit[1] = next[1];
-			return (get_points_dist(player->x, player->y, ray->horz_wall_hit[0],
-					ray->horz_wall_hit[1]));
-		}
+			return (register_hit_distance(ray, player, next));
 		next[0] += step[0];
 		next[1] += step[1];
 	}

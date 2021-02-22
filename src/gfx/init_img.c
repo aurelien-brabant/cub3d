@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 03:02:11 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 16:41:49 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 20:37:00 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,16 @@ static int	init_teximg(t_graphics *gfx, t_map_data *mapdat)
 	return (1);
 }
 
-void	destroy_img(t_graphics *gfx)
+void	destroy_img(t_cub3d *c3d)
 {
-	uint8_t	i;
+	t_graphics	*gfx;
+	uint8_t		i;
 
+	gfx = &c3d->gfx;
 	i = 0;
-	if (gfx->dpimg.mlx_img)
+	if (c3d->opt & OPT_SAVE)
+		free(gfx->dpimg.addr);
+	else if (gfx->dpimg.mlx_img)
 		mlx_destroy_image(gfx->mlx_ptr, gfx->dpimg.mlx_img);
 	while (i < 5)
 	{

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 18:33:26 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 19:54:19 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err, char **file
 	{
 		if (*c3d_fd != -1)
 			close(*c3d_fd);
-		ft_snprintf(err, ERR_LEN, "%s:%s", filepath, strerror(errno));
+		ft_snprintf(err, ERR_LEN, "%s:%s", *filepath, strerror(errno));
 	}
 	else if (!ft_strhssfx(*filepath, ".cub"))
 		ft_snprintf(err, ERR_LEN, "Expected extension .cub.");

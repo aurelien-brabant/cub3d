@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 02:27:27 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 19:50:33 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 	horz_dist = get_horz_distance(ray, player, mapdat);
 	vert_dist = get_vert_distance(ray, player, mapdat);
 	ray->hit_vert = horz_dist >= vert_dist;
-	if (ray->vert_wall_hit[0] != -1 && horz_dist >= vert_dist)
+	if (ray->vert_wall_hit[0] != -1 && horz_dist > vert_dist)
 	{
 		ray->wall_hit[0] = ray->vert_wall_hit[0];
 		ray->wall_hit[1] = ray->vert_wall_hit[1];
 		ray->wall_dist = vert_dist + (vert_dist == 0);
 	}
-	else if (ray->horz_wall_hit[0] != -1 && vert_dist > horz_dist)
+	else if (ray->horz_wall_hit[0] != -1 && vert_dist >= horz_dist)
 	{
 		ray->wall_hit[0] = ray->horz_wall_hit[0];
 		ray->wall_hit[1] = ray->horz_wall_hit[1];
