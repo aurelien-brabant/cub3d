@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 16:30:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 20:37:24 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 23:15:35 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "cub3d_types.h"
 
 int		init_gfx(t_cub3d *c3d);
-int		init_img(t_cub3d *c3d, t_map_data *mapdat);
-int		init_sprites(t_graphics *gfx, t_map_data *mapdat);
+int		init_img(t_cub3d *c3d);
+int		init_sprites(t_cub3d *c3d);
 void	destroy_img(t_cub3d *c3d);
 void	destroy_gfx(t_graphics *gfx);
 
@@ -89,7 +89,6 @@ double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
 */
 
 double	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat);
-
 
 /*
 *******************************************************************************

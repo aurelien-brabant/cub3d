@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/20 23:48:14 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 22:02:51 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ unsigned char	map_getchar(t_vector map, double x, double y);
 int				map_has_wall_at(t_vector map, double x, double y);
 int				map_is_legal(t_vector map, double x, double y);
 
-
-void	c3d_warn(const char *msg);
-void	c3d_info(const char *msg);
+void			c3d_warn(const char *msg);
+void			c3d_info(const char *msg);
 
 #endif

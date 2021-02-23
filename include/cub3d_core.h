@@ -7,4 +7,4 @@ void		cub3d_destroy(t_cub3d *c3d);
 int			cub3d_shift_state(t_cub3d *c3d, int (*checker)(t_cub3d *));
 const char	*cub3d_state_to_str(t_state state);
 
-# endif
+#endif

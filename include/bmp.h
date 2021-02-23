@@ -14,7 +14,7 @@ typedef enum e_encode_mode
 
 typedef struct s_bmp
 {
-	struct
+	struct s_file_header
 	{
 		uint16_t	file_type;
 		uint32_t	file_size;
@@ -23,7 +23,7 @@ typedef struct s_bmp
 		uint32_t	pixel_data_offset;
 
 	}	file_header;
-	struct
+	struct s_file_info
 	{
 		uint32_t	header_size;
 		uint32_t	img_width;
@@ -43,6 +43,6 @@ typedef struct s_bmp
 t_bmp	*bmp_new(uint8_t *stream, int width, int height, int bpp);
 
 int		bmp_encode_file(t_bmp *bmp, const char *path, void (*pix_fn)
-		(uint8_t *stream, uint8_t *bytes), t_encode_mode mode);
+			(uint8_t *stream, uint8_t *bytes), t_encode_mode mode);
 
 #endif

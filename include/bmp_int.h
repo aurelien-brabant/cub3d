@@ -6,10 +6,14 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 11:32:23 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 12:36:46 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 22:01:52 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bmp.h"
+#ifndef BMP_INT_H
+# define BMP_INT_H
+# include "bmp.h"
 
 void	bmp_int_rev_buf(t_bmp *bmp, uint8_t *buf);
+
+#endif
