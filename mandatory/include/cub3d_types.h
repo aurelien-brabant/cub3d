@@ -58,7 +58,7 @@ typedef struct s_map_data
 {
 	char		*map_name;
 	int			col[2];
-	char 		*textures[P_ID_S - P_ID_RES];
+	char		*textures[P_ID_S - P_ID_RES];
 	int			win_width;
 	int			win_height;
 	t_vector	map;
@@ -66,8 +66,8 @@ typedef struct s_map_data
 
 typedef struct s_img
 {
-	int 	bpp;
-	int 	endian;
+	int		bpp;
+	int		endian;
 	int		line_len;
 	char	*addr;
 	void	*mlx_img;
@@ -75,13 +75,13 @@ typedef struct s_img
 	int		width;
 }	t_img;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	int				id;
 	double			angle;
 	uint8_t			facing_down;
 	uint8_t			facing_left;
-	uint8_t 		hit_vert;
+	uint8_t			hit_vert;
 	double			horz_wall_hit[2];
 	double			vert_wall_hit[2];
 	double			wall_hit[2];
@@ -89,7 +89,7 @@ typedef struct	s_ray
 	t_img			*tex_img;
 }	t_ray;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	double	x;
 	double	y;
@@ -132,12 +132,12 @@ typedef struct s_cub3d
 
 /* SHAPES */
 
-typedef struct	s_rect
+typedef struct s_rect
 {
-	int			x;
-	int			y;
-	int			width;
-	int			height;
-}				t_rect;
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+}	t_rect;
 
 #endif

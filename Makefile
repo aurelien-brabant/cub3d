@@ -6,16 +6,17 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/22 19:25:32 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/23 02:08:42 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ---------------[= PROJECT   =]--------------- #
 
 TARGET			= cub3D
+TARGET_BONUS	= cub3D_bonus
 CC				= clang
 CFLAGS			= -Wall -Wextra -Werror -Wpedantic -O3
-INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Iinclude -I.
+INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Imandatory/include -Imandatory
 LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
 RM				= rm -rf
 
@@ -33,9 +34,7 @@ LIBFT_LINK		= -lft
 
 # ---------------[=    SOURCE CODE FILES      =]--------------- #
 
-SRC_DIR			= ./src
-SRC_VPATH		= $(SRC_DIR):$(SRC_DIR)/core:$(SRC_DIR)/parsing:		\
-				$(SRC_DIR)/misc:$(SRC_DIR)/gfx:$(SRC_DIR)/bmp
+# ----- MANDATORY PART ----- #
 
 CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 				cub3d_state_to_str.c
@@ -44,7 +43,7 @@ PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 				parse_col.c parse_map.c check_parse_map.c
 
 MISC			= gc.c parsing_utils.c color.c map.c degrad.c			\
-				  output.c
+				output.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				render.c img_pix_put.c draw_rect.c 						\
@@ -57,13 +56,17 @@ GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 
 BMP				= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c
 
-SRCS		 	= main.c $(GFX) $(CORE) $(PARSING) $(MISC) $(BMP)
+SRCS		 	= mandatory/src/main.c											\
+				$(addprefix mandatory/src/gfx/, $(GFX))					\
+				$(addprefix mandatory/src/core/, $(CORE))				\
+				$(addprefix mandatory/src/parsing/, $(PARSING))			\
+				$(addprefix mandatory/src/misc/, $(MISC))				\
+				$(addprefix mandatory/src/bmp/, $(BMP))
 
 # ---------------[=     SOURCES - GENERAL     =]--------------- #
 
-VPATH			= $(SRC_VPATH)
 OBJ_DIR			= ./.obj
-OBJS			= $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS			= $(SRCS:%.c=%.o)
 
 
 # ---------------[=  RULES    =]--------------- #
@@ -117,5 +120,5 @@ $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
 # Compilation of each c file
-$(OBJ_DIR)/%.o:%.c
+%.o:%.c
 	$(CC) $(CFLAGS) $(INC_DIR) -g -c $< -o $@

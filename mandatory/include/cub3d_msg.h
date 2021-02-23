@@ -1,5 +1,5 @@
 #ifndef CUB3D_MSG_H
-#define CUB3D_MSG_H
+# define CUB3D_MSG_H
 
 # define PROG_USAGE "./cub3D <map.cub> [--parse-only --save --save-name=]"
 
