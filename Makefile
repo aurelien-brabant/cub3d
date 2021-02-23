@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/23 13:26:42 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/23 14:10:31 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,8 @@ cleanbonus:
 	make clean -C $(MLX_PATH)
 	make fclean -C $(LIBFT_PATH)
 
+cleanfull: clean cleanbonus
+
 fclean: clean
 	$(RM) $(TARGET)
 	$(RM) $(LIBFT_ARCHIVE)
@@ -130,6 +132,8 @@ fcleanbonus: cleanbonus
 	$(RM) $(TARGET_BONUS)
 	$(RM) $(LIBFT_ARCHIVE)
 	$(RM) $(MLX_ARCHIVE)
+
+fcleanfull: fclean fcleanbonus
 
 re: fclean $(TARGET)
 

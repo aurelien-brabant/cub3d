@@ -14,9 +14,21 @@
 
 # A tester provided to ensure cub3d's parsing is working as expected.
 
-TEST_MAP_DIR=asset/map
+###############################################################################
+#                               VARS                                          #
+###############################################################################
+
+TEST_MAP_DIR_BONUS=asset/map/bonus
+TEST_MAP_DIR_MANDATORY=asset/map/mandatory
+
+EXEC_MANDATORY=./cub3D
+EXEC_BONUS=./cub3D_bonus
 
 test_nb=1
+
+###############################################################################
+#                              FUNCTIONS                                      #
+###############################################################################
 
 function submit() {
 	$1 &> test/$test_nb.test
@@ -37,20 +49,44 @@ function submit() {
 	test_nb=$(($test_nb+1))
 }
 
+###############################################################################
+#                                 SETUP                                       #
+###############################################################################
+
 mkdir -p test 2> /dev/null
 
+# No argument, no bonus
+if [ $# -eq 0 ]; then
+	EXEC=$EXEC_MANDATORY
+	TEST_MAP_DIR=$TEST_MAP_DIR_MANDATORY
+elif [ $# -eq 1 ] && [ $1 == "bonus" ]; then
+	EXEC=$EXEC_BONUS
+	TEST_MAP_DIR=$TEST_MAP_DIR_BONUS
+else
+	printf "Unrecognized format, aborting.\n"
+	exit 1
+fi
 
-submit "./cub3D --parse-only" "EXPECT_KO"
-submit "./cub3D --parse-only asset/map/ERROR_no_extension" "EXPECT_KO"
-submit "./cub3D --parse-only asset/map/VALID_3.cub --forbiddenToken" "EXPECT_KO"
-submit "./cub3D --parse-only asset/map/VALID_3.cub too much positional arguments" "EXPECT_KO"
-submit "./cub3D --parse-only this/path/does/not/exist" "EXPECT_KO"
-submit "./cub3D --parse-only test" "EXPECT_KO"
+if [ ! -f $EXEC ]; then
+	printf "No $EXEC executable found. Make the project first.\n"
+	exit 1
+fi
+
+###############################################################################
+#                               TEST                                          #
+###############################################################################
+
+submit "$EXEC --parse-only" "EXPECT_KO"
+submit "$EXEC --parse-only asset/map/ERROR_no_extension" "EXPECT_KO"
+submit "$EXEC --parse-only asset/map/VALID_3.cub --forbiddenToken" "EXPECT_KO"
+submit "$EXEC --parse-only asset/map/VALID_3.cub too much positional arguments" "EXPECT_KO"
+submit "$EXEC --parse-only this/path/does/not/exist" "EXPECT_KO"
+submit "$EXEC --parse-only test" "EXPECT_KO"
 
 for file in $TEST_MAP_DIR/*; do
 	if echo $file | grep -i "error" > /dev/null; then
-		submit "./cub3D --parse-only $file" "EXPECT_KO"
+		submit "$EXEC --parse-only $file" "EXPECT_KO"
 	else
-		submit "./cub3D --parse-only $file" "EXPECT_OK"
+		submit "$EXEC --parse-only $file" "EXPECT_OK"
 	fi
 done
