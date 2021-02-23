@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 20:37:48 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 01:37:06 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	cub3d_destroy(t_cub3d *c3d)
 		ft_vec_destroy(c3d->mapdat.map, NULL);
 	if (c3d->err[0] != '\0')
 		ft_dprintf(STDERR_FILENO,
-		"\033[1;36m%s\t\t\033[0m[\033[0;31mKO\033[0m]\033[0m\n%s\n",
+		"\033[1;36m%s\t\t\033[0m[\033[0;31mKO\033[0m]\033[0m\nError\n%s\n",
 			cub3d_state_to_str(c3d->state), c3d->err);
 	if (c3d->state >= ST_PARSING_ID)
 		clear_gnl(c3d->fildes);

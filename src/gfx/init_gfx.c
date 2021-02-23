@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 18:31:58 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 22:19:44 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <X11/Xlib.h>
 #include <math.h>
 
-#include "cub3d_types.h"
 #include "mlx.h"
 
 #include "config.h"
@@ -26,6 +25,7 @@
 #include "cub3d_misc.h"
 #include "cub3d_gfx.h"
 #include "cub3d_core.h"
+#include "cub3d_msg.h"
 
 /*
 ** Ensure the game's resolution is correct, resize it if not.
@@ -82,9 +82,7 @@ static int	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 	alloc_size = gfx->num_rays * sizeof (*gfx->rays);
 	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
 	if (gfx->rays == NULL)
-		return (!ft_snprintf(err, ERR_LEN, 
-				"Failed to init rays (tried to alloc %ld KB)",
-				alloc_size / 1000));
+		return (!ft_snprintf(err, ERR_LEN, MSG_RAY_BADALLOC));
 	ray_id = 0;
 	while (ray_id < gfx->num_rays)
 	{
@@ -110,19 +108,19 @@ int	init_gfx(t_cub3d *c3d)
 {
 	c3d->gfx.mlx_ptr = mlx_init();
 	if (c3d->gfx.mlx_ptr == NULL)
-		return (!ft_snprintf(c3d->err, ERR_LEN, "Failed to init mlx."));
+		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_INIT_FAILED));
 	get_win_res(c3d);
+	if (!init_img(c3d))
+		return (0);
 	init_player(c3d->mapdat.map, &c3d->gfx.player);
 	if (!init_raycasting(&c3d->gfx, &c3d->mapdat, c3d->err))
-		return (0);
-	if (!init_img(c3d, &c3d->mapdat) || c3d->err[0] != '\0')
 		return (0);
 	if (c3d->opt & OPT_SAVE)
 		return (render_save_bmp(c3d));
 	c3d->gfx.win_ptr = mlx_new_window(c3d->gfx.mlx_ptr, c3d->gfx.win_width,
 			c3d->gfx.win_height, c3d->mapdat.map_name);
 	if (c3d->gfx.win_ptr == NULL)
-		return (!ft_snprintf(c3d->err, ERR_LEN, "Failed to init mlx win."));
+		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_WIN_FAILED));
 	hook_and_loop(c3d);
 	cub3d_shift_state(c3d, NULL);
 	return (1);

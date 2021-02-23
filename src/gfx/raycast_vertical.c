@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:25:31 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 19:06:20 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 21:58:35 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	get_data(t_ray *ray, t_player *player,
 		step[1] *= -1;
 }
 
-static double	register_hit_distance(t_ray *ray, t_player *player, double *next)
+static double	register_hit_distance(t_ray *ray, t_player *player,
+		double *next)
 {
 	ray->vert_wall_hit[0] = next[0];
 	ray->vert_wall_hit[1] = next[1];

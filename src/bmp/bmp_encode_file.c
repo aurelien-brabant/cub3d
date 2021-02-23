@@ -6,7 +6,7 @@
 #include "bmp.h"
 #include "bmp_int.h"
 
-static void write_buf(uint8_t **buf, uint8_t *data, int n)
+static void	write_buf(uint8_t **buf, uint8_t *data, int n)
 {
 	while (n-- > 0)
 	{
@@ -24,7 +24,7 @@ static void	write_pixels(t_bmp *bmp, uint8_t **buf,
 	uint32_t	rowlen;
 	uint8_t		bytes_per_pixel;
 
-	bytes_per_pixel = bmp->file_info.bpp / 8; 
+	bytes_per_pixel = bmp->file_info.bpp / 8;
 	rowlen = bmp->file_info.img_width * (bytes_per_pixel);
 	i = 0;
 	while (i < bmp->file_info.img_height)
@@ -37,7 +37,7 @@ static void	write_pixels(t_bmp *bmp, uint8_t **buf,
 			j += bytes_per_pixel;
 		}
 		while (j++ % 4 != 0)
-			write_buf(buf, (uint8_t *)"\x0", 1);
+			write_buf(buf, (uint8_t *) "\x0", 1);
 		++i;
 	}
 }
@@ -66,12 +66,12 @@ static void	write_info(t_bmp *bpm, uint8_t **buf)
 	write_buf(buf, (uint8_t *)&bpm->file_info.imp_colors, 4);
 }
 
-int		bmp_encode_file(t_bmp	*bmp, const char *path,
+int	bmp_encode_file(t_bmp	*bmp, const char *path,
 		void (*pix_fn)(uint8_t *, uint8_t *), t_encode_mode mode)
 {		
 	uint8_t	*buf;
-	int	fd;
-	int	bmp_size;
+	int		fd;
+	int		bmp_size;
 
 	bmp_size = bmp->file_header.file_size;
 	buf = calloc(bmp->file_header.file_size, sizeof(uint8_t));

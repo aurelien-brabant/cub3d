@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 19:54:19 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 23:22:32 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 #include "cub3d_gfx.h"
 #include "cub3d_types.h"
 
-static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err, char **filepath)
+static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err,
+		char **filepath)
 {
 	ft_cla_pos_var(cla, filepath, 0, NULL);
 	*c3d_fd = open(*filepath, O_RDONLY);
@@ -34,7 +35,7 @@ static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err, char **file
 	{
 		if (*c3d_fd != -1)
 			close(*c3d_fd);
-		ft_snprintf(err, ERR_LEN, "%s:%s", *filepath, strerror(errno));
+		ft_snprintf(err, ERR_LEN, "%s: %s", *filepath, strerror(errno));
 	}
 	else if (!ft_strhssfx(*filepath, ".cub"))
 		ft_snprintf(err, ERR_LEN, "Expected extension .cub.");
@@ -55,7 +56,8 @@ static void	check_opt(void *cla, char **allowed_opt, uint8_t *opt)
 
 static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 {
-	static char		*allowed_opt[] = { "save", "parse-only", "save-name=", NULL};
+	static char		*allowed_opt[] = {"save", "parse-only", "save-name=",
+		NULL};
 	t_cla_config	conf;
 	void			*cla;
 	char			err[ERR_LEN];

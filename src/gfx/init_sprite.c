@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 01:05:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/18 02:06:01 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 01:10:56 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ static int	process_map_row(char *row, size_t rowi, t_vector sprites)
 	return (0);
 }
 
-int	init_sprites(t_graphics *gfx, t_map_data *mapdat)
+int	init_sprites(t_cub3d *c3d)
 {
-	gfx->sprites = ft_vec_new(0, 0);
-	if (gfx->sprites == NULL)
+	c3d->gfx.sprites = ft_vec_new(0, 0);
+	if (c3d->gfx.sprites == NULL)
 		return (0);
-	if (ft_vec_foreach(mapdat->map, &process_map_row, gfx->sprites) != 0)
+	if (ft_vec_foreach(c3d->mapdat.map, &process_map_row,
+			c3d->gfx.sprites) != 0)
 		return (0);
-	gfx->visible_sprites = ft_vec_new(ft_vec_len(gfx->sprites), 0);
-	return (gfx->visible_sprites != NULL);
+	c3d->gfx.visible_sprites = ft_vec_new(ft_vec_len(c3d->gfx.sprites), 0);
+	return (c3d->gfx.visible_sprites != NULL);
 }
