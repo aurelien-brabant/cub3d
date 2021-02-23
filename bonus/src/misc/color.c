@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_destroy.c                                   :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/22 17:41:48 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 17:43:31 by abrabant         ###   ########.fr       */
+/*   Created: 2021/01/06 13:23:33 by abrabant          #+#    #+#             */
+/*   Updated: 2021/01/06 14:50:57 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+/*
+** A bunch of utility functions used to manipulate colors.
+*/
 
-int	handle_destroy(void *mlx_ptr)
+int	make_rgb(int red, int green, int blue)
 {
-	mlx_loop_end(mlx_ptr);
-	return (0);
+	return ((red << 16) | (green << 8) | blue);
 }

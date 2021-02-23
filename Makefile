@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/23 02:08:42 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/23 03:42:06 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ TARGET_BONUS	= cub3D_bonus
 CC				= clang
 CFLAGS			= -Wall -Wextra -Werror -Wpedantic -O3
 INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Imandatory/include -Imandatory
+INC_DIR_BONUS	= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Ibonus/include -Ibonus
 LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
 RM				= rm -rf
 
@@ -42,7 +43,7 @@ CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 				parse_col.c parse_map.c check_parse_map.c
 
-MISC			= gc.c parsing_utils.c color.c map.c degrad.c			\
+MISC			= parsing_utils.c color.c map.c							\
 				output.c
 
 GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
@@ -52,21 +53,51 @@ GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
 				raycast_horizontal.c raycast_vertical.c					\
 				get_points_dist.c render_walls.c init_img.c				\
 				img_pix_get.c sprite.c init_sprite.c sprite_2.c			\
-				render_aim.c render_save_bmp.c handle_destroy.c
+				render_aim.c render_save_bmp.c degrad.c					\
 
 BMP				= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c
 
-SRCS		 	= mandatory/src/main.c											\
+SRCS		 	= mandatory/src/main.c									\
 				$(addprefix mandatory/src/gfx/, $(GFX))					\
 				$(addprefix mandatory/src/core/, $(CORE))				\
 				$(addprefix mandatory/src/parsing/, $(PARSING))			\
 				$(addprefix mandatory/src/misc/, $(MISC))				\
 				$(addprefix mandatory/src/bmp/, $(BMP))
 
+# ----- BONUS PART ----- #
+
+CORE_BONUS		= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
+				cub3d_state_to_str.c
+
+PARSING_BONUS	= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
+				parse_col.c parse_map.c check_parse_map.c
+
+MISC_BONUS		= parsing_utils.c color.c map.c							\
+				output.c
+
+GFX_BONUS		= init_gfx.c destroy_gfx.c handle_keypress.c			\
+				render.c img_pix_put.c draw_rect.c 						\
+				handle_mouse.c update.c									\
+				handle_keyrelease.c raycast.c							\
+				raycast_horizontal.c raycast_vertical.c					\
+				get_points_dist.c render_walls.c init_img.c				\
+				img_pix_get.c sprite.c init_sprite.c sprite_2.c			\
+				render_aim.c render_save_bmp.c degrad.c					\
+
+BMP_BONUS		= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c
+
+SRCS_BONUS		 = bonus/src/main.c									\
+				$(addprefix bonus/src/gfx/, $(GFX_BONUS))			\
+				$(addprefix bonus/src/core/, $(CORE_BONUS))			\
+				$(addprefix bonus/src/parsing/, $(PARSING_BONUS))	\
+				$(addprefix bonus/src/misc/, $(MISC_BONUS))			\
+				$(addprefix bonus/src/bmp/, $(BMP_BONUS))
+
 # ---------------[=     SOURCES - GENERAL     =]--------------- #
 
 OBJ_DIR			= ./.obj
 OBJS			= $(SRCS:%.c=%.o)
+OBJS_BONUS		= $(SRCS_BONUS:%.c=%.o)
 
 
 # ---------------[=  RULES    =]--------------- #
@@ -75,18 +106,22 @@ OBJS			= $(SRCS:%.c=%.o)
 
 all: $(TARGET)
 
+bonus: $(TARGET_BONUS)
+
 test:
 	./test.sh
 
 clean:
-	$(RM) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE) $(OBJS) $(OBJ_DIR)
+	$(RM) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE) $(OBJS) $(OBJS_BONUS)
 	make clean -C $(MLX_PATH)
 	make fclean -C $(LIBFT_PATH)
 
 fclean: clean
 	$(RM) $(TARGET)
+	$(RM) $(TARGET_BONUS)
 	$(RM) $(LIBFT_ARCHIVE)
 	$(RM) $(MLX_ARCHIVE)
+	
 
 re: fclean all
 
@@ -106,6 +141,9 @@ reconfig:
 
 $(TARGET): $(OBJ_DIR) $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(OBJS)
 	$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET)
+
+$(TARGET_BONUS): $(OBJ_DIR) $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(OBJS_BONUS)
+	$(CC) $(OBJS_BONUS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET_BONUS)
 
 # Make libft archive
 $(LIBFT_ARCHIVE):
