@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/23 03:42:06 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/23 13:26:42 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,28 +112,28 @@ test:
 	./test.sh
 
 clean:
-	$(RM) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE) $(OBJS) $(OBJS_BONUS)
+	$(RM) $(OBJS)
+	make clean -C $(MLX_PATH)
+	make fclean -C $(LIBFT_PATH)
+
+cleanbonus:
+	$(RM) $(OBJS_BONUS)
 	make clean -C $(MLX_PATH)
 	make fclean -C $(LIBFT_PATH)
 
 fclean: clean
 	$(RM) $(TARGET)
+	$(RM) $(LIBFT_ARCHIVE)
+	$(RM) $(MLX_ARCHIVE)
+
+fcleanbonus: cleanbonus
 	$(RM) $(TARGET_BONUS)
 	$(RM) $(LIBFT_ARCHIVE)
 	$(RM) $(MLX_ARCHIVE)
-	
 
-re: fclean all
+re: fclean $(TARGET)
 
-editconfig:
-	$(EDITOR) config.h
-	make reconfig
-
-reconfig:
-	$(RM) $(TARGET)
-	$(RM) $(OBJS) $(OBJ_DIR)
-	make all
-	
+rebonus: fcleanbonus $(TARGET_BONUS)
 
 .PHONY: all clean fclean re test
 
@@ -153,10 +153,10 @@ $(LIBFT_ARCHIVE):
 $(MLX_ARCHIVE):
 	make -C $(MLX_PATH)
 
-# Create OBJ_DIR if doesn't exist
-$(OBJ_DIR):
-	mkdir $(OBJ_DIR)
-
-# Compilation of each c file
-%.o:%.c
+# MANDATORY PART COMPILATION
+mandatory/src/%.o:mandatory/src/%.c
 	$(CC) $(CFLAGS) $(INC_DIR) -g -c $< -o $@
+
+# BONUS PART COMPILATION
+bonus/src/%.o:bonus/src/%.c
+	$(CC) $(CFLAGS) $(INC_DIR_BONUS) -g -c $< -o $@
