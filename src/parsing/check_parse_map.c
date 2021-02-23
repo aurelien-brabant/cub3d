@@ -6,17 +6,26 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:35:21 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 16:27:30 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 01:10:30 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_parsing.h"
 #include "libft/string.h"
 #include "libft/vector.h"
 #include "libft/io.h"
 
 #include "cub3d_core.h"
 #include "cub3d_msg.h"
+#include "cub3d_parsing.h"
+
+/*
+** Ensure that a non-wall map character is always surrounded
+** by a non-space one. This simple rule will force the whole map
+** to be surrounded by walls, that are basically the barrier between
+** spaces (i.e the outside of the map) and the map's content.
+** Spaces are NOT allowed inside the map, that's considered as a map
+** error.
+*/
 
 int	is_sp_near(char *row, size_t row_ind, size_t col_ind, t_vector map)
 {
@@ -40,40 +49,39 @@ int	is_sp_near(char *row, size_t row_ind, size_t col_ind, t_vector map)
 			|| next[col_ind] == ' '));
 }
 
-static int	check_spawn(t_player *p, size_t row, size_t col)
+static int	check_spawn(t_player *p, size_t row_ind, size_t col_ind)
 {
 	if (p->x != -1.0 || p->y != -1.0)
 		return (0);
-	p->x = col;
-	p->y = row;
+	p->x = col_ind;
+	p->y = row_ind;
 	return (1);
+}
+
+static int	check_row(char *row, size_t i, t_cub3d *c3d)
+{
+	size_t	j;
+
+	j = 0;
+	while (c3d->err[0] == '\0' && row[j] != '\0')
+	{
+		if (!ft_strchr(" 1", row[j]) && !is_sp_near(row, i, j, c3d->mapdat.map))
+			ft_snprintf(c3d->err, ERR_LEN, MSG_NO_WALL, i + 1, j + 1);
+		if (ft_strchr("NESW", row[j]))
+			if (!check_spawn(&c3d->gfx.player, i, j))
+				ft_snprintf(c3d->err, ERR_LEN, MSG_SPAWN_REDEF);
+		++j;
+	}
+	return (c3d->err[0] != '\0');
 }
 
 int	check_parse_map(t_cub3d *c3d)
 {
-	size_t	i;
-	size_t	j;
-	char	*row;
+	t_player	*player;
 
-	i = 0;
-	while (c3d->err[0] == '\0' && i < ft_vec_len(c3d->mapdat.map))
-	{
-		row = ft_vec_get(c3d->mapdat.map, i);
-		j = 0;
-		while (c3d->err[0] == '\0' && row[j])
-		{
-			if (!ft_strchr(" 1", row[j])
-				&& !is_sp_near(row, i, j, c3d->mapdat.map))
-				ft_snprintf(c3d->err, ERR_LEN, MSG_NO_WALL, i + 1, j + 1);
-			if (ft_strchr("NESW", row[j]))
-				if (!check_spawn(&c3d->gfx.player, i, j))
-					ft_snprintf(c3d->err, ERR_LEN, MSG_SPAWN_REDEF);
-			++j;
-		}
-		++i;
-	}
-	if (c3d->err[0] == '\0' && (c3d->gfx.player.x < 0
-			|| c3d->gfx.player.y < 0))
+	player = &c3d->gfx.player;
+	ft_vec_foreach(c3d->mapdat.map, &check_row, c3d);
+	if (c3d->err[0] == '\0' && (player->x < 0 || player->y < 0))
 		ft_snprintf(c3d->err, ERR_LEN, MSG_SPAWN_MISSING);
 	return (c3d->err[0] == '\0');
 }

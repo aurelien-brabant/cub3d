@@ -6,11 +6,9 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:53:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 18:45:06 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 23:49:46 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 #include "cub3d_types.h"
 #include "cub3d_misc.h"
@@ -20,7 +18,7 @@
 #include "libft/io.h"
 #include "libft/strconv.h"
 
-static bool	conv_strs(char **col_str, int *col, char *key, char *err)
+static uint8_t	conv_strs(char **col_str, int *col, char *key, char *err)
 {
 	uint8_t	i;
 
@@ -28,22 +26,17 @@ static bool	conv_strs(char **col_str, int *col, char *key, char *err)
 	while (++i < 3)
 	{
 		if (!is_parsable_nb(col_str[i]))
-		{
-			ft_snprintf(err, ERR_LEN, MSG_NAN, key, col_str[i]);
-			return (false);
-		}
+			return (!ft_snprintf(err, ERR_LEN, MSG_NAN, key, col_str[i]));
 	}
-	i = -1;
-	while (++i < 3)
+	i = 0;
+	while (i < 3)
 	{
 		col[i] = ft_atoi(col_str[i]);
 		if (col[i] > 255)
-		{
-			ft_snprintf(err, ERR_LEN, MSG_OVER_RGB, key, col[i]);
-			return (false);
-		}
+			return (!ft_snprintf(err, ERR_LEN, MSG_OVER_RGB, key, col[i]));
+		++i;
 	}
-	return (true);
+	return (1);
 }
 
 void	parse_col(t_cub3d *c3d, t_parsing_id id, char *key)

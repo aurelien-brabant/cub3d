@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 16:14:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 11:53:35 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/22 23:28:23 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 /*
 ** Make sure that all the identifiers have been parsed.
 ** Used as a checker when calling cub3d_shift_state.
-**
-** @PARAM	c3d	=> all the cub3d essential data.
 */
 
 int	check_parse_id(t_cub3d *c3d)
