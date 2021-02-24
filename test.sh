@@ -25,6 +25,7 @@ EXEC_MANDATORY=./cub3D
 EXEC_BONUS=./cub3D_bonus
 
 test_nb=1
+test_success=0
 
 ###############################################################################
 #                              FUNCTIONS                                      #
@@ -35,15 +36,17 @@ function submit() {
 	cat test/$test_nb.test | grep -i "ko" > /dev/null
 	if [ $? -eq 0 ]; then
 		if [ $2 == "EXPECT_KO" ]; then
-			printf "TEST $test_nb\t[\033[1;32mOK\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
+			printf "TEST $test_nb\t[\033[1;32m✓\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
+			test_success=$(($test_success+1))
 		else
-			printf "TEST $test_nb\t[\033[1;31mKO\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
+			printf "TEST $test_nb\t[\033[1;31m⨯\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
 		fi
 	else
 		if [ $2 == "EXPECT_OK" ]; then
-			printf "TEST $test_nb\t[\033[1;32mOK\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
+			printf "TEST $test_nb\t[\033[1;32m✓\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
+			test_success=$(($test_success+1))
 		else
-			printf "TEST $test_nb\t[\033[1;31mKO\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
+			printf "TEST $test_nb\t[\033[1;31m⨯\033[0m] ($2) (\033[0;35mCMD\033: \033[0m$1) \n"
 		fi
 	fi
 	test_nb=$(($test_nb+1))
@@ -90,3 +93,5 @@ for file in $TEST_MAP_DIR/*; do
 		submit "$EXEC --parse-only $file" "EXPECT_OK"
 	fi
 done
+
+printf "$test_success / $(($test_nb-1)) passed.\n"

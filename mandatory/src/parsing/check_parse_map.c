@@ -6,17 +6,16 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:35:21 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 01:10:30 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:53:20 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
+#include "msg.h"
+#include "parsing.h"
 #include "libft/string.h"
 #include "libft/vector.h"
 #include "libft/io.h"
-
-#include "cub3d_core.h"
-#include "cub3d_msg.h"
-#include "cub3d_parsing.h"
 
 /*
 ** Ensure that a non-wall map character is always surrounded
@@ -27,7 +26,7 @@
 ** error.
 */
 
-int	is_sp_near(char *row, size_t row_ind, size_t col_ind, t_vector map)
+uint8_t	is_sp_near(char *row, size_t row_ind, size_t col_ind, t_vector map)
 {
 	size_t		max_row_ind;
 	size_t		max_col_ind;
@@ -75,7 +74,7 @@ static int	check_row(char *row, size_t i, t_cub3d *c3d)
 	return (c3d->err[0] != '\0');
 }
 
-int	check_parse_map(t_cub3d *c3d)
+uint8_t	check_parse_map(t_cub3d *c3d)
 {
 	t_player	*player;
 

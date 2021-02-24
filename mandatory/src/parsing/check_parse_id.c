@@ -6,11 +6,9 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 16:14:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 23:28:23 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:52:53 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <limits.h>
 
 #include "cub3d_types.h"
 
@@ -19,7 +17,7 @@
 ** Used as a checker when calling cub3d_shift_state.
 */
 
-int	check_parse_id(t_cub3d *c3d)
+uint8_t	check_parse_id(t_cub3d *c3d)
 {
 	unsigned char	i;
 

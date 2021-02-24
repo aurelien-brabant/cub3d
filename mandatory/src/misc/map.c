@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 21:54:49 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 02:21:51 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/24 03:07:04 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include <math.h>
 
 #include "config.h"
-
-#include "cub3d_core.h"
+#include "raycasting.h"
 #include "libft/vector.h"
 #include "libft/string.h"
 

@@ -6,16 +6,14 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 22:40:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 17:34:16 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:28:48 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_core.h"
-
-#include "cub3d_types.h"
+#include "cub3d.h"
 #include "libft/io.h"
 
-int	cub3d_shift_state(t_cub3d *c3d, int (*checker)(t_cub3d *))
+int	cub3d_shift_state(t_cub3d *c3d, uint8_t (*checker)(t_cub3d *))
 {
 	if (c3d->err[0] == '\0' && !(checker && !checker(c3d)))
 	{

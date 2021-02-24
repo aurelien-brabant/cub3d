@@ -1,17 +1,17 @@
 R   1920   1800   
 
-SO     asset/tex/grass.xpm                       
+SO     asset/tex/64x64/bricks.xpm                       
 
 
-NO        asset/tex/grass.xpm                
+NO        asset/tex/64x64/bricks.xpm                
 
 
-EA      asset/tex/grass.xpm                
+EA      asset/tex/64x64/bricks.xpm                
 
 
-WE           asset/tex/grass.xpm       
+WE           asset/tex/64x64/bricks.xpm       
 
-S          asset/tex/grass.xpm  
+S          asset/tex/64x64/bricks.xpm  
 
 F   255, 255, 255, 432
 C   255  , 255  ,255

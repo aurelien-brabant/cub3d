@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/23 14:10:31 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/23 23:45:01 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@
 TARGET			= cub3D
 TARGET_BONUS	= cub3D_bonus
 CC				= clang
-CFLAGS			= -Wall -Wextra -Werror -Wpedantic -O3
+CFLAGS			= -Wall -Wextra -Werror
+CFLAGS_BONUS	= -Wall -Wextra -Werror -O3
 INC_DIR			= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Imandatory/include -Imandatory
 INC_DIR_BONUS	= -I$(LIBFT_PATH)/include -I$(MLX_PATH) -Ibonus/include -Ibonus
 LIB_DIR			= -L$(MLX_PATH) -L$(LIBFT_PATH)
@@ -43,55 +44,68 @@ CORE			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 PARSING			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 				parse_col.c parse_map.c check_parse_map.c
 
-MISC			= parsing_utils.c color.c map.c							\
-				output.c
+MISC			= parsing_utils.c color.c map.c output.c
 
-GFX				= init_gfx.c destroy_gfx.c handle_keypress.c			\
-				render.c img_pix_put.c draw_rect.c 						\
-				handle_mouse.c update.c									\
-				handle_keyrelease.c raycast.c							\
-				raycast_horizontal.c raycast_vertical.c					\
-				get_points_dist.c render_walls.c init_img.c				\
-				img_pix_get.c sprite.c init_sprite.c sprite_2.c			\
-				render_aim.c render_save_bmp.c degrad.c					\
+GFX				= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 
-BMP				= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c
+RAYCASTING		= raycast_horizontal.c raycast_vertical.c raycast.c		\
+				render_walls.c render_aim.c render.c					\
+				update.c init_sprite.c render_sprite.c					\
+				render_sprite_2.c
+
+IMG				= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
+
+EVENTS			= install_event_handlers.c handle_keyrelease.c			\
+				handle_keypress.c
+
+BMP				= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c			\
+				render_save_bmp.c
 
 SRCS		 	= mandatory/src/main.c									\
 				$(addprefix mandatory/src/gfx/, $(GFX))					\
 				$(addprefix mandatory/src/core/, $(CORE))				\
 				$(addprefix mandatory/src/parsing/, $(PARSING))			\
 				$(addprefix mandatory/src/misc/, $(MISC))				\
-				$(addprefix mandatory/src/bmp/, $(BMP))
+				$(addprefix mandatory/src/bmp/, $(BMP))					\
+				$(addprefix mandatory/src/events/, $(EVENTS))			\
+				$(addprefix mandatory/src/img/, $(IMG))					\
+				$(addprefix mandatory/src/raycasting/, $(RAYCASTING))
 
 # ----- BONUS PART ----- #
 
-CORE_BONUS		= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
-				cub3d_state_to_str.c
+CORE_BONUS			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
+					cub3d_state_to_str.c
 
-PARSING_BONUS	= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
-				parse_col.c parse_map.c check_parse_map.c
+PARSING_BONUS		= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
+					parse_col.c parse_map.c check_parse_map.c
 
-MISC_BONUS		= parsing_utils.c color.c map.c							\
-				output.c
+MISC_BONUS			= parsing_utils.c color.c map.c output.c
 
-GFX_BONUS		= init_gfx.c destroy_gfx.c handle_keypress.c			\
-				render.c img_pix_put.c draw_rect.c 						\
-				handle_mouse.c update.c									\
-				handle_keyrelease.c raycast.c							\
-				raycast_horizontal.c raycast_vertical.c					\
-				get_points_dist.c render_walls.c init_img.c				\
-				img_pix_get.c sprite.c init_sprite.c sprite_2.c			\
-				render_aim.c render_save_bmp.c degrad.c					\
+GFX_BONUS			= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 
-BMP_BONUS		= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c
+RAYCASTING_BONUS	= raycast_horizontal.c raycast_vertical.c raycast.c		\
+					render_walls.c render_aim.c render.c					\
+					update.c init_sprite.c render_sprite.c					\
+					render_sprite_2.c
 
-SRCS_BONUS		 = bonus/src/main.c									\
-				$(addprefix bonus/src/gfx/, $(GFX_BONUS))			\
-				$(addprefix bonus/src/core/, $(CORE_BONUS))			\
-				$(addprefix bonus/src/parsing/, $(PARSING_BONUS))	\
-				$(addprefix bonus/src/misc/, $(MISC_BONUS))			\
-				$(addprefix bonus/src/bmp/, $(BMP_BONUS))
+IMG_BONUS			= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
+
+EVENTS_BONUS		= install_event_handlers.c handle_keyrelease.c			\
+					handle_keypress.c
+
+BMP_BONUS			= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c			\
+					render_save_bmp.c
+
+SRCS_BONUS		 	= bonus/src/main.c										\
+					$(addprefix bonus/src/gfx/, $(GFX_BONUS))				\
+					$(addprefix bonus/src/core/, $(CORE_BONUS))				\
+					$(addprefix bonus/src/parsing/, $(PARSING_BONUS))		\
+					$(addprefix bonus/src/misc/, $(MISC_BONUS))				\
+					$(addprefix bonus/src/bmp/, $(BMP_BONUS))				\
+					$(addprefix bonus/src/events/, $(EVENTS_BONUS))			\
+					$(addprefix bonus/src/img/, $(IMG_BONUS))				\
+					$(addprefix bonus/src/raycasting/, $(RAYCASTING_BONUS))
+
 
 # ---------------[=     SOURCES - GENERAL     =]--------------- #
 
@@ -163,4 +177,4 @@ mandatory/src/%.o:mandatory/src/%.c
 
 # BONUS PART COMPILATION
 bonus/src/%.o:bonus/src/%.c
-	$(CC) $(CFLAGS) $(INC_DIR_BONUS) -g -c $< -o $@
+	$(CC) $(CFLAGS_BONUS) $(INC_DIR_BONUS) -g -c $< -o $@

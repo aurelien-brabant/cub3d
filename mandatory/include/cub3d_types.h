@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_types.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 15:55:54 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/23 20:03:15 by abrabant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* cub3d prefix is needed to avoid conflict with the header guard */
+
 #ifndef CUB3D_TYPES_H
 # define CUB3D_TYPES_H
 # include <stdint.h>
-# include <stdbool.h>
 # include <stddef.h>
 # include "libft/vector.h"
 # define ERR_LEN 1000
-# define TILE_SIZE 64
 
 typedef enum e_state
 {
@@ -17,10 +29,6 @@ typedef enum e_state
 	ST_INGAME,
 	ST_STOPPING,
 }	t_state;
-
-/*
-** Boolean option flags
-*/
 
 typedef enum e_optflag
 {
@@ -130,8 +138,6 @@ typedef struct s_cub3d
 	t_vector	gbc;
 }	t_cub3d;
 
-/* SHAPES */
-
 typedef struct s_rect
 {
 	int		x;
@@ -140,4 +146,4 @@ typedef struct s_rect
 	int		height;
 }	t_rect;
 
-#endif
+#endif /* CUB3D_TYPES_H  */

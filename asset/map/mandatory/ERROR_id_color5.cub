@@ -1,10 +1,14 @@
 R   1920 1080
 
-NO	asset/tex/grass.xpm
-SO	asset/tex/grass.xpm
-EA	asset/tex/grass.xpm
-WE	asset/tex/grass.xpm
-S   asset/tex/grass.xpm
+NO	asset/tex/64x64/bricks.xpm
+SO	asset/tex/64x64/bricks.xpm
+EA	asset/tex/64x64/bricks.xpm
+WE	asset/tex/64x64/bricks.xpm
+S   asset/tex/64x64/bricks.xpm
 
 C   255, 255, 255
 F   43, 0, 0,
+
+11111111
+100N0001
+1111111111111

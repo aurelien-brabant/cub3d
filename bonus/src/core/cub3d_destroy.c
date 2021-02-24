@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 01:37:06 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:29:51 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 
-#include "cub3d_core.h"
-#include "cub3d_types.h"
-#include "cub3d_msg.h"
-#include "cub3d_gfx.h"
-
+#include "cub3d.h"
+#include "msg.h"
+#include "img.h"
+#include "gfx.h"
 #include "libft/io.h"
 #include "libft/vector.h"
 

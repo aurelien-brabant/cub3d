@@ -6,15 +6,14 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 03:02:57 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/15 03:39:35 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:32:06 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-#include <stdio.h>
 #include "mlx.h"
-#include "cub3d_gfx.h"
+#include "cub3d_types.h"
 
 void	destroy_gfx(t_graphics *gfx)
 {

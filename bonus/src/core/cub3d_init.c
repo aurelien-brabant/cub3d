@@ -6,14 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:16:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/21 16:25:57 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:29:07 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 
-#include "cub3d_core.h"
-
+#include "cub3d.h"
 #include "libft/string.h"
 #include "libft/io.h"
 #include "libft/vector.h"

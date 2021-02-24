@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 13:49:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 00:52:04 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:34:07 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 #include <fcntl.h>
 #include <sys/errno.h>
 
-#include "cub3d_core.h"
-#include "cub3d_msg.h"
-
+#include "cub3d.h"
+#include "msg.h"
 #include "libft/string.h"
 #include "libft/io.h"
 

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 22:19:44 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:24:36 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,18 @@
 #include <math.h>
 
 #include "mlx.h"
-
-#include "config.h"
-
 #include "libft/core.h"
 #include "libft/io.h"
 #include "libft/string.h"
-
-#include "cub3d_misc.h"
-#include "cub3d_gfx.h"
-#include "cub3d_core.h"
-#include "cub3d_msg.h"
+#include "config.h"
+#include "cub3d.h"
+#include "bmp.h"
+#include "events.h"
+#include "raycasting.h"
+#include "img.h"
+#include "misc.h"
+#include "gfx.h"
+#include "msg.h"
 
 /*
 ** Ensure the game's resolution is correct, resize it if not.
@@ -92,25 +93,13 @@ static int	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
 	return (1);
 }
 
-static void	hook_and_loop(t_cub3d *c3d)
-{
-	mlx_hook(c3d->gfx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, c3d);
-	mlx_hook(c3d->gfx.win_ptr, KeyRelease, KeyReleaseMask,
-			&handle_keyrelease, c3d);
-	mlx_hook(c3d->gfx.win_ptr, ClientMessage, StructureNotifyMask,
-			&mlx_loop_end, c3d->gfx.mlx_ptr);
-	mlx_mouse_hook(c3d->gfx.win_ptr, handle_mouse, c3d);
-	mlx_loop_hook(c3d->gfx.mlx_ptr, &render, c3d);
-	mlx_loop(c3d->gfx.mlx_ptr);
-}
-
 int	init_gfx(t_cub3d *c3d)
 {
 	c3d->gfx.mlx_ptr = mlx_init();
 	if (c3d->gfx.mlx_ptr == NULL)
 		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_INIT_FAILED));
 	get_win_res(c3d);
-	if (!init_img(c3d))
+	if (!init_sprites(c3d) || !init_img(c3d))
 		return (0);
 	init_player(c3d->mapdat.map, &c3d->gfx.player);
 	if (!init_raycasting(&c3d->gfx, &c3d->mapdat, c3d->err))
@@ -121,7 +110,8 @@ int	init_gfx(t_cub3d *c3d)
 			c3d->gfx.win_height, c3d->mapdat.map_name);
 	if (c3d->gfx.win_ptr == NULL)
 		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_WIN_FAILED));
-	hook_and_loop(c3d);
+	install_event_handlers(c3d);
+	mlx_loop(c3d->gfx.mlx_ptr);
 	cub3d_shift_state(c3d, NULL);
 	return (1);
 }

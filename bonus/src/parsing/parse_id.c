@@ -6,16 +6,15 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 15:38:08 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/05 13:58:20 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:33:59 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
+#include "parsing.h"
+#include "msg.h"
 #include "libft/string.h"
 #include "libft/io.h"
-
-#include "cub3d_core.h"
-#include "cub3d_parsing.h"
-#include "cub3d_msg.h"
 
 static void	process_token(t_cub3d *c3d, char *tok)
 {

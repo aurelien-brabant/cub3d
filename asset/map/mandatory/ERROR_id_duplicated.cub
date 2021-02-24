@@ -3,12 +3,16 @@ R   1920 1080
 NO	asset/tex/32x32/ice.xpm
 SO	asset/tex/32x32/bricks.xpm
 EA	asset/tex/16x16/grass_top.xpm
-WE	asset/tex/32x32/grass.xpm
+WE	asset/tex/32x32/64x64/bricks.xpm
 
 S   asset/tex/sprite/piglin.xpm
 
 
-S   asset/tex/64x64/grass.xpm
+S   asset/tex/64x64/64x64/bricks.xpm
 
 C   255, 255, 255
 F   0, 0, 0
+
+11111111111111111111111
+11111111111111110000N001
+111111111111111111111111

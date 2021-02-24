@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 23:22:32 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:40:57 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@
 #include "libft/string.h"
 #include "libft/cla.h"
 
-#include "cub3d_core.h"
-#include "cub3d_parsing.h"
-#include "cub3d_msg.h"
-#include "cub3d_gfx.h"
-#include "cub3d_types.h"
+#include "cub3d.h"
+#include "parsing.h"
+#include "msg.h"
+#include "gfx.h"
 
 static void	check_dotcub_filepath(void *cla, int *c3d_fd, char *err,
 		char **filepath)

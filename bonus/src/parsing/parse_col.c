@@ -6,14 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:53:53 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 23:49:46 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/23 21:33:53 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_types.h"
-#include "cub3d_misc.h"
-#include "cub3d_msg.h"
-
+#include "misc.h"
+#include "msg.h"
 #include "libft/string.h"
 #include "libft/io.h"
 #include "libft/strconv.h"

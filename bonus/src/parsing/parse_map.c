@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_core.h"
-#include "cub3d_parsing.h"
-#include "cub3d_msg.h"
+#include "cub3d.h"
+#include "parsing.h"
+#include "msg.h"
 
 #include "libft/io.h"
 #include "libft/string.h"

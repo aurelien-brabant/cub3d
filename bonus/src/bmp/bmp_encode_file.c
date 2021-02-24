@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bmp_encode_file.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 21:30:23 by abrabant          #+#    #+#             */
+/*   Updated: 2021/02/23 22:36:23 by abrabant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>
-#include <stdint.h>
 #include <unistd.h>
 #include <stdlib.h>
 
 #include "bmp.h"
-#include "bmp_int.h"
 
 static void	write_buf(uint8_t **buf, uint8_t *data, int n)
 {
@@ -16,7 +26,7 @@ static void	write_buf(uint8_t **buf, uint8_t *data, int n)
 }
 
 static void	write_pixels(t_bmp *bmp, uint8_t **buf,
-		void (*pix_fn)(uint8_t *, uint8_t *))
+		void (*pix_fn)(uint8_t *, uint8_t *, int))
 {
 	uint8_t		bytes[4];
 	uint32_t	i;
@@ -32,7 +42,7 @@ static void	write_pixels(t_bmp *bmp, uint8_t **buf,
 		j = 0;
 		while (j < rowlen)
 		{
-			pix_fn(&bmp->stream[i * rowlen + j], bytes);
+			pix_fn(&bmp->stream[i * rowlen + j], bytes, bmp->file_info.bpp);
 			write_buf(buf, bytes, bytes_per_pixel);
 			j += bytes_per_pixel;
 		}
@@ -67,7 +77,7 @@ static void	write_info(t_bmp *bpm, uint8_t **buf)
 }
 
 int	bmp_encode_file(t_bmp	*bmp, const char *path,
-		void (*pix_fn)(uint8_t *, uint8_t *), t_encode_mode mode)
+		void (*pix_fn)(uint8_t *, uint8_t *, int), t_encode_mode mode)
 {		
 	uint8_t	*buf;
 	int		fd;
