@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 14:27:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 20:47:14 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:35:04 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "cub3d_types.h"
 # define TILE_SIZE 64
 
+uint8_t	init_raycasting(t_cub3d *c3d);
 int		init_sprites(t_cub3d *c3d);
 int		draw_sprite(t_sprite *sprite, size_t i, t_cub3d *c3d);
 void	render_sprite_projection(t_cub3d *c3d);

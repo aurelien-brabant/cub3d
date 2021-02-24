@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 16:43:19 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:46:59 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	update_player(t_vector *map, t_player *player)
 		* (player->move_dir * player->move_speed);
 	if (player->strafe_dir != 0)
 	{
-		next_x = player->x + cos(player->rot_angle + deg2rad(90) * player->strafe_dir)
-			* (player->move_speed);
-		next_y = player->y + sin(player->rot_angle + deg2rad(90) * player->strafe_dir)
-			* (player->move_speed);
+		next_x = player->x + cos(player->rot_angle + (0.5 * M_PI)
+				* player->strafe_dir) * (player->move_speed);
+		next_y = player->y + sin(player->rot_angle + (0.5 * M_PI)
+				* player->strafe_dir) * (player->move_speed);
 	}
 	if (!map_is_legal(map, next_x, next_y))
 		return ;

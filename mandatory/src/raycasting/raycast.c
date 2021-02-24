@@ -6,12 +6,11 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/24 03:18:03 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:50:50 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdio.h>
 
 #include "gfx.h"
 #include "misc.h"
@@ -29,8 +28,8 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 	double	vert_dist;
 
 	ray->angle = normalize_angle(ray->angle);
-	ray->facing_left = ray->angle >= M_PI / 2 && ray->angle <= M_PI * 1.5;
-	ray->facing_down = ray->angle >= 0 && ray->angle <= M_PI;
+	ray->facing_left = ray->angle > M_PI / 2 && ray->angle < M_PI * 1.5;
+	ray->facing_down = ray->angle > 0 && ray->angle < M_PI;
 	horz_dist = get_horz_distance(ray, player, mapdat);
 	vert_dist = get_vert_distance(ray, player, mapdat);
 	ray->hit_vert = (float)horz_dist >= (float)vert_dist;

@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/23 23:45:01 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/24 15:36:57 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ GFX				= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 RAYCASTING		= raycast_horizontal.c raycast_vertical.c raycast.c		\
 				render_walls.c render_aim.c render.c					\
 				update.c init_sprite.c render_sprite.c					\
-				render_sprite_2.c
+				render_sprite_2.c init_raycasting.c
 
 IMG				= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
 
@@ -86,7 +86,7 @@ GFX_BONUS			= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 RAYCASTING_BONUS	= raycast_horizontal.c raycast_vertical.c raycast.c		\
 					render_walls.c render_aim.c render.c					\
 					update.c init_sprite.c render_sprite.c					\
-					render_sprite_2.c
+					render_sprite_2.c init_raycasting.c
 
 IMG_BONUS			= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
 

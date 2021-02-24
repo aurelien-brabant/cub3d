@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:24:36 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:44:59 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,59 +50,13 @@ static void	get_win_res(t_cub3d *c3d)
 		c3d->gfx.win_height = screen_res_y;
 }
 
-static void	init_player(t_vector map, t_player *player)
-{
-	unsigned char	spawn_char;
-
-	player->turn_dir = 0;
-	player->turn_spd = deg2rad(3);
-	player->move_speed = 3;
-	player->move_dir = 0;
-	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
-	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
-	spawn_char = map_getchar(map, player->x, player->y);
-	if (spawn_char == 'E')
-		player->rot_angle = 0;
-	if (spawn_char == 'W')
-		player->rot_angle = M_PI;
-	if (spawn_char == 'N')
-		player->rot_angle = M_PI * 1.5;
-	if (spawn_char == 'S')
-		player->rot_angle = M_PI * 0.5;
-}
-
-static int	init_raycasting(t_graphics *gfx, t_map_data *mapdat, char *err)
-{
-	int		ray_id;
-	size_t	alloc_size;
-
-	(void)mapdat;
-	gfx->num_rays = gfx->win_width;
-	gfx->fov = deg2rad(FOV_ANGLE);
-	gfx->dist_proj_plane = (gfx->win_width / 2.0) / tan(gfx->fov / 2);
-	alloc_size = gfx->num_rays * sizeof (*gfx->rays);
-	gfx->rays = ft_calloc(gfx->num_rays, sizeof(*gfx->rays));
-	if (gfx->rays == NULL)
-		return (!ft_snprintf(err, ERR_LEN, MSG_RAY_BADALLOC));
-	ray_id = 0;
-	while (ray_id < gfx->num_rays)
-	{
-		gfx->rays[ray_id].id = ray_id;
-		++ray_id;
-	}
-	return (1);
-}
-
 int	init_gfx(t_cub3d *c3d)
 {
 	c3d->gfx.mlx_ptr = mlx_init();
 	if (c3d->gfx.mlx_ptr == NULL)
 		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_INIT_FAILED));
 	get_win_res(c3d);
-	if (!init_sprites(c3d) || !init_img(c3d))
-		return (0);
-	init_player(c3d->mapdat.map, &c3d->gfx.player);
-	if (!init_raycasting(&c3d->gfx, &c3d->mapdat, c3d->err))
+	if (!init_raycasting(c3d))
 		return (0);
 	if (c3d->opt & OPT_SAVE)
 		return (render_save_bmp(c3d));
