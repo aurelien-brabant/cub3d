@@ -1,0 +1,14 @@
+R   1080 640
+
+NO	asset/tex/64x64/square.xpm
+SO	asset/tex/64x64/square.xpm
+EA	asset/tex/16x16/planks_birch.xpm
+WE	asset/tex/16x16/planks_spruce.xpm
+S   asset/tex/sprite/nether_sprouts.xpm
+
+C   0,181,226
+F   0, 154, 23
+
+111111111111111111111111111111
+1E0000000000000000000000000001
+111111111111111111111111111111

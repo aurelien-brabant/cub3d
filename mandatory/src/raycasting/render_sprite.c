@@ -85,7 +85,7 @@ int	draw_sprite(t_sprite *sprite, size_t i, t_cub3d *c3d)
 {
 	t_img		*img;
 	t_player	*player;
-	double		sprite_angle;
+	float		sprite_angle;
 
 	(void)i;
 	player = &c3d->gfx.player;

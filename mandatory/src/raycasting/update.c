@@ -6,11 +6,12 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/24 15:46:59 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/25 00:41:41 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdio.h>
 
 #include "config.h"
 #include "gfx.h"
@@ -20,20 +21,20 @@
 
 static void	update_player(t_vector *map, t_player *player)
 {
-	double	next_x;
-	double	next_y;
+	float	next_x;
+	float	next_y;
 
-	player->rot_angle += player->turn_spd * player->turn_dir;
-	player->rot_angle = normalize_angle(player->rot_angle);
+	player->rot_angle = normalize_angle(player->rot_angle
+			+ player->turn_spd * player->turn_dir);
 	next_x = player->x + cos(player->rot_angle)
 		* (player->move_dir * player->move_speed);
 	next_y = player->y + sin(player->rot_angle)
 		* (player->move_dir * player->move_speed);
 	if (player->strafe_dir != 0)
 	{
-		next_x = player->x + cos(player->rot_angle + (0.5 * M_PI)
+		next_x = player->x + cos(player->rot_angle + (0.5 * PI)
 				* player->strafe_dir) * (player->move_speed);
-		next_y = player->y + sin(player->rot_angle + (0.5 * M_PI)
+		next_y = player->y + sin(player->rot_angle + (0.5 * PI)
 				* player->strafe_dir) * (player->move_speed);
 	}
 	if (!map_is_legal(map, next_x, next_y))

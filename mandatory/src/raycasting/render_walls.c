@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/24 01:46:03 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/25 00:21:40 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "img.h"
 #include "gfx.h"
 #include "misc.h"
+#include "libft/core.h"
 
 static void	project_textured_wall(t_ray *ray, t_img *draw_img,
 		int wall_height, int wall_top_px)
@@ -24,11 +25,10 @@ static void	project_textured_wall(t_ray *ray, t_img *draw_img,
 	int		offset[2];
 	int		distance_top;
 	int		px_per_tex_col;
-	double	wall_bot_px;
+	int		wall_bot_px;
 
-	wall_bot_px = wall_top_px + wall_height;
-	if (wall_bot_px > draw_img->height)
-		wall_bot_px = draw_img->height;
+	wall_bot_px = ft_boundarize(wall_top_px + wall_height, 0,
+			draw_img->height - 1);
 	px_per_tex_col = TILE_SIZE / ray->tex_img->width;
 	if (ray->hit_vert)
 		offset[0] = (int)ray->wall_hit[1] % TILE_SIZE / px_per_tex_col;
@@ -39,7 +39,7 @@ static void	project_textured_wall(t_ray *ray, t_img *draw_img,
 		distance_top = wall_top_px + (wall_height / 2.0)
 			- (draw_img->height / 2.0);
 		offset[1] = distance_top
-			* ((double)ray->tex_img->height / wall_height);
+			* ((float)ray->tex_img->height / wall_height);
 		img_pix_put(draw_img, ray->id, wall_top_px,
 				img_pix_get(ray->tex_img, offset[0], offset[1]));
 		++wall_top_px;
@@ -81,13 +81,13 @@ void	render_walls(t_graphics *gfx, int *colors)
 	{
 		ray = &gfx->rays[ray_id];
 		ray->wall_dist = ray->wall_dist * cos(ray->angle - player->rot_angle);
-		if (ray->facing_left && ray->hit_vert)
+		if (is_ray_facing_left(ray) && ray->hit_vert)
 			ray->tex_img = &gfx->teximg[P_ID_WE - 1];
-		else if (!ray->facing_left && ray->hit_vert)
+		else if (is_ray_facing_right(ray) && ray->hit_vert)
 			ray->tex_img = &gfx->teximg[P_ID_EA - 1];
-		else if (ray->facing_down && !ray->hit_vert)
+		else if (is_ray_facing_bot(ray) && !ray->hit_vert)
 			ray->tex_img = &gfx->teximg[P_ID_SO - 1];
-		else if (!ray->facing_down && !ray->hit_vert)
+		else if (is_ray_facing_top(ray) && !ray->hit_vert)
 			ray->tex_img = &gfx->teximg[P_ID_NO - 1];
 		project(gfx, ray, colors);
 		++ray_id;

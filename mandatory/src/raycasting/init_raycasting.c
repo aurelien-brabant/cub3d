@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:20:36 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/24 15:36:11 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/25 00:04:06 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static void	init_player(t_vector map, t_player *player)
 	if (spawn_char == 'N')
 		player->rot_angle = M_PI * 1.5;
 	if (spawn_char == 'S')
-		player->rot_angle = M_PI * 0.5;
+		player->rot_angle = M_PI_2;
 }
 
 uint8_t	init_raycasting(t_cub3d *c3d)
 {
 	int		ray_id;
-	size_t	alloc_size;
 
 	init_player(c3d->mapdat.map, &c3d->gfx.player);
 	if (!init_sprites(c3d) || !init_img(c3d))
@@ -54,7 +53,6 @@ uint8_t	init_raycasting(t_cub3d *c3d)
 	c3d->gfx.fov = deg2rad(FOV_ANGLE);
 	c3d->gfx.dist_proj_plane = (c3d->gfx.win_width / 2.0)
 		/ tan(c3d->gfx.fov / 2);
-	alloc_size = c3d->gfx.num_rays * sizeof (*c3d->gfx.rays);
 	c3d->gfx.rays = ft_calloc(c3d->gfx.num_rays, sizeof(*c3d->gfx.rays));
 	if (c3d->gfx.rays == NULL)
 		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_RAY_BADALLOC));

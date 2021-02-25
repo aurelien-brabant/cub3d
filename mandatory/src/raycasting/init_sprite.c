@@ -18,7 +18,7 @@
 ** This texture is stored in gfx->teximg[4].
 */
 
-static t_sprite	*sprite_new(double x, double y)
+static t_sprite	*sprite_new(float x, float y)
 {
 	t_sprite	*sprite;
 

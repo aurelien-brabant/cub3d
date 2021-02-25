@@ -6,18 +6,18 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:45:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/22 00:56:50 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/24 21:39:52 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-double	deg2rad(double deg)
+float	deg2rad(float deg)
 {
 	return (deg * (M_PI / 180));
 }
 
-double	rad2deg(double rad)
+float	rad2deg(float rad)
 {
 	return (rad * (180 / M_PI));
 }
@@ -26,11 +26,10 @@ double	rad2deg(double rad)
 ** Ensure the angle is between 0 and 2 PI radians.
 */
 
-double	normalize_angle(double angle)
+float	normalize_angle(float angle)
 {
-	if (angle > M_PI * 2)
-		angle = fmod(angle, M_PI * 2);
+	angle = remainder(angle, M_PI * 2.0);
 	if (angle < 0)
-		angle = M_PI * 2 - fmod(-angle, M_PI * 2);
+		angle = M_PI * 2.0 + angle;
 	return (angle);
 }

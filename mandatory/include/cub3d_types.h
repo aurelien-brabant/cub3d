@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:55:54 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 20:03:15 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/25 00:10:03 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stddef.h>
 # include "libft/vector.h"
 # define ERR_LEN 1000
+# define PI 3.14159265
+# define TWO_PI 6.28318530
 
 typedef enum e_state
 {
@@ -52,14 +54,14 @@ typedef enum e_parsing_id
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double	rot_angle;
+	float	x;
+	float	y;
+	float	rot_angle;
 	int8_t	turn_dir;
 	int8_t	strafe_dir;
 	int8_t	move_dir;
-	double	move_speed;
-	double	turn_spd;
+	float	move_speed;
+	float	turn_spd;
 }	t_player;
 
 typedef struct s_map_data
@@ -86,35 +88,33 @@ typedef struct s_img
 typedef struct s_ray
 {
 	int				id;
-	double			angle;
-	uint8_t			facing_down;
-	uint8_t			facing_left;
+	float			angle;
 	uint8_t			hit_vert;
-	double			horz_wall_hit[2];
-	double			vert_wall_hit[2];
-	double			wall_hit[2];
-	double			wall_dist;
+	float			horz_wall_hit[2];
+	float			vert_wall_hit[2];
+	float			wall_hit[2];
+	float			wall_dist;
 	t_img			*tex_img;
 }	t_ray;
 
 typedef struct s_sprite
 {
-	double	x;
-	double	y;
-	double	distance;
-	double	dheight;
-	double	dwidth;
-	double	dx[2];
-	double	dy[2];
-	double	angle;
+	float	x;
+	float	y;
+	float	distance;
+	float	dheight;
+	float	dwidth;
+	float	dx[2];
+	float	dy[2];
+	float	angle;
 }	t_sprite;
 
 typedef struct s_graphics
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	double			fov;
-	double			dist_proj_plane;
+	float			fov;
+	float			dist_proj_plane;
 	int				num_rays;
 	int				win_height;
 	int				win_width;

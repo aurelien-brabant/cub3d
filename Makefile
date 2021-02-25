@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/24 15:36:57 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/24 23:59:34 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ GFX				= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 RAYCASTING		= raycast_horizontal.c raycast_vertical.c raycast.c		\
 				render_walls.c render_aim.c render.c					\
 				update.c init_sprite.c render_sprite.c					\
-				render_sprite_2.c init_raycasting.c
+				render_sprite_2.c init_raycasting.c ray_orientation.c
 
 IMG				= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
 
@@ -79,7 +79,7 @@ CORE_BONUS			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 PARSING_BONUS		= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 					parse_col.c parse_map.c check_parse_map.c
 
-MISC_BONUS			= parsing_utils.c color.c map.c output.c
+MISC_BONUS			= parsing_utils.c color.c map.c output.c time.c
 
 GFX_BONUS			= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 

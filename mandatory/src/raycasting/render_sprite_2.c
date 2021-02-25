@@ -6,12 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:26:01 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:26:00 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/25 00:24:11 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "cub3d_types.h"
 #include "gfx.h"
 #include "raycasting.h"
 #include "libft/vector.h"
@@ -28,9 +29,9 @@
 
 static int	put_visible_sprite(t_sprite *sprite, size_t index, t_cub3d *c3d)
 {
-	static const double	epsilon = 0.2;
+	static const float	epsilon = 0.2;
 	t_player			*player;
-	double				angle_sprite_player;
+	float				angle_sprite_player;
 
 	(void)index;
 	player = &c3d->gfx.player;
