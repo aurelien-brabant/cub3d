@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:02:03 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 20:15:28 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:58:32 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,5 @@
 void	install_event_handlers(t_cub3d *c3d);
 int		handle_keypress(int keysym, t_cub3d *c3d);
 int		handle_keyrelease(int keysym, t_cub3d *c3d);
-int		handle_mouse(int button, int x, int y, t_cub3d *c3d);
 
 #endif /* EVENTS_H */
