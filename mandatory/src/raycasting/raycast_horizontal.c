@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 01:52:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/25 01:33:12 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:37:09 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,57 +17,63 @@
 #include "misc.h"
 #include "raycasting.h"
 
+/* Get xstep and ystep */
+
+static void	get_step(t_ray *ray, t_pos *step)
+{
+	step->y = TILE_SIZE;
+	if (is_ray_facing_top(ray))
+		step->y *= -1;
+	step->x = TILE_SIZE / tan(ray->angle);
+	if (is_ray_facing_left(ray) && step->x > 0)
+		step->x *= -1;
+	if (is_ray_facing_right(ray) && step->x < 0)
+		step->x *= -1;
+}
+
+/* Get xintercept and yintercept */
+
+static void	get_intercept(t_ray *ray, t_player *player, t_pos *intercept)
+{
+	intercept->y = floor((player->pos.y / TILE_SIZE)) * TILE_SIZE;
+	if (is_ray_facing_bot(ray))
+		intercept->y += TILE_SIZE;
+	intercept->x = player->pos.x + (intercept->y - player->pos.y)
+		/ tan(ray->angle);
+}
+
 /*
-** This function only exists to make this code norm compliant.
-** Find the xintercept, yintercept, xstep and ystep.
+** Register the horizontal hit pos in the ray object and return the distance
+** from this point and the player.
 */
 
-static void	get_data(t_ray *ray, t_player *player,
-		float *step, float *intercept)
+static double	register_hit_distance(t_ray *ray, t_player *player, t_pos next)
 {
-	intercept[1] = floor((player->y / TILE_SIZE)) * TILE_SIZE;
-	if (is_ray_facing_bot(ray))
-		intercept[1] += TILE_SIZE;
-	intercept[0] = player->x + (intercept[1] - player->y) / tan(ray->angle);
-	step[1] = TILE_SIZE;
-	if (is_ray_facing_top(ray))
-		step[1] *= -1;
-	step[0] = TILE_SIZE / tan(ray->angle);
-	if (is_ray_facing_left(ray) && step[0] > 0)
-		step[0] *= -1;
-	if (is_ray_facing_right(ray) && step[0] < 0)
-		step[0] *= -1;
+	ray->horz_hit.x = next.x;
+	ray->horz_hit.y = next.y;
+	return (get_points_dist(player->pos.x, player->pos.y, ray->horz_hit.x,
+			ray->horz_hit.y));
 }
 
-static float	register_hit_distance(t_ray *ray, t_player *player,
-		float *next)
+double	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
 {
-	ray->horz_wall_hit[0] = next[0];
-	ray->horz_wall_hit[1] = next[1];
-	return (get_points_dist(player->x, player->y, ray->horz_wall_hit[0],
-			ray->horz_wall_hit[1]));
-}
+	t_pos	step;
+	t_pos	intercept;
+	t_pos	next;
 
-float	get_horz_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
-{
-	float	step[2];
-	float	intercept[2];
-	float	next[2];
-
-	ray->horz_wall_hit[0] = -1;
-	ray->horz_wall_hit[1] = -1;
-	get_data(ray, player, step, intercept);
-	next[0] = intercept[0];
-	next[1] = intercept[1];
-	//if (map_has_wall_at(mapdat->map, player->x, player->y))
-		//return (register_hit_distance(ray, player, next));
-	while (next[0] >= 0 && next[1] >= 0)
+	get_intercept(ray, player, &intercept);
+	get_step(ray, &step);
+	next.x = intercept.x;
+	next.y = intercept.y;
+	if (map_has_wall_at(mapdat->map, player->pos.x, player->pos.y))
+		return (register_hit_distance(ray, player, next));
+	while (next.x >= 0 && next.y >= 0)
 	{
-		if (map_has_wall_at(mapdat->map, next[0], next[1]
-					- is_ray_facing_top(ray)))
+		if (map_has_wall_at(mapdat->map, next.x,
+				next.y - is_ray_facing_top(ray)))
 			return (register_hit_distance(ray, player, next));
-		next[0] += step[0];
-		next[1] += step[1];
+		next.x += step.x;
+		next.y += step.y;
 	}
 	return (DBL_MAX);
 }

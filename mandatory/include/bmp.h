@@ -44,6 +44,6 @@ t_bmp	*bmp_new(uint8_t *stream, int width, int height, int bpp);
 int		bmp_encode_file(t_bmp *bmp, const char *path, void (*pix_fn)
 			(uint8_t *stream, uint8_t *bytes, int bpp), t_encode_mode mode);
 void	bmp_int_rev_buf(t_bmp *bmp, uint8_t *buf);
-int		render_save_bmp(t_cub3d *c3d);
+bool	render_save_bmp(t_cub3d *c3d);
 
 #endif /* BMP_H */

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 16:40:57 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:34:23 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ static void	parse_cla(t_cub3d *c3d, int ac, char **av)
 	cub3d_shift_state(c3d, NULL);
 }
 
-int	loop_check(t_cub3d *c3d)
+bool	is_loop_alive(t_cub3d *c3d)
 {
 	if (c3d->err[0] != '\0')
-		return (0);
+		return (false);
 	if (c3d->opt & OPT_PARSE_ONLY && c3d->state == ST_INGAME)
-		return (0);
+		return (false);
 	if (c3d->state == ST_STOPPING)
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
 int	main(int ac, char **av)
@@ -97,7 +97,7 @@ int	main(int ac, char **av)
 	c3d.state = ST_INITIALIZING;
 	c3d.err[0] = '\0';
 	c3d.opt = 0;
-	while (loop_check(&c3d))
+	while (is_loop_alive(&c3d))
 	{
 		if (c3d.state == ST_INITIALIZING)
 			cub3d_init(&c3d);

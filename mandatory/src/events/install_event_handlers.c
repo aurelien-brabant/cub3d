@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 20:11:28 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/24 22:51:26 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:46:19 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 #include "events.h"
 #include "raycasting.h"
 
-static int mouse(int button, int x, int y)
+static int	mouse(int button, int x, int y)
 {
 	(void)button;
-	printf("Click: [%d; %d]\n", x, y);
+	printf("[%d; %d]\n", x, y);
 	return (0);
 }
 

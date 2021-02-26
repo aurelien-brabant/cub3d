@@ -1,7 +1,7 @@
 R   1080 640
 
-NO	asset/tex/64x64/square.xpm
-SO	asset/tex/64x64/square.xpm
+NO	asset/tex/32x32/nether_bricks.xpm
+SO	asset/tex/64x64/bricks.xpm
 EA	asset/tex/16x16/planks_birch.xpm
 WE	asset/tex/16x16/planks_spruce.xpm
 S   asset/tex/sprite/nether_sprouts.xpm

@@ -32,7 +32,7 @@ void	cub3d_init(t_cub3d *c3d)
 			"Could not initialize the map vector properly.");
 	c3d->mapdat.col[P_ID_F - P_ID_F] = -1;
 	c3d->mapdat.col[P_ID_C - P_ID_F] = -1;
-	c3d->gfx.player.x = -1;
-	c3d->gfx.player.y = -1;
+	c3d->gfx.player.pos.x = -1;
+	c3d->gfx.player.pos.y = -1;
 	cub3d_shift_state(c3d, NULL);
 }

@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/24 23:59:34 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/27 00:49:59 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,9 @@ MISC			= parsing_utils.c color.c map.c output.c
 GFX				= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 
 RAYCASTING		= raycast_horizontal.c raycast_vertical.c raycast.c		\
-				render_walls.c render_aim.c render.c					\
-				update.c init_sprite.c render_sprite.c					\
-				render_sprite_2.c init_raycasting.c ray_orientation.c
+				draw_walls.c draw_aim.c render.c						\
+				update.c init_sprite.c draw_sprite2.c					\
+				draw_sprite.c init_raycasting.c ray_orientation.c
 
 IMG				= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
 
@@ -73,39 +73,38 @@ SRCS		 	= mandatory/src/main.c									\
 
 # ----- BONUS PART ----- #
 
-CORE_BONUS			= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
-					cub3d_state_to_str.c
+CORE_BONUS				= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
+						cub3d_state_to_str.c
 
-PARSING_BONUS		= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
-					parse_col.c parse_map.c check_parse_map.c
+PARSING_BONUS			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
+						parse_col.c parse_map.c check_parse_map.c
 
-MISC_BONUS			= parsing_utils.c color.c map.c output.c time.c
+MISC_BONUS				= parsing_utils.c color.c map.c output.c
 
-GFX_BONUS			= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
+GFX_BONUS				= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 
-RAYCASTING_BONUS	= raycast_horizontal.c raycast_vertical.c raycast.c		\
-					render_walls.c render_aim.c render.c					\
-					update.c init_sprite.c render_sprite.c					\
-					render_sprite_2.c init_raycasting.c
+RAYCASTING_BONUS		= raycast_horizontal.c raycast_vertical.c raycast.c		\
+						draw_walls.c draw_aim.c render.c						\
+						update.c init_sprite.c draw_sprite2.c					\
+						draw_sprite.c init_raycasting.c ray_orientation.c
 
-IMG_BONUS			= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
+IMG_BONUS				= init_img.c img_pix_get.c img_pix_put.c draw_rect.c
 
-EVENTS_BONUS		= install_event_handlers.c handle_keyrelease.c			\
-					handle_keypress.c
+EVENTS_BONUS			= install_event_handlers.c handle_keyrelease.c			\
+						handle_keypress.c
 
-BMP_BONUS			= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c			\
-					render_save_bmp.c
+BMP_BONUS				= bmp_new.c bmp_encode_file.c bmp_int_rev_buf.c			\
+						render_save_bmp.c
 
-SRCS_BONUS		 	= bonus/src/main.c										\
-					$(addprefix bonus/src/gfx/, $(GFX_BONUS))				\
-					$(addprefix bonus/src/core/, $(CORE_BONUS))				\
-					$(addprefix bonus/src/parsing/, $(PARSING_BONUS))		\
-					$(addprefix bonus/src/misc/, $(MISC_BONUS))				\
-					$(addprefix bonus/src/bmp/, $(BMP_BONUS))				\
-					$(addprefix bonus/src/events/, $(EVENTS_BONUS))			\
-					$(addprefix bonus/src/img/, $(IMG_BONUS))				\
-					$(addprefix bonus/src/raycasting/, $(RAYCASTING_BONUS))
-
+SRCS_BONUS		 		= bonus/src/main.c									\
+						$(addprefix bonus/src/gfx/, $(GFX_BONUS))			\
+						$(addprefix bonus/src/core/, $(CORE_BONUS))			\
+						$(addprefix bonus/src/parsing/, $(PARSING_BONUS))	\
+						$(addprefix bonus/src/misc/, $(MISC_BONUS))			\
+						$(addprefix bonus/src/bmp/, $(BMP_BONUS))			\
+						$(addprefix bonus/src/events/, $(EVENTS_BONUS))		\
+						$(addprefix bonus/src/img/, $(IMG_BONUS))			\
+						$(addprefix bonus/src/raycasting/, $(RAYCASTING_BONUS))
 
 # ---------------[=     SOURCES - GENERAL     =]--------------- #
 

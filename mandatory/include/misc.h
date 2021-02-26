@@ -18,9 +18,9 @@ int				is_parsable_nb(char *nb_str);
 
 int				make_rgb(int red, int green, int blue);
 
-unsigned char	map_getchar(t_vector map, float x, float y);
-uint8_t			map_has_wall_at(t_vector map, float x, float y);
-uint8_t			map_is_legal(t_vector map, float x, float y);
+unsigned char	map_getchar(t_vector map, double x, double y);
+uint8_t			map_has_wall_at(t_vector map, double x, double y);
+uint8_t			map_is_legal(t_vector map, double x, double y);
 
 void			c3d_warn(const char *msg);
 void			c3d_info(const char *msg);

@@ -18,7 +18,7 @@
 #include "libft/vector.h"
 #include "libft/string.h"
 
-unsigned char	map_getchar(t_vector map, float x, float y)
+unsigned char	map_getchar(t_vector map, double x, double y)
 {
 	const unsigned char	*row;
 	int					row_ind;
@@ -36,7 +36,7 @@ unsigned char	map_getchar(t_vector map, float x, float y)
 	return (row[col_ind]);
 }
 
-uint8_t	map_has_wall_at(t_vector map, float x, float y)
+uint8_t	map_has_wall_at(t_vector map, double x, double y)
 {
 	unsigned char	c;
 
@@ -44,7 +44,7 @@ uint8_t	map_has_wall_at(t_vector map, float x, float y)
 	return (c == '1' || c == ' ');
 }
 
-uint8_t	map_is_legal(t_vector map, float x, float y)
+uint8_t	map_is_legal(t_vector map, double x, double y)
 {
 	const unsigned char	*row;
 	size_t				index;

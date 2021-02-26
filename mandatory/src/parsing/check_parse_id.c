@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 16:14:38 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:52:53 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:13:29 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Used as a checker when calling cub3d_shift_state.
 */
 
-uint8_t	check_parse_id(t_cub3d *c3d)
+bool	check_parse_id(t_cub3d *c3d)
 {
 	unsigned char	i;
 

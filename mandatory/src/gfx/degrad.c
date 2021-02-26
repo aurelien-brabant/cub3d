@@ -12,12 +12,12 @@
 
 #include <math.h>
 
-float	deg2rad(float deg)
+double	deg2rad(double deg)
 {
 	return (deg * (M_PI / 180));
 }
 
-float	rad2deg(float rad)
+double	rad2deg(double rad)
 {
 	return (rad * (180 / M_PI));
 }
@@ -26,7 +26,7 @@ float	rad2deg(float rad)
 ** Ensure the angle is between 0 and 2 PI radians.
 */
 
-float	normalize_angle(float angle)
+double	normalize_angle(double angle)
 {
 	angle = remainder(angle, M_PI * 2.0);
 	if (angle < 0)

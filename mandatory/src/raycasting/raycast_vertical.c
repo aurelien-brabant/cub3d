@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 02:25:31 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/25 02:03:46 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:11:21 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,64 +17,58 @@
 #include "misc.h"
 #include "gfx.h"
 
-/*
-** This function only exists to make this code norm compliant.
-** Find the xintercept, yintercept, xstep and ystep.
-*/
+/* Get the xintercept and the yintercept */
 
-#include <stdio.h>
-
-static void	get_data(t_ray *ray, t_player *player,
-		float *step, float *intercept)
+static void	get_intercept(t_ray *ray, t_player *player, t_pos *intercept)
 {
-	intercept[0] = floor(player->x / TILE_SIZE) * TILE_SIZE;
+	intercept->x = floor(player->pos.x / TILE_SIZE) * TILE_SIZE;
 	if (is_ray_facing_right(ray))
-		intercept[0] += TILE_SIZE;
-	intercept[1] = player->y + (intercept[0] - player->x) * tan(ray->angle);
-	step[0] = TILE_SIZE;
+		intercept->x += TILE_SIZE;
+	intercept->y = player->pos.y + (intercept->x - player->pos.x)
+		* tan(ray->angle);
+}
+
+/* Get xstep and ystep */
+
+static void	get_step(t_ray *ray, t_pos *step)
+{
+	step->x = TILE_SIZE;
 	if (is_ray_facing_left(ray))
-		step[0] *= -1;
-	step[1] = TILE_SIZE * tan(ray->angle);
-	if (ray->id == 360)
-	{
-		//printf("STEP X: %f\nSTEP Y: %f\n", step[0], step[1]);
-		printf("INTERCEPT X: %.7f\nINTERCEPT Y: %.7f\n", intercept[0], intercept[1]);
-	}
-	if (is_ray_facing_top(ray) && step[1] > 0)
-		step[1] *= -1;
-	if (is_ray_facing_bot(ray) && step[1] < 0)
-		step[1] *= -1;
+		step->x *= -1;
+	step->y = TILE_SIZE * tan(ray->angle);
+	if (is_ray_facing_top(ray) && step->y > 0)
+		step->y *= -1;
+	if (is_ray_facing_bot(ray) && step->y < 0)
+		step->y *= -1;
 }
 
-static float	register_hit_distance(t_ray *ray, t_player *player,
-		float *next)
+static double	register_hit_distance(t_ray *ray, t_player *player, t_pos next)
 {
-	ray->vert_wall_hit[0] = next[0];
-	ray->vert_wall_hit[1] = next[1];
-	return (get_points_dist(player->x, player->y, ray->vert_wall_hit[0],
-			ray->vert_wall_hit[1]));
+	ray->vert_hit.x = next.x;
+	ray->vert_hit.y = next.y;
+	return (get_points_dist(player->pos.x, player->pos.y, ray->vert_hit.x,
+			ray->vert_hit.y));
 }
 
-float	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
+double	get_vert_distance(t_ray *ray, t_player *player, t_map_data *mapdat)
 {
-	float	step[2];
-	float	intercept[2];
-	float	next[2];
+	t_pos	step;
+	t_pos	intercept;
+	t_pos	next;
 
-	ray->vert_wall_hit[0] = -1;
-	ray->vert_wall_hit[1] = -1;
-	get_data(ray, player, step, intercept);
-	next[0] = intercept[0];
-	next[1] = intercept[1];
-	if (map_has_wall_at(mapdat->map, player->x, player->y))
+	get_intercept(ray, player, &intercept);
+	get_step(ray, &step);
+	next.x = intercept.x;
+	next.y = intercept.y;
+	if (map_has_wall_at(mapdat->map, player->pos.x, player->pos.y))
 		return (register_hit_distance(ray, player, next));
-	while (next[0] >= 0 && next[1] >= 0)
+	while (next.x >= 0 && next.y >= 0)
 	{
-		if (map_has_wall_at(mapdat->map, next[0]
-					- is_ray_facing_left(ray), next[1]))
-				return (register_hit_distance(ray, player, next));
-		next[0] += step[0];
-		next[1] += step[1];
+		if (map_has_wall_at(mapdat->map, next.x
+				- is_ray_facing_left(ray), next.y))
+			return (register_hit_distance(ray, player, next));
+		next.x += step.x;
+		next.y += step.y;
 	}
 	return (DBL_MAX);
 }

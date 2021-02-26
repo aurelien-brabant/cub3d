@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:55:54 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/25 00:10:03 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:00:16 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # define CUB3D_TYPES_H
 # include <stdint.h>
 # include <stddef.h>
+# include <stdbool.h>
 # include "libft/vector.h"
 # define ERR_LEN 1000
-# define PI 3.14159265
-# define TWO_PI 6.28318530
+# define CUB3D_ERROR 1
+# define CUB3D_SUCCESS 0
 
 typedef enum e_state
 {
@@ -52,16 +53,27 @@ typedef enum e_parsing_id
 	P_ID_TOTAL,
 }	t_parsing_id;
 
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}	t_pos;
+
+typedef struct s_coords
+{
+	int	x;
+	int	y;
+}	t_coords;
+
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	rot_angle;
+	t_pos	pos;
+	double	rot_angle;
 	int8_t	turn_dir;
 	int8_t	strafe_dir;
 	int8_t	move_dir;
-	float	move_speed;
-	float	turn_spd;
+	double	move_speed;
+	double	turn_spd;
 }	t_player;
 
 typedef struct s_map_data
@@ -88,33 +100,34 @@ typedef struct s_img
 typedef struct s_ray
 {
 	int				id;
-	float			angle;
-	uint8_t			hit_vert;
-	float			horz_wall_hit[2];
-	float			vert_wall_hit[2];
-	float			wall_hit[2];
-	float			wall_dist;
+	double			angle;
+	bool			was_hit_vert;
+	t_pos			horz_hit;
+	t_pos			vert_hit;
+	t_pos			hit;
+	double			dist;
 	t_img			*tex_img;
 }	t_ray;
 
 typedef struct s_sprite
 {
-	float	x;
-	float	y;
-	float	distance;
-	float	dheight;
-	float	dwidth;
-	float	dx[2];
-	float	dy[2];
-	float	angle;
+	t_pos	pos;
+	double	distance;
+	double	dpheight;
+	double	dpwidth;
+	int		dpx_start;
+	int		dpx_end;
+	int		dpy_start;
+	int		dpy_end;
+	double	angle;
 }	t_sprite;
 
 typedef struct s_graphics
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	float			fov;
-	float			dist_proj_plane;
+	double			fov;
+	double			dist_proj_plane;
 	int				num_rays;
 	int				win_height;
 	int				win_width;

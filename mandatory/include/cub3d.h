@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:33:30 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:28:23 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:12:32 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void		cub3d_init(t_cub3d *c3d);
 void		cub3d_destroy(t_cub3d *c3d);
-int			cub3d_shift_state(t_cub3d *c3d, uint8_t (*checker)(t_cub3d *));
+void		cub3d_shift_state(t_cub3d *c3d, bool (*checker)(t_cub3d *));
 const char	*cub3d_state_to_str(t_state state);
 
 #endif /* CUB3D_H */

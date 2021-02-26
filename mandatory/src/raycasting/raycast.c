@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:58:40 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/25 03:17:20 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 23:53:54 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,36 @@
 #include "libft/string.h"
 
 /*
-** cast an individual ray
+** Cast an individual ray.
+**
+** The ray distance can't be set to zero as it used as a divisor to compute
+** the projected wall_height. For that reason, a ray->dist of zero is
+** automatically changed to 1.
 */
 
 static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 {
-	float	horz_dist;
-	float	vert_dist;
+	double	horz_dist;
+	double	vert_dist;
 
 	ray->angle = normalize_angle(ray->angle);
 	horz_dist = get_horz_distance(ray, player, mapdat);
 	vert_dist = get_vert_distance(ray, player, mapdat);
-	ray->hit_vert = vert_dist <= horz_dist;
-	if (ray->id == 360)
+	ray->was_hit_vert = vert_dist < horz_dist;
+	if (ray->was_hit_vert)
 	{
-		printf("VERT: (%.6f; %.6f)\n", ray->vert_wall_hit[0], ray->vert_wall_hit[1]);
-		printf("HORZ: (%.6f; %.6f)\n", ray->horz_wall_hit[0], ray->horz_wall_hit[1]);
-		printf("%d\n", ray->hit_vert);
-	}
-	if (ray->hit_vert)
-	{
-		ray->wall_hit[0] = ray->vert_wall_hit[0];
-		ray->wall_hit[1] = ray->vert_wall_hit[1];
-		ray->wall_dist = vert_dist;
+		ray->hit.x = ray->vert_hit.x;
+		ray->hit.y = ray->vert_hit.y;
+		ray->dist = vert_dist;
 	}
 	else
 	{
-		ray->wall_hit[0] = ray->horz_wall_hit[0];
-		ray->wall_hit[1] = ray->horz_wall_hit[1];
-		ray->wall_dist = horz_dist;
+		ray->hit.x = ray->horz_hit.x;
+		ray->hit.y = ray->horz_hit.y;
+		ray->dist = horz_dist;
 	}
-	if (ray->wall_dist == 0)
-		ray->wall_dist = 1;
+	if (ray->dist == 0)
+		ray->dist = 1;
 }
 
 /*
@@ -64,17 +62,13 @@ static void	raycast(t_ray *ray, t_player *player, t_map_data *mapdat)
 
 void	cast_rays(t_graphics *gfx, t_player *player, t_map_data *mapdat)
 {
-	int				ray_id;
-	float			ray_angle;
+	int		ray_id;
 
 	ray_id = 0;
-	ray_angle = player->rot_angle - (gfx->fov / 2.0);
 	while (ray_id < gfx->num_rays)
 	{
 		gfx->rays[ray_id].angle = player->rot_angle
 			+ atan((ray_id - gfx->num_rays / 2.0) / gfx->dist_proj_plane);
-		gfx->rays[ray_id].angle = ray_angle;
-		ray_angle += (gfx->fov / gfx->num_rays);
 		raycast(&gfx->rays[ray_id], player, mapdat);
 		++ray_id;
 	}

@@ -6,12 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:20:36 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/25 00:04:06 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:25:40 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "cub3d_types.h"
 #include "gfx.h"
 #include "raycasting.h"
 #include "misc.h"
@@ -21,6 +22,21 @@
 #include "libft/core.h"
 #include "libft/io.h"
 
+static double	get_initial_player_rot_angle(unsigned char spawn_char)
+{
+	if (spawn_char == 'E')
+		return (0);
+	if (spawn_char == 'W')
+		return (M_PI);
+	if (spawn_char == 'N')
+		return (M_PI * 1.5);
+	if (spawn_char == 'S')
+		return (M_PI_2);
+	c3d_warn("No suitable spawn location found at ST_RUNNING time."
+		"This should have been handled by parsing!");
+	return (0);
+}
+
 static void	init_player(t_vector map, t_player *player)
 {
 	unsigned char	spawn_char;
@@ -29,38 +45,38 @@ static void	init_player(t_vector map, t_player *player)
 	player->turn_spd = deg2rad(3);
 	player->move_speed = 6;
 	player->move_dir = 0;
-	player->x = player->x * TILE_SIZE + (TILE_SIZE / 2.0);
-	player->y = player->y * TILE_SIZE + (TILE_SIZE / 2.0);
-	spawn_char = map_getchar(map, player->x, player->y);
-	if (spawn_char == 'E')
-		player->rot_angle = 0;
-	if (spawn_char == 'W')
-		player->rot_angle = M_PI;
-	if (spawn_char == 'N')
-		player->rot_angle = M_PI * 1.5;
-	if (spawn_char == 'S')
-		player->rot_angle = M_PI_2;
+	player->pos.x = player->pos.x * TILE_SIZE + (TILE_SIZE / 2.0);
+	player->pos.y = player->pos.y * TILE_SIZE + (TILE_SIZE / 2.0);
+	spawn_char = map_getchar(map, player->pos.x, player->pos.y);
+	player->rot_angle = get_initial_player_rot_angle(spawn_char);
 }
 
-uint8_t	init_raycasting(t_cub3d *c3d)
+/*
+** Return zero if everything went well, non-zero otherwise.
+*/
+
+bool	init_raycasting(t_cub3d *c3d)
 {
 	int		ray_id;
 
+	ray_id = 0;
 	init_player(c3d->mapdat.map, &c3d->gfx.player);
 	if (!init_sprites(c3d) || !init_img(c3d))
-		return (0);
+		return (false);
 	c3d->gfx.num_rays = c3d->gfx.win_width;
 	c3d->gfx.fov = deg2rad(FOV_ANGLE);
 	c3d->gfx.dist_proj_plane = (c3d->gfx.win_width / 2.0)
 		/ tan(c3d->gfx.fov / 2);
-	c3d->gfx.rays = ft_calloc(c3d->gfx.num_rays, sizeof(*c3d->gfx.rays));
+	c3d->gfx.rays = ft_calloc(c3d->gfx.num_rays, sizeof(t_ray));
 	if (c3d->gfx.rays == NULL)
-		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_RAY_BADALLOC));
-	ray_id = 0;
+	{
+		ft_snprintf(c3d->err, ERR_LEN, MSG_RAY_BADALLOC);
+		return (false);
+	}
 	while (ray_id < c3d->gfx.num_rays)
 	{
 		c3d->gfx.rays[ray_id].id = ray_id;
 		++ray_id;
 	}
-	return (1);
+	return (true);
 }

@@ -6,13 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 03:02:11 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:32:47 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:23:27 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
+#include "cub3d_types.h"
 #include "mlx.h"
 #include "msg.h"
 #include "gfx.h"
@@ -41,14 +41,20 @@ static int	init_save_img(t_graphics *gfx, t_img *img, char *err)
 	img->line_len = (img->bpp / 8) * gfx->win_width;
 	img->endian = gfx->teximg[0].endian;
 	if (img->line_len / (img->bpp / 8) != gfx->win_width)
-		return (!ft_snprintf(err, ERR_LEN, MSG_SAVE_BADALLOC));
+	{
+		ft_snprintf(err, ERR_LEN, MSG_SAVE_BADALLOC);
+		return (false);
+	}
 	alloc_size = img->line_len * gfx->win_height;
 	if (alloc_size / gfx->win_height != (size_t)img->line_len)
-		return (!ft_snprintf(err, ERR_LEN, MSG_SAVE_BADALLOC));
+	{
+		ft_snprintf(err, ERR_LEN, MSG_SAVE_BADALLOC);
+		return (false);
+	}
 	img->addr = ft_calloc(alloc_size, 1);
-	if (img->addr != NULL)
-		return (1);
-	return (!ft_snprintf(err, ERR_LEN, MSG_SAVE_BADALLOC));
+	if (img->addr == NULL)
+		return (CUB3D_ERROR);
+	return (true);
 }
 
 static int	init_dpimg(t_cub3d *c3d)
@@ -65,10 +71,13 @@ static int	init_dpimg(t_cub3d *c3d)
 	img->width = gfx->win_width;
 	img->height = gfx->win_height;
 	if (img->mlx_img == NULL)
-		return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_IMG_FAILED));
+	{
+		ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_IMG_FAILED);
+		return (false);
+	}
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 			&img->line_len, &img->endian);
-	return (1);
+	return (true);
 }
 
 static int	init_teximg(t_cub3d *c3d)
@@ -87,13 +96,18 @@ static int	init_teximg(t_cub3d *c3d)
 		img->mlx_img = mlx_xpm_file_to_image(gfx->mlx_ptr,
 				mapdat->textures[i], &img->width, &img->height);
 		if (img->mlx_img == NULL)
-			return (!ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_IMG_FAILED));
+		{
+			ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_IMG_FAILED);
+			return (false);
+		}
 		img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp,
 				&img->line_len, &img->endian);
 		++i;
 	}
-	return (1);
+	return (true);
 }
+
+/* Destroy display image as well as texture images */
 
 void	destroy_img(t_cub3d *c3d)
 {

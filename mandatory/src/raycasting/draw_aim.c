@@ -6,13 +6,13 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 20:32:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 20:35:01 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 02:33:16 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "img.h"
 
-void	render_aim(t_graphics *gfx)
+void	draw_aim(t_graphics *gfx)
 {
 	int	mid_height;
 	int	mid_width;

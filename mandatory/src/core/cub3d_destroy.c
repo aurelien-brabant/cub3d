@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 16:35:19 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:29:51 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:10:49 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include "gfx.h"
 #include "libft/io.h"
 #include "libft/vector.h"
+
+/* Ensure that all the lines have been read to free the linked list node */
 
 void	clear_gnl(int fd)
 {
@@ -51,5 +53,5 @@ void	cub3d_destroy(t_cub3d *c3d)
 	}
 	if (c3d->fildes != -1)
 		close(c3d->fildes);
-	exit(0);
+	exit(c3d->err[0] != '\0');
 }

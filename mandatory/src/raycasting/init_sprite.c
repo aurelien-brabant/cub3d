@@ -6,10 +6,11 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 01:05:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/23 21:25:15 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 00:26:34 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_types.h"
 #include "libft/core.h"
 #include "raycasting.h"
 
@@ -18,7 +19,7 @@
 ** This texture is stored in gfx->teximg[4].
 */
 
-static t_sprite	*sprite_new(float x, float y)
+static t_sprite	*sprite_new(double x, double y)
 {
 	t_sprite	*sprite;
 
@@ -27,10 +28,12 @@ static t_sprite	*sprite_new(float x, float y)
 	sprite = ft_calloc(1, sizeof (*sprite));
 	if (sprite == NULL)
 		return (NULL);
-	sprite->x = x;
-	sprite->y = y;
+	sprite->pos.x = x;
+	sprite->pos.y = y;
 	return (sprite);
 }
+
+/* Scan every map row, searching for a sprite */
 
 static int	process_map_row(char *row, size_t rowi, t_vector sprites)
 {
@@ -47,14 +50,14 @@ static int	process_map_row(char *row, size_t rowi, t_vector sprites)
 	return (0);
 }
 
-int	init_sprites(t_cub3d *c3d)
+bool	init_sprites(t_cub3d *c3d)
 {
 	c3d->gfx.sprites = ft_vec_new(0, 0);
 	if (c3d->gfx.sprites == NULL)
-		return (0);
+		return (false);
 	if (ft_vec_foreach(c3d->mapdat.map, &process_map_row,
 			c3d->gfx.sprites) != 0)
-		return (0);
+		return (false);
 	c3d->gfx.visible_sprites = ft_vec_new(ft_vec_len(c3d->gfx.sprites), 0);
 	return (c3d->gfx.visible_sprites != NULL);
 }
