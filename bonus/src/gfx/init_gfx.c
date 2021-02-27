@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 14:31:44 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:20:01 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,14 @@ static void	get_win_res(t_cub3d *c3d)
 
 static void	init_time(t_graphics *gfx)
 {
+	int64_t	ticks;
+
 	gfx->init_time = c3d_get_time_now();
-	gfx->frame_time = 1000.0 / FPS_CAP;
+	ticks = c3d_get_ticks(gfx);
+	gfx->last_sec_ticks = ticks;
+	gfx->frame_time = ceil(1000.0 / FPS_CAP);
 	gfx->last_frame_ticks = c3d_get_ticks(gfx);
+	gfx->fps = FPS_CAP;
 }
 
 bool	init_gfx(t_cub3d *c3d)
@@ -66,7 +71,6 @@ bool	init_gfx(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_INIT_FAILED);
 		return (false);
 	}
-	init_time(&c3d->gfx);
 	get_win_res(c3d);
 	if (!init_raycasting(c3d))
 		return (false);
@@ -79,6 +83,8 @@ bool	init_gfx(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_WIN_FAILED);
 		return (false);
 	}
+	init_time(&c3d->gfx);
+	mlx_set_font(c3d->gfx.mlx_ptr, c3d->gfx.win_ptr, "6x13");
 	install_event_handlers(c3d);
 	mlx_loop(c3d->gfx.mlx_ptr);
 	cub3d_shift_state(c3d, NULL);

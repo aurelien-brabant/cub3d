@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:37:25 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 13:50:44 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:19:01 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ uint8_t			map_is_legal(t_vector map, double x, double y);
 void			c3d_warn(const char *msg);
 void			c3d_info(const char *msg);
 
-uint64_t		c3d_get_time_now();
-uint64_t		c3d_get_ticks(t_graphics *gfx);
+int64_t			c3d_get_time_now(void);
+int64_t			c3d_get_ticks(t_graphics *gfx);
 
 #endif /* MISC_H */

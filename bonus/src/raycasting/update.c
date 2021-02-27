@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 15:06:54 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:19:38 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,34 @@
 #include "raycasting.h"
 #include "libft/vector.h"
 
+#include <stdio.h>
+
 static void	wait_for_next_frame(t_graphics *gfx)
 {
+	static int8_t	fps = 0;
 	struct timespec	diff_timespec;
 	int64_t			diff;
+	int64_t			ticks;
 
-	diff = c3d_get_ticks(gfx) - (gfx->last_frame_ticks + gfx->frame_time);
-	gfx->delta_time = (c3d_get_ticks(gfx) - gfx->last_frame_ticks) / 1000.0;
+	ticks = c3d_get_ticks(gfx);
+	if (ticks > gfx->last_sec_ticks + 1000)
+	{
+		gfx->last_sec_ticks = ticks;
+		gfx->fps = fps;
+		fps = 0;
+	}
+	diff = (gfx->last_frame_ticks + gfx->frame_time) - c3d_get_ticks(gfx);
 	if (diff > 0)
 	{
 		diff_timespec.tv_sec = diff / 1000;
 		diff_timespec.tv_nsec = (diff % 1000) * 1000000;
 		nanosleep(&diff_timespec, &diff_timespec);
 	}
-	gfx->last_frame_ticks = c3d_get_ticks(gfx);
+	ticks = c3d_get_ticks(gfx);
+	gfx->delta_time = (ticks - gfx->last_frame_ticks) / 1000.0;
+	gfx->last_frame_ticks = ticks;
+	++fps;
 }
-
-#include <stdio.h>
 
 static void	update_player(t_vector *map, t_player *player, double dtime)
 {
@@ -47,8 +58,8 @@ static void	update_player(t_vector *map, t_player *player, double dtime)
 
 	movespd = player->move_speed * dtime;
 	turnspd = player->turn_spd * dtime;
-	player->rot_angle = normalize_angle(player->rot_angle +
-			(player->turn_dir * turnspd));
+	player->rot_angle = normalize_angle(player->rot_angle
+			+ (player->turn_dir * turnspd));
 	next_x = player->pos.x + cos(player->rot_angle)
 		* (player->move_dir * movespd);
 	next_y = player->pos.y + sin(player->rot_angle)

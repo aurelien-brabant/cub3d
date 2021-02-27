@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:55:54 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 14:38:48 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 17:25:15 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,10 @@ typedef struct s_graphics
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int64_t			init_time;
-	double			frame_time;
+	int16_t			frame_time;
 	int64_t			last_frame_ticks;
+	int64_t			last_sec_ticks;
+	int8_t			fps;
 	double			delta_time;
 	double			fov;
 	double			dist_proj_plane;
