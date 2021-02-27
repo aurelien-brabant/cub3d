@@ -32,12 +32,15 @@ project. I added several things such as:
 - Shadow effect when a wall is far from the player.
 - Wall collision.
 
-### Play
+# Play
 
 ## Dependencies
 
-- xorg
-- libx11-dev (if you're on a debian derivative)
+- gcc
+- make
+- X11 include files (package xorg)
+- XShm extension must be present (package libxext-dev)
+- Utility functions from BSD systems - development files (package libbsd-dev)
 - clang C compiler
 
 The libft and the minilibx libraries are automatically fetched by the
