@@ -6,3 +6,5 @@ cub3D_bonus
 test/
 .cache
 *.bmp
+*.o
+*.a
