@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 00:36:55 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 21:26:40 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@
 #include "gfx.h"
 #include "misc.h"
 #include "libft/core.h"
+
+static void	put_wall_pix(t_img *img, t_ray *ray, t_coords offset, int y)
+{
+	int		texel;
+	double	fac;
+
+	texel = img_pix_get(ray->tex_img, offset.x, offset.y);
+	fac = 350 / ray->dist;
+	if (fac > 1)
+		fac = 1;
+	change_color_intensity(&texel, fac);
+	img_pix_put(img, ray->id, y, texel);
+}
 
 static void	project_textured_wall(t_ray *ray, t_img *img, double wall_height,
 		int wall_top_px)
@@ -40,28 +53,8 @@ static void	project_textured_wall(t_ray *ray, t_img *img, double wall_height,
 			- (img->height / 2.0);
 		offset.y = distance_top
 			* ((double)ray->tex_img->height / wall_height);
-		img_pix_put(img, ray->id, wall_top_px,
-				img_pix_get(ray->tex_img, offset.x, offset.y));
-		++wall_top_px;
+		put_wall_pix(img, ray, offset, wall_top_px++);
 	}
-}
-
-static void	draw_ceiling(t_img *img, int ray_id, int wall_top_px, int color)
-{
-	int	pixy;
-
-	pixy = 0;
-	while (pixy < wall_top_px)
-		img_pix_put(img, ray_id, pixy++, color);
-}
-
-static void	draw_floor(t_img *img, int ray_id, int wall_bot_px, int color)
-{
-	int	pixy;
-
-	pixy = wall_bot_px;
-	while (pixy < img->height)
-		img_pix_put(img, ray_id, pixy++, color);
 }
 
 /*
@@ -75,15 +68,20 @@ static void	project(t_graphics *gfx, t_ray *ray, int *colors)
 	t_img		*img;
 	double		wall_height;
 	int			wall_top_px;
+	int			i;
 
+	i = 0;
 	img = &gfx->dpimg;
 	wall_height = (TILE_SIZE / ray->dist) * gfx->dist_proj_plane;
 	wall_top_px = (img->height / 2.0) - (wall_height / 2.0);
 	if (wall_top_px < 0)
 		wall_top_px = 0;
-	draw_ceiling(img, ray->id, wall_top_px, colors[1]);
+	while (i < wall_top_px)
+		img_pix_put(img, ray->id, i++, colors[1]);
 	project_textured_wall(ray, img, wall_height, wall_top_px);
-	draw_floor(img, ray->id, wall_top_px + wall_height, colors[0]);
+	i = wall_top_px + wall_height;
+	while (i < img->height)
+		img_pix_put(img, ray->id, i++, colors[0]);
 }
 
 void	draw_walls(t_graphics *gfx, int *colors)
