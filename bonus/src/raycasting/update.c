@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:45:10 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/26 20:52:32 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 02:26:37 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	update_player(t_vector *map, t_player *player)
 		next_y = player->pos.y + sin(player->rot_angle + (0.5 * M_PI)
 				* player->strafe_dir) * (player->move_speed);
 	}
-	if (!map_is_legal(map, next_x, next_y))
+	if (map_has_wall_at(map, next_x, next_y))
 		return ;
 	player->pos.x = next_x;
 	player->pos.y = next_y;
