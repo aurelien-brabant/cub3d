@@ -62,9 +62,6 @@ mkdir -p test 2> /dev/null
 if [ $# -eq 0 ]; then
 	EXEC=$EXEC_MANDATORY
 	TEST_MAP_DIR=$TEST_MAP_DIR_MANDATORY
-elif [ $# -eq 1 ] && [ $1 == "bonus" ]; then
-	EXEC=$EXEC_BONUS
-	TEST_MAP_DIR=$TEST_MAP_DIR_BONUS
 else
 	printf "Unrecognized format, aborting.\n"
 	exit 1
