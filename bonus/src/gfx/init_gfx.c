@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 02:22:34 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 00:23:15 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 14:31:44 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ static void	get_win_res(t_cub3d *c3d)
 		c3d->gfx.win_height = screen_res_y;
 }
 
+static void	init_time(t_graphics *gfx)
+{
+	gfx->init_time = c3d_get_time_now();
+	gfx->frame_time = 1000.0 / FPS_CAP;
+	gfx->last_frame_ticks = c3d_get_ticks(gfx);
+}
+
 bool	init_gfx(t_cub3d *c3d)
 {
 	c3d->gfx.mlx_ptr = mlx_init();
@@ -59,6 +66,7 @@ bool	init_gfx(t_cub3d *c3d)
 		ft_snprintf(c3d->err, ERR_LEN, MSG_MLX_INIT_FAILED);
 		return (false);
 	}
+	init_time(&c3d->gfx);
 	get_win_res(c3d);
 	if (!init_raycasting(c3d))
 		return (false);

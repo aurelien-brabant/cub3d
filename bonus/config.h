@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 21:54:03 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/25 23:11:24 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/27 13:53:05 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 ** DON'T FORGET to run 'make reconfig' when changes have been made.
 */
 
-# define FOV_ANGLE 60
+# define FOV_ANGLE	60
+# define FPS_CAP	120
 
 /*
 ** KEYBINDINGS CONFIGURATION

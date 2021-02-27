@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/27 00:49:59 by abrabant         ###   ########.fr        #
+#    Updated: 2021/02/27 14:23:57 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ CORE_BONUS				= cub3d_init.c cub3d_destroy.c cub3d_shift_state.c		\
 PARSING_BONUS			= parse_id.c parse_tex.c check_parse_id.c parse_res.c	\
 						parse_col.c parse_map.c check_parse_map.c
 
-MISC_BONUS				= parsing_utils.c color.c map.c output.c
+MISC_BONUS				= parsing_utils.c color.c map.c output.c time.c
 
 GFX_BONUS				= init_gfx.c destroy_gfx.c get_points_dist.c degrad.c
 
