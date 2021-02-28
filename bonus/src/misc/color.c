@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 13:23:33 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 21:37:24 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/28 15:27:43 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	change_color_intensity(int *color, float factor)
 	int	g;
 	int	b;
 
+	if (factor > 1)
+		factor = 1;
 	r = (*color & 0xFF0000) * factor;
 	g = (*color & 0xFF00) * factor;
 	b = (*color & 0xFF) * factor;

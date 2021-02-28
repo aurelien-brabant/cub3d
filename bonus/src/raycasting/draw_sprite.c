@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 16:58:39 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/26 02:38:25 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/28 15:30:53 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,13 @@ static void	draw_sprite_col(t_graphics *gfx, t_sprite *sprite,
 		offset_y = ft_boundarize(offset_y, 0, gfx->teximg[4].height - 1);
 		color = img_pix_get(&gfx->teximg[P_ID_S - 1], offset_x, offset_y);
 		if (color != transparent_color && gfx->rays[x].dist > sprite->distance)
+		{
+			change_color_intensity(&color, 350 / sprite->distance);
 			img_pix_put(&gfx->dpimg, x, y, color);
+		}
 		++y;
 	}
 }
-
-/*
-** NOTE:
-** *x* needs to store enough precision in order to get the proper and 
-** non-negative offset_x. It will be implicitely converted to int
-** in the draw_sprite_col function.
-*/
 
 static void	draw_sprite_row(t_graphics *gfx, t_sprite *sprite)
 {

@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# Use this script if you're coming from github directly and not 42 defense.
+
 MLX_LINUX_GIT=https://github.com/42Paris/minilibx-linux
 LIBFT_GIT=https://github.com/aurelien-brabant/libft
 

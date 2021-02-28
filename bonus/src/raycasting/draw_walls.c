@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:39:16 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 21:26:40 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/02/28 15:31:10 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	put_wall_pix(t_img *img, t_ray *ray, t_coords offset, int y)
 
 	texel = img_pix_get(ray->tex_img, offset.x, offset.y);
 	fac = 350 / ray->dist;
-	if (fac > 1)
-		fac = 1;
 	change_color_intensity(&texel, fac);
 	img_pix_put(img, ray->id, y, texel);
 }
