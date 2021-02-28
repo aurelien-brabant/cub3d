@@ -18,8 +18,7 @@
 #                               VARS                                          #
 ###############################################################################
 
-TEST_MAP_DIR_BONUS=asset/map/bonus
-TEST_MAP_DIR_MANDATORY=asset/map/mandatory
+TEST_MAP_DIR_MANDATORY=asset/map
 
 EXEC_MANDATORY=./cub3D
 EXEC_BONUS=./cub3D_bonus
