@@ -1,0 +1,15 @@
+R   1080 640
+
+NO	asset/tex/16x16/wool.xpm
+SO	asset/tex/16x16/brick.xpm
+EA	asset/tex/16x16/planks_birch.xpm
+WE	asset/tex/16x16/planks_spruce.xpm
+S   asset/tex/sprite/nether_sprouts.xpm
+
+C   0,181,226
+F   0, 154, 23
+
+11111111111111111111
+1N110
+10000111111111111111
+11111
