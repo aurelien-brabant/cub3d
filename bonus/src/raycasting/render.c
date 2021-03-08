@@ -15,7 +15,7 @@
 #include "mlx.h"
 #include "gfx.h"
 #include "raycasting.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/io.h"
 
 int	render(t_cub3d *c3d)

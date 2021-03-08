@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include "parsing.h"
 #include "msg.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/io.h"
 
 static void	process_token(t_cub3d *c3d, char *tok)

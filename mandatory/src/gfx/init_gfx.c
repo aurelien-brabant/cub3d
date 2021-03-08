@@ -18,7 +18,7 @@
 #include "mlx.h"
 #include "libft/core.h"
 #include "libft/io.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "config.h"
 #include "cub3d.h"
 #include "bmp.h"

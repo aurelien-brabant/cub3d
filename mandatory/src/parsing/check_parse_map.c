@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include "msg.h"
 #include "parsing.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/vector.h"
 #include "libft/io.h"
 

@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/ctype.h"
 
 /*

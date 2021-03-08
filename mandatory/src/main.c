@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 14:45:29 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/26 18:34:23 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/03/08 21:28:46 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 #include "libft/io.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/cla.h"
 
 #include "cub3d.h"

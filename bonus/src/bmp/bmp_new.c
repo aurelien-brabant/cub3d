@@ -6,17 +6,18 @@
 /*   By: aurelienbrabant <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 10:21:24 by aurelienb         #+#    #+#             */
-/*   Updated: 2021/02/21 11:26:29 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/03/08 21:25:56 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+#include "libft/core.h"
 #include "bmp.h"
 
 /*
  ** Some elements are not set as they would be set to zero,
- ** and calloc already did the job when it initialized the
+ ** and ft_calloc already did the job when it initialized the
  ** memory.
  */
 
@@ -34,7 +35,7 @@ t_bmp	*bmp_new(uint8_t *stream, int width, int height, int bpp)
 	t_bmp	*bmp;
 	size_t	rowlen;
 
-	bmp = calloc(1, sizeof (*bmp));
+	bmp = ft_calloc(1, sizeof (*bmp));
 	if (bmp == NULL)
 		return (NULL);
 	bmp->stream = stream;

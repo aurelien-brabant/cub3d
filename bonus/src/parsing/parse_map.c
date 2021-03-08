@@ -15,7 +15,7 @@
 #include "msg.h"
 
 #include "libft/io.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/vector.h"
 
 /*

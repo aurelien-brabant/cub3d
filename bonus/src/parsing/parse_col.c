@@ -13,7 +13,7 @@
 #include "cub3d_types.h"
 #include "misc.h"
 #include "msg.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/io.h"
 #include "libft/strconv.h"
 

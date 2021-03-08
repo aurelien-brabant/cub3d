@@ -13,7 +13,7 @@
 #include <limits.h>
 
 #include "cub3d.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/io.h"
 #include "libft/vector.h"
 

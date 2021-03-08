@@ -17,7 +17,7 @@
 
 #include "cub3d.h"
 #include "msg.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/io.h"
 
 static uint8_t	verify_path(char *path, char *err)

@@ -16,7 +16,7 @@
 #include "config.h"
 #include "raycasting.h"
 #include "libft/vector.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 
 unsigned char	map_getchar(t_vector map, double x, double y)
 {

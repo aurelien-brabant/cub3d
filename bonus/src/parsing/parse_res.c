@@ -14,7 +14,7 @@
 #include "misc.h"
 #include "msg.h"
 #include "libft/strconv.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 #include "libft/io.h"
 
 static bool	convert_nbrs(char **nb_str, int *nb, char *err)

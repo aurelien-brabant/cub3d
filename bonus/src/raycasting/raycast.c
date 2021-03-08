@@ -17,7 +17,7 @@
 #include "misc.h"
 #include "raycasting.h"
 #include "config.h"
-#include "libft/string.h"
+#include "libft/cstring.h"
 
 /*
 ** Cast an individual ray.
