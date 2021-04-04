@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/04/04 12:14:43 by abrabant         ###   ########.fr        #
+#    Updated: 2021/04/04 12:26:32 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,6 +151,12 @@ fcleanfull: fclean fcleanbonus
 re: fclean $(TARGET)
 
 rebonus: fcleanbonus $(TARGET_BONUS)
+
+norm:
+	norminette mandatory
+
+normbonus:
+	norminette bonus
 
 .PHONY: all clean fclean re test
 
