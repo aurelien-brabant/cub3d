@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 19:26:01 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/26 02:43:04 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/04/04 09:40:49 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	draw_sprite_projection(t_cub3d *c3d)
 {
 	ft_vec_set_len(c3d->gfx.visible_sprites, 0);
 	ft_vec_foreach(c3d->gfx.sprites, &put_visible_sprite, c3d);
-	ft_vec_sort(c3d->gfx.visible_sprites, &ft_bsort, &comp_sprites);
+	ft_vec_sort(c3d->gfx.visible_sprites, &ft_quick_sort, &comp_sprites);
 	ft_vec_foreach(c3d->gfx.visible_sprites, &draw_sprite, c3d);
 }

@@ -6,7 +6,7 @@
 /*   By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:20:36 by abrabant          #+#    #+#             */
-/*   Updated: 2021/02/27 00:25:40 by abrabant         ###   ########.fr       */
+/*   Updated: 2021/04/04 09:01:52 by abrabant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ static void	init_player(t_vector map, t_player *player)
 }
 
 /*
-** Return zero if everything went well, non-zero otherwise.
+** NOTE: how the distance to the projection plane is calculated:
+** Simple trigonometry formula application. The formula used here
+** is: adjacent = opposite / tan.
+** The length of the adjacent side is basically the distance to the projection
+** plane that we'll extensively use when drawing the walls on the screen.
 */
 
 bool	init_raycasting(t_cub3d *c3d)
