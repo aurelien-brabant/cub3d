@@ -6,7 +6,7 @@
 #    By: abrabant <abrabant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 22:55:32 by abrabant          #+#    #+#              #
-#    Updated: 2021/02/27 22:18:34 by abrabant         ###   ########.fr        #
+#    Updated: 2021/04/04 12:14:43 by abrabant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -157,10 +157,12 @@ rebonus: fcleanbonus $(TARGET_BONUS)
 # Build rules
 
 $(TARGET): $(OBJ_DIR) $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(OBJS)
-	$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET)
+	@$(CC) $(OBJS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET)
+	@printf "\033[0;32m$(TARGET) \033[0mgenerated.\n"
 
 $(TARGET_BONUS): $(OBJ_DIR) $(MLX_ARCHIVE) $(LIBFT_ARCHIVE) $(OBJS_BONUS)
-	$(CC) $(OBJS_BONUS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET_BONUS)
+	@$(CC) $(OBJS_BONUS) $(LIB_DIR) $(LIBFT_LINK) $(MLX_LINK) -lm -o $(TARGET_BONUS)
+	@printf "\033[0;32m$(TARGET_BONUS) \033[0mgenerated.\n"
 
 # Make libft archive
 $(LIBFT_ARCHIVE):
@@ -172,8 +174,10 @@ $(MLX_ARCHIVE):
 
 # MANDATORY PART COMPILATION
 mandatory/src/%.o:mandatory/src/%.c
-	$(CC) $(CFLAGS) $(INC_DIR) -g -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC_DIR) -g -c $< -o $@
+	@printf "[\033[1;34mCUB3D\033[0m] \033[1;37mCC \033[0;33m$<\033[0m\n"
 
 # BONUS PART COMPILATION
 bonus/src/%.o:bonus/src/%.c
-	$(CC) $(CFLAGS_BONUS) $(INC_DIR_BONUS) -g -c $< -o $@
+	@$(CC) $(CFLAGS_BONUS) $(INC_DIR_BONUS) -g -c $< -o $@
+	@printf "[\033[1;33mCUB3D-BONUS\033[0m] \033[1;37mCC \033[0;33m$<\033[0m\n"
