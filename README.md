@@ -1,3 +1,5 @@
+![abrabant's stats](https://badge42.herokuapp.com/api/stats/abrabant)
+
 # cub3D
 
 cub3D is a bare-bones clone of the
